@@ -20,7 +20,7 @@ App({
                 that.globalData.telSystem = res.system;
             }
         })
-        that.getUserInfo()
+        that.getUserInfo();
         if (wx.getStorageSync('customerInfo').etoken) {
             that.makeSocket()
         }
