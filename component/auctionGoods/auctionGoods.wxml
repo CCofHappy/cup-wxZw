@@ -1,0 +1,133 @@
+<!--component/auctionGoods/auctionGoods.wxml-->
+<view class='goods-box'>
+    <view class="weui-flex" bindtouchstart="touchStart"  bindtouchmove="touchMove" bindtouchend="touchEnd" style='transform: translateX({{sliderOffset}}px);'>
+        <view class="pro-list-left box box-align-center">
+            <!-- <navigator url="/pages/pro-detail/pro-detail?id={{auctionGoods.auctionGoodsSeq}}&sessionId={{auctionGoods.auctionSessionSeq}}" hover-class="none"> -->
+            <navigator url="{{auctionType=='mine'?mineUrl:proUrl}}" hover-class="none">
+                <view class='pro-item-img text-center'>
+                    <view class='icon icon-record' style='background-image:url("{{imgUrl}}miniweb/icon/ic_unable@3x.png");' wx:if="{{auctionGoods.state<4 &&auctionGoods.offerState == 0 && auctionGoods.myPrice}}"></view>
+                    <view class='icon icon-record' style='background-image:url("{{imgUrl}}miniweb/icon/ic_gofirst@3x.png");' wx:elif="{{auctionGoods.state<4 &&auctionGoods.recordState == 1 && auctionGoods.myPrice}}"></view>
+                    <view class='icon icon-record' style='background-image:url("{{imgUrl}}miniweb/icon/ic_igot@3x.png");' wx:elif="{{auctionGoods.recordState == 1 && auctionGoods.myPrice &&auctionGoods.state == 4}}"></view>
+                    <view class='icon icon-record' style='background-image:url("{{imgUrl}}miniweb/icon/ic_beout@3x.png");' wx:elif="{{auctionGoods.state<5 &&auctionGoods.recordState == 0 && auctionGoods.myPrice}}"></view>
+                    <image class="seize-image-1" src="{{auctionGoods.auctionGoodsIcon}}" mode="aspectFit" style="width:268rpx;height:268rpx;"></image>
+                </view>
+                <view class='pro-item-desc' wx:if="{{auctionGoods.state<4}}">
+                    <view class='pro-item-line'>
+                        <text class="pro-item-label">编</text>{{auctionGoods.auctionGoodsCode}}
+                    </view>
+                    <view class='pro-item-line'>
+                        <text class="pro-item-label">起</text>￥{{auctionGoods.qiPaiJia}}
+                    </view>
+                    <view class='pro-item-line'>
+                        <text class="pro-item-label">估</text>￥{{auctionGoods.referencePriceMin < 10000?auctionGoods.referencePriceMin:auctionGoods.referencePriceMin/10000+'万'}}-{{auctionGoods.referencePriceMax < 10000?auctionGoods.referencePriceMax:auctionGoods.referencePriceMax/10000+'万'}}
+                    </view>
+                    <view class='pro-item-line'>
+                        <text class="pro-item-label">留</text>{{auctionGoods.lowState}}
+                    </view>
+                </view>
+            </navigator>
+        </view>
+        <view class="pro-list-right">
+            <navigator url="{{auctionType=='mine'?mineUrl:proUrl}}" hover-class="none">
+                <view class="pro-name text-overflow">{{auctionGoods.auctionGoodsName}}</view>
+                <view class="pro-sec">净含量:{{auctionGoods.jingHangLiang}}ml 酒精度:{{auctionGoods.jiuJingDu}}%</view>
+                <view class='pro-current'>
+                    <view class="pro-current-price">
+                        <view class='box box-align-center'>
+                            <block wx:if="{{auctionGoods.state == 2}}">
+                                <text class='price-txt'> 起拍价：</text>
+                                <text class='font-red'>
+                                    <text class="small">￥</text>{{auctionGoods.qiPaiJia}}
+                                </text>
+                            </block>
+                            <block wx:if="{{auctionGoods.state == 3}}">
+                                <text class='price-txt'> 当前价：</text>
+                                <text class='font-red'>
+                                    <text class="small">￥</text>{{auctionGoods.currPrice}}
+                                </text>
+                            </block>
+                            <block wx:if="{{auctionGoods.state == 4}}">
+                                <text class='price-txt'> 成交价：</text>
+                                <text class='font-red'>
+                                    <text class="small">￥</text>{{auctionGoods.currPrice}}
+                                </text>
+                            </block>
+                            <block wx:if="{{auctionGoods.state == 5}}">
+                                <text class='price-txt'> 成交价：</text>流拍</block>
+                        </view>
+                        <view class='box box-align-center' style='position:relative;'>
+                        <view class='icon icon-delay' style='background-image:url("{{imgUrl}}miniweb/icon/ic_delay.png");top:12rpx;' wx:if="{{auctionGoods.delay==1&&auctionGoods.state<4}}"></view>
+                            <view>
+                                <view class="myprice"  wx:if="{{auctionGoods.state<4}}">我的出价：{{auctionGoods.myPrice&&auctionGoods.myPrice!=0?auctionGoods.myPrice:'未出价'}}</view>
+                                <view class="myprice" wx:elif="{{auctionGoods.state==4 || auctionGoods.state==5}}">
+                                    <view class="box-flex booked-box box box-align-center" catchtap="getOneClick" id="{{index}}" wx:if="{{auctionGoods.isNegotiate==0}}">
+                                        <image src='{{imgUrl}}/miniweb/icon/ic_star@3x.png'></image>我想私洽
+                                    </view>
+                                    <view class="box-flex booked booked-box box box-align-center" wx:else>
+                                        <image src='{{imgUrl}}/miniweb/icon/ic_star_pressed@3x.png'></image>已私洽
+                                    </view>
+                                </view>
+                                <view class="small heartpirce font-gray" wx:if="{{auctionGoods.state<4}}">
+                                    心理最高价：
+                                    <block  wx:if="{{auctionGoods.userHighestPrice>0}}">{{'￥'+auctionGoods.userHighestPrice}}</block>
+                                    <block  wx:elif="{{auctionGoods.highestPrice>0}}">{{'￥'+auctionGoods.highestPrice}}</block>
+                                    <block  wx:else>暂无</block>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="pro-timer font-gold box box-align-center" wx:if="{{auctionGoods.state<4}}">
+                    <image src='{{imgUrl}}/miniweb/icon/time.png' wx:if="{{countDownTime}}"></image>
+                    <block wx:if="{{auctionGoods.state==2}}">
+                        <block wx:if="{{countDownTime}}">
+                            距开始: {{countDownTime}}
+                        </block>
+                        <block wx:else>
+                            拍卖中
+                        </block>
+                    </block>
+                    <block wx:if="{{auctionGoods.state==3&&countDownTime}}">
+                        距结束: {{countDownTime}}
+                    </block>
+                    <block wx:if="{{auctionGoods.state==4 || auctionGoods.state == 5}}">已结束</block>
+                </view>
+            </navigator>
+            <view class="pro-btn-box box" wx:if="{{auctionGoods.state==2}}">
+                <view class="pro-btn text-center box-flex" bindtap="getBond" id="{{index}}" wx:if="{{auctionGoods.bondState==0}}">报名，去交保证金</view>
+                <view class="pro-btn text-center box-flex" id="{{index}}" wx:else>已报名，等待拍场开始</view>
+            </view>
+            <view class="pro-btn-box box" wx:elif="{{auctionGoods.state==3}}">
+                <view class="pro-btn text-center box-flex one-hand" bindtap="oneHandPrice" id="{{index}}">加一手</view>
+                <view class="pro-btn text-center box-flex call-price" bindtap="freePrice" id="{{index}}">自由出价</view>
+            </view>
+        </view>
+        <view class='active-btn box box-center' bindtap='deleteAuction'>
+            删除
+        </view>
+    </view>
+</view>
+<view class="booked-shadow box box-center" wx:if="{{bookedType}}">
+    <view class="booked-container white-bg">
+        <icon class="close-btn" type="clear" size="25" bindtap="bookedCancel"/>
+        <view class="booked-title text-center" wx:if="{{bookedType==2}}">出售</view>
+        <view class="booked-title text-center" wx:else>求购</view>
+        <view class="booked-content box">
+            <text class="price-title" decode="true" wx:if="{{bookedType==2}}">出售价&nbsp;:</text> 
+            <text class="price-title" decode="true" wx:else>求购价&nbsp;:</text> 
+            <input value='{{privatelyPrice}}' bindinput='changePrice' type='number'></input>
+        </view>
+        <view class="booked-content box">
+          <text class="count-title" decode="true" space="emsp">数 量&nbsp;:</text>      
+          <view class="count-box box text-center">
+            <view class="font-bold" bindtap="countReduce">-</view>
+                {{bookedCount}}
+            <view class="font-bold" bindtap="countAdd">+</view>
+          </view>
+        </view>
+        <view class="booked-tips font-small">如有其它客户同意私洽，我们将电话联络您。中威网按拍卖规则收取相应佣金。</view>
+        <view class="booked-btn box text-center">
+            <view class="box-flex" bindtap="bookedEnter">提交</view>
+        </view>
+    </view>
+</view>

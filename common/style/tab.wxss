@@ -1,0 +1,43 @@
+/*page{
+    background-color: #f3f3f3;
+    color: #332c2b;
+}*/
+
+.tab-header {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: table;
+    width: 750rpx;
+    height: 80rpx;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 0 10rpx;
+}
+
+.tab-header-item {
+    display: table-cell;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+}
+
+.tab-header-item:active {
+    background-color: #f8f8f8;
+}
+
+.tab-header-active {
+    /*border-bottom: 4rpx solid #c89664;*/
+    color:#c89664;
+}
+
+.tab-content {
+    margin-top: 87rpx;
+}
+
+.tab-content-item {
+    box-sizing: border-box;
+    padding: 30rpx;
+}

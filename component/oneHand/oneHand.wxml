@@ -1,0 +1,12 @@
+<template name="oneHand">
+  <view class="call-price-shadow box box-center text-center">
+    <view class="one-hand-container white-bg">
+        <icon class='close-btn' type="clear" size="25" bindtap="oneHandCancel"/>
+        <image src='{{imgUrl}}/miniweb/icon/ic_onehand@3x.png'></image>
+        <view style='margin-top:30rpx'>当前加价幅度为{{oneHandStep}}元</view>
+        <view class="one-hand-btn box" bindtap="oneHandEnter">
+            <view class="box-flex">确定加一手</view>
+        </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,15 @@
+.rule-box {
+    border-top: 2rpx solid #efefef;
+    padding: 0 30rpx 60rpx 30rpx;
+    font-size: #9b9b9b;
+}
+
+.rule-item {
+    padding: 20rpx 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.rule-item .rule-sub-item {
+    margin-left: 40rpx;
+    color: #9b9b9b;
+}

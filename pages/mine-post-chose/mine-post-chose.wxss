@@ -1,0 +1,7 @@
+/* pages/mine-post-chose/mine-post-chose.wxss */
+.container .items-list{
+    border-bottom: 2rpx solid #f2f2f2;
+}
+.container .items-list:first-child{
+    border-top: 2rpx solid #f2f2f2;
+}

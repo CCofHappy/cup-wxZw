@@ -1,0 +1,45 @@
+/* pages/pro-detail-record/pro-detail-record.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+.list-box{
+    border-bottom: 2rpx solid #ccc;
+    border-top: 2rpx solid #ccc;
+    padding: 0 30rpx;
+    box-sizing: border-box;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.list-box.price-list{
+    border-top: none;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.list-box .first-bar{
+    width: 65%;
+}
+
+.list-box .last-bar{
+    width: 35%;
+}
+
+.list-box .last-bar.time{
+    padding: 10rpx 0;
+    line-height: 40rpx;
+}
+
+.price-icon{
+    background: #656565;
+    color: #fff;
+    height: 44rpx;
+    line-height: 44rpx;
+    padding: 0 12rpx;
+}
+
+.price-icon.first{
+    background: #942C15;
+}
+
+.font-gray-lighter{
+    margin: 20rpx 0;
+}

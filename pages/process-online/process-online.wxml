@@ -1,0 +1,4 @@
+<!--pages/process-online/process-online.wxml-->
+<view class="container">
+  <image src="{{imgUrl}}miniweb/online-send.jpg" style="width:100%;" mode="widthFix"></image>
+</view>

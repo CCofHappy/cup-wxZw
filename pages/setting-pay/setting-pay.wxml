@@ -1,0 +1,65 @@
+<view class="container">
+    <view class="items-box white-bg">
+        <view class="items-list {{checkOne}}" bindtap="checkbox" data-num="1">发票说明</view>
+        <view class="text-content {{checkOne}}">
+            <view class="font-bold" style="margin-bottom: 30rpx;">如何开具发票？</view>
+            <view>1、 若您在中威网任何一个有拍卖功能的客户端竞得拍品，在提交订单前选择“是否需要发票”，并填写相关内容，发票即可随商品一起发出。</view>
+            <view>2、 若您通过中威网客服中心委托竞拍，竞拍成功后您可将发票抬头提供给工作人员，发票将随商品一起寄出。</view>
+            <view>3、若您通过中威网客服中心订购商品，您可将发票信息提供给工作人员，发票将随商品一起寄出。</view>
+            <view class="font-bold" style="margin: 30rpx 0;">开具发票注意事项</view>
+            <view>1、通过中威网商城区订购商品，您可选择开具发票，一个订单对应一张发票，发票将随同商品一起寄出；若您的发票寄送地址和收货地址不一致，中威网将提供一次免费寄送发票的服务；</view>
+            <view>2、中威网商城区提供的发票为酒类专用发票，此发票可用作单位报销使用；</view>
+            <view>3、配送费金额包含在订单发票金额中；</view>
+            <view>4、发票金额不能高于订单金额；</view>
+            <view>5、使用威币、红包、礼品卡、返现金额等支付的部分，不再开具发票；</view>
+            <view>6、发票抬头：个人或公司名称；</view>
+            <view>7、商城区发票内容：酒水或明细；</view>
+            <view>8、您在商城区订货后若不需要开具发票，我们将随商品为您开具“中威网销售单”以使您的售后服务得以保障；</view>
+            <view>9、中威网拍卖区所开发票原则上只针对您所支付的佣金，不包括您所得拍的拍品总价；如竞拍人需开金额发票，则须按法定税率补缴相应税款；</view>
+            <view class="font-bold" style="margin: 30rpx 0;">补开、更换发票</view>
+            <view>1、补开发票以当月订单为准，即只可补开当月发票；</view>
+            <view>2、更换商城区发票需提供“中威网销售单”或详细的订购信息；</view>
+            <view>3、请您提供正确的发票收件地址，我们会在补开发票后以快递的方式为您寄出，请您注意查收；</view>
+            <view>4、若因客户个人原因导致更换或补开发票，需由客户承担发票快递费用；</view>
+            <view>5、因发票抬头、内容或金额等情形需更换发票时，请您当月及时与中威网客服中心联系确认后，将原发票退回中威网后方予以重开。</view>
+            <view class="font-bold" style="margin-top: 30rpx;">
+                温馨提示：
+                <view>该发票原则上只针对您所支付的佣金,不包括您所得拍的商品总价；如竞拍人需开全额发票，则须按法定税率补缴相应税款。
+                </view>
+            </view>
+            <view class="font-bold" style="margin-top: 30rpx;">
+                发票寄至以下地址：
+                <view>广东省惠州市惠城区江北华贸金融街12号楼103</view>
+                <view>惠州市中威酒业有限公司财务部</view>
+                <view>电话：400－830－5299</view>
+                <view>邮编：516001</view>
+            </view>
+        </view>
+
+        <view class="items-list {{checkTwo}}" bindtap="checkbox" data-num="2">在线支付</view>
+        <view class="text-content {{checkTwo}}">
+            <view class="font-bold" style="margin-top: 30rpx;">1、在线支付平台</view>
+            <view>中威网提供支付宝、微信支付、快捷支付和银联在线支付4种在线支付平台支付，同时中威网还支持中国工商银行、交通银行、中国建设银行、招商银行、中国银行、中国农业银行、中国民生银行、中信银行、北京银行、深圳发展银行、浦发银行、广发银行、兴业银行中国邮政储蓄银行、中国光大银行等12个银行的网银在线支付。选择在线支付，即时到帐，准确快捷！</view>
+            <view>支付宝账号：chinawhisky@hotmail.com</view>
+            <view class="font-bold" style="margin-top: 30rpx;">2、银行卡的开通</view>
+            <view>因各地银行政策不同，建议您在网上支付前拨打所在地银行电话，咨询该行可供网上支付的银行卡种类及开通手续。</view>
+            <view class="font-bold" style="margin-top: 30rpx;">3、支付金额上限</view>
+            <view>目前各银行对于网上支付均有一定金额的限制，由于各银行政策不同，建议您在申请网上支付功能时向银行咨询相关事宜。</view>
+            <view class="font-bold" style="margin-top: 30rpx;">4、到款时间</view>
+            <view>网上支付均是支付成功即到账。若由于网络故障导致您已支付成功的订单未改变订单状态，请您联系我们的客服人员为您解决 客服热线：400-830-5299</view>
+            <view class="font-red" style="margin-top: 30rpx;">温馨提示：中威网拍卖区：得拍后的拍品请您在48小时内付款，未在规定时间内完成支付将视为违约，您将失去该拍品的得拍权和保证金。</view>
+            <view class="font-red" style="margin-top: 10rpx;">中威网商城区：商品加入购物车后请您及时付款，我们以付款先后顺序为您安排发货，否则我们将不会保留您的订单。</view>
+        </view>
+        <view class="items-list {{checkThree}}" bindtap="checkbox" data-num="3">线下支付</view>
+        <view class="text-content {{checkThree}}">
+            <view>为了方便顾客参与竞拍，特设立中国工商银行账户，在您汇款至公司账户后，请及时通知我们，便于及时发货。</view>
+            <view style="margin-top: 30rpx;">
+                <text class="font-bold">开户行：</text>中国工商银行股份有限公司惠州东方威尼斯支行</view>
+            <view>
+                <text class="font-bold">账 号：</text>2008 0222 0920 0036 227</view>
+            <view>
+                <text class="font-bold">公 司：</text>惠州市中威酒业有限公司</view>
+            <view class="font-red" style="margin-top: 30rpx;">温馨提示：请在汇款单的附言处注明订单号和用户名。</view>
+        </view>
+    </view>
+</view>

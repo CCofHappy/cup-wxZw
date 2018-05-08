@@ -1,0 +1,4 @@
+<!--商品列表模板  拍场详情、我的竞拍中的列表-->
+<template name="proList">
+    
+</template>

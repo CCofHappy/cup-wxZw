@@ -1,0 +1,38 @@
+<!--setting.wxml-->
+<view class="container">
+  <view class="items-box white-bg">
+    <navigator url="/pages/setting-guide/setting-guide" hover-class="none">
+      <view class="items-list">
+        <view class="fn-left">拍卖指南</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/setting-pay/setting-pay" hover-class="none">
+      <view class="items-list">
+        <view class="fn-left">支付方式</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/setting-service/setting-service" hover-class="none">
+      <view class="items-list">
+        <view class="fn-left">售后服务</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/setting-feed/setting-feed" hover-class="none">
+      <view class="items-list">
+        <view class="fn-left">意见反馈</view>
+      </view>
+    </navigator>
+    <navigator url="/pages/setting-about/setting-about" hover-class="none">
+      <view class="items-list">
+        <view class="fn-left">公司简介</view>
+      </view>
+    </navigator>
+    <view class='items-list' bindtap="callService">
+        <text> 客服热线</text>
+    </view>
+  </view>
+  <button class="login-out-btn btn-red"  bindtap="outLoginClick">退出当前账号</button>
+  <view class="text-center">
+    <view class="font-gray font-small">©中威网 All Rights Reserved:粤ICP备14034855号-1</view>
+    <text class="font-gray font-small">惠州市中威酒业有限公司 版权所有</text>
+  </view>
+</view>

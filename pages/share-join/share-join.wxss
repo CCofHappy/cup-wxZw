@@ -1,0 +1,144 @@
+/* pages/share-join/share-join.wxss */
+@import '../../pages/share/share';
+@import '../../pages/pay-deposit/pay-deposit.wxss';
+page{
+  background: #fff;
+}
+
+.container{
+    padding-bottom:110rpx;
+}
+
+.top-box{
+  padding: 40rpx 30rpx 20rpx 30rpx;
+  box-sizing: border-box;
+  border-bottom: 20rpx solid #efefef;
+}
+
+.top-top-box{
+  margin-bottom: 40rpx;
+}
+
+.left-box{
+  height: 180rpx;
+  width: 180rpx;
+  background: #efefef;
+  margin-right: 20rpx;
+}
+
+.left-box image{
+  width: 100%;
+  height: 100%;
+}
+
+.right-box{
+  width:100%;
+  flex:1;
+}
+
+.count-title{
+  margin-top: 10rpx;
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+  font-weight: bold;
+}
+
+.conut-btn{
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  border: 2rpx solid #efefef;
+  border-radius: 4rpx;
+  margin-right: 60rpx;
+}
+
+.conut-btn:last-child{
+  margin-right: 0;
+  margin-left: 60rpx;
+}
+
+.address-box{
+  padding: 30rpx 80rpx 30rpx 30rpx;
+  background-position: 96% center;
+  background-repeat: no-repeat;
+  background-size: 22rpx auto;
+  border-bottom: 2rpx solid #efefef;
+}
+
+.address-text{
+  color: #828282;
+  margin-top: 10rpx;
+}
+
+.pay-title{
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  border-bottom:2rpx solid #efefef;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-weight: bold;
+}
+
+.pay-list{
+  height: 150rpx;
+  padding: 0 30rpx;
+  border-bottom:2rpx solid #efefef;
+}
+
+.pay-list .icon{
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+}
+
+.pay-list .icon.icon-chose{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.bottom-bar{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.bottom-bar view:first-child{
+  border-top: 2rpx solid #efefef;
+  width: 60%;
+}
+
+.bottom-bar .submit{
+  background: #A72125;
+  color: #fff;
+  border-radius: 0;
+  width: 40%;
+  font-size: 28rpx;
+  line-height:100rpx;
+}
+
+.pay-box{
+  padding: 0;
+  border-bottom: 0;
+}
+
+.price{
+  font-size: 36rpx;
+  color: #A72125;
+}
+
+.sold-tips{
+    align-items:center;
+    margin-top: 20rpx;
+}
+
+.sold-tips icon{
+    margin-right: 6rpx;
+}
+
+/* .sold-tips text{
+    text-decoration:underline;
+} */

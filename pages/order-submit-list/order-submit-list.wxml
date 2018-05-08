@@ -1,0 +1,23 @@
+<!--order-submit-list.wxml-->
+<view class="container">
+  <view class="container">
+    <view class="cate-list">
+      <block wx:for="{{itemList}}">
+      <view class="list-item box white-bg">
+        <view class="item-img">
+          <image src="{{item.auctionGoodsIcon}}" mode="widthFix" class="list-img-size"></image>
+        </view>
+        <view class="itme-text box box-align-center">
+          <view>
+            <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+            <view class="font-gray-more">拍品编码: {{item.auctionGoodsCode}}</view>
+            <view class="font-gray-more">净含量: {{item.jingHangLiang}}ml 酒精度: {{item.jiuJingDu}}%</view>
+            <view class="font-gray-more">起拍价: <text class="font-small">￥</text>{{item.qiPaiJia}}</view>
+            <view class="font-gray-more font-red">成交价: <text class="font-small">￥</text>{{item.finalPrice}}</view>
+          </view>
+        </view>
+      </view>
+      </block>
+    </view>
+  </view>
+</view>

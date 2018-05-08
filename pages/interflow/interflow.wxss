@@ -1,0 +1,17 @@
+/* pages/interflow/interflow.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+@import '../share/share.wxss';
+
+.selected-icon{
+    font-size: 24rpx;
+    background: #4A90E2;
+    width: 40rpx;
+    height: 40rpx;
+    color: #fff;
+    flex-shrink: 0;
+    font-weight: normal;
+    text-align: center;
+    line-height: 40rpx;
+    margin-right: 10rpx;
+    border-radius: 6rpx;
+}

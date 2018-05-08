@@ -1,0 +1,16 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!auctionList.length}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="pro-list" wx:for="{{auctionList}}">
+       <auction-goods auctionGoods="{{item}}"></auction-goods>
+    </view>
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

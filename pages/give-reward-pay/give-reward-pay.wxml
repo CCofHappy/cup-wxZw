@@ -1,0 +1,62 @@
+<!--pages/give-reward-pay/give-reward-pay.wxml-->
+<view class='container'>
+    <view class='box box-between price-box'>
+        <view>打赏金额</view>
+        <view class='font-red-dark'>￥{{price}}</view>
+    </view>
+
+    <view class='pay-box'>
+        <view class='pay-title'>请选择支付方式</view>
+        <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='1'>
+            <view class='box box-align-center' data-num='1'>
+                <view class='icon icon-zhongwei' style='background-image:url("{{imgUrl}}miniweb/icon/pay-zw.png");'></view>
+                <view>中威钱包</view>
+            </view>
+            <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+            <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+        </view>
+        <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='2'>
+            <view class='box box-align-center' data-num='2'>
+                <view class='icon icon-weixin' style='background-image:url("{{imgUrl}}miniweb/icon/pay-weixin.png");'></view>
+                <view>微信</view>
+            </view>
+            <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+            <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+        </view>
+    </view>
+
+    <button class="pay-btn" disabled="{{btnDisabled}}" bindtap='payNow'>立即支付</button>
+</view>
+<view class="pay-password-container box box-center text-center" wx:if="{{openPayPassword}}">
+    <view class="pay-password-box white-bg">
+        <view class="pay-title">
+            <text style="font-size:28rpx;">请输入支付密码</text>
+            <image src="{{imgUrl}}miniweb/icon/ic_close@3x.png" class="close-password-box" bindtap='closePayPassword'></image>
+        </view>
+        <view class="pay-value">
+            <text class="font-small font-bold">￥</text>
+            <text class='pay-value'>{{price}}</text>
+        </view>
+        <view class="password-box" bindtap="bindPayClick" style='padding-bottom:40rpx;'>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 0}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 1}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 2}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 3}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 4}}"></view>
+            </view>
+            <view class="fn-float box box-center" style="border-right:1px solid #999;">
+                <view class="bull" wx:if="{{payLength > 5}}"></view>
+            </view>
+            <input class="" type="number" maxlength="6" value="{{payPassword}}" focus="{{payFocus}}" bindinput="bindPayInput" style="height:0;min-height:0;" auto-focus/>
+        </view>
+    </view>
+</view>

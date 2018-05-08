@@ -1,0 +1,38 @@
+/**公共样式**/
+.gold{
+    color:#c89664;
+}
+.textCenter{
+    text-align: center;
+}
+.alignRight{
+    text-align: right;
+}
+.star{
+    display:inline-block;
+    width:12px;
+    height:12px;
+    background:url("../../images/icon/ic_star_evaluate_in@3x.png") no-repeat 0 0 transparent;
+    background-size:100% 100%;
+}
+button{
+    height:38px;
+    line-height:38px;
+    font-size:14px;
+    border-radius:0;
+}
+.button-confirm{
+    color:#c89664;
+    background:#052841;
+}
+.hidden{
+    display: none;
+}
+.borderTop{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:9;
+    height:1rpx;
+    border-top:1rpx solid #eee;
+}

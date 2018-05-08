@@ -1,0 +1,17 @@
+<!--given-protocol.wxml-->
+<view class="container">
+  <view class="protocol-box">
+    <view class="protocol-title text-center font-bold">送 拍 声 明 书</view>
+    <view style="padding: 15px;">
+      <view class="font-bold" style="padding-bottom: 5px;" wx:if="{{customerInfo}}">ID：{{customerInfo.customerCode}}</view>
+      <view class="font-bold" style="padding-bottom: 5px;" wx:else>ID：未登录</view>
+      <view style="padding: 10px 0;">就委托中威网拍卖事宜，声明如下:</view>
+      <view style="padding-bottom: 5px;">1、本人保证所有送拍的拍品来源清晰，符合国家有关法律规定；
+</view>
+      <view style="padding-bottom: 5px;">2、本人对所有送拍的拍品享有完全所有权并对其真实性、合法性负责；</view>
+      <view>3、本人保证对所有送拍拍品的描述是真实、可靠的，在委托拍卖合同签订后至本场拍卖结束后6个月内，如后续出现关于拍品的质量、真伪、瑕疵纠纷等问题，由本人负责澄清及说明，并同意遵守惠州市中威酒业有限公司的处理规则，承担相关法律或经济责任。
+  特此声明！</view>
+      <view style="margin-top: 30px;text-align:right;">特此声明！</view>
+    </view>
+  </view>
+</view>

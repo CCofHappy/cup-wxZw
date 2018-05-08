@@ -1,0 +1,16 @@
+/* setting.wxss */
+page{
+  background: #efefef;
+}
+
+.items-box{
+  margin-top: 10rpx;
+}
+
+.items-list{
+  border-bottom: 2rpx solid #efefef;
+}
+
+.login-out-btn{
+  margin: 80rpx 30rpx 40rpx 30rpx;
+}

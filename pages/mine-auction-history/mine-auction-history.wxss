@@ -1,0 +1,2 @@
+@import '../../pages/mine-auction/mine-auction.wxss';
+@import '../../pages/auction-detail/auction-detail.wxss'; 

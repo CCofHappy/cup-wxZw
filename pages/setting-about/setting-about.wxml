@@ -1,0 +1,9 @@
+<view class="container">
+  <image src="{{imgUrl}}company/c_01.gif" style="width:100%;hieght:520rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_02.gif" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_03.gif" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_04.gif" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_05.gif" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_06.gif" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+  <image src="{{imgUrl}}company/c_07.jpg" style="width:100%;hieght:530rpx;" mode="widthFix"></image>
+</view>

@@ -1,0 +1,63 @@
+@import '../../pages/share-join/share-join.wxss';
+.order-address{
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 20rpx solid #f2f2f2;
+    padding: 32rpx 0;
+    position: relative; 
+}
+.order-address-icon{
+    width:40rpx;
+    height:40rpx;
+    margin:0 20rpx 0 40rpx;
+}
+.order-f{
+    font-size: 24rpx;
+}
+.order-address-choose{
+    width:30rpx;
+    height:30rpx;
+    margin: 0 25rpx 0 10rpx;
+    float: right;
+}
+.order-content{
+    padding: 40rpx 0  0 40rpx;
+    border-bottom: 20rpx solid #f2f2f2;
+}
+.order-pay{
+    padding: 35rpx 0  40rpx 35rpx;
+}
+.order-title{
+    font-size: 36rpx;
+}
+.order-attr{
+    color: #656565;
+}
+.order-voice{
+    padding: 30rpx 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+.order-remark{
+    padding: 30rpx 0;
+}
+.address-txt{
+    font-size: 32rpx;
+}
+.order-remark input,.order-voice input{
+    width: 79%;
+    margin-left: 10rpx;
+}
+.pay-title{
+    font-weight: 400;
+}
+.bottom-bar{
+    position: fixed;
+}
+.pay-box{
+    padding-bottom: 150rpx;
+}
+.pay-box .pay-list:last-child{
+    border: none;
+}
+.pay-password-container{
+    z-index: 99;
+}

@@ -1,0 +1,11 @@
+<view class="container">
+    <image src='{{imgUrl}}miniweb/ic_rule1.png' mode="widthFix"></image>
+    <image src='{{imgUrl}}miniweb/ic_rule2.png' mode="widthFix"></image>
+    <image src='{{imgUrl}}miniweb/ic_rule3.png' mode="widthFix"></image>
+    <image src='{{imgUrl}}miniweb/ic_rule4.png' mode="widthFix"></image>
+    <image src='{{imgUrl}}miniweb/ic_rule5.png' mode="widthFix"></image>
+    <view>
+        <text class='font-gray '>温馨提示：</text>
+        <view class="font-gray">以上条件全部满足，才可以申请加V。</view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "专用瓶订单",
+    "usingComponents": {
+        "share-order": "../../component/shareOrder/shareOrder"
+    }
+}

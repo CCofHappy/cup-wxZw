@@ -1,0 +1,64 @@
+<!--order-unpay.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!unpayList.length}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="container">
+        <block wx:for="{{unpayList}}">
+            <view class="order-box white-bg">
+                <view class="order-num box" bindtap="chooseOne" id="{{index}}">
+                    <view hidden="{{!chooseOne[index]}}" class="check-icon-box choose" id="{{index}}">
+                        <view class="icon icon-choose"></view>
+                    </view>
+                    <view hidden="{{chooseOne[index]}}" class="check-icon-box" id="{{index}}"></view>
+                    <view wx:if="{{item.state == 0}}" class="font-bold" id="{{index}}">
+                        {{item.auctionSessionName}}
+                    </view>
+                    <view wx:else bindtap="chooseOne font-bold" id="{{index}}">订单号:{{item.orderNumber}}</view>
+                </view>
+                <block wx:for="{{item.lists}}">
+                    <view class="order-list">
+                        <view class="auction-detail box box-align-center">
+                            <view class="auction-img">
+                                <image src="{{item.auctionGoodsIcon}}" mode="widthFix" class="list-img-size"></image>
+                            </view>
+                            <view class="auction-text">
+                                <view class="auction-name font-bold">{{item.auctionGoodsName}}</view>
+                                <view class="font-gray-more">
+                                    <view>拍品编号:{{item.auctionGoodsCode}}</view>
+                                    <view>净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                                    <view>起拍价:
+                                        <text class="font-small">￥</text>{{item.qiPaiJia}}</view>
+                                    <view class="font-red">成交价:
+                                        <text class="font-small">￥</text>{{item.finalPrice}}</view>
+                                    <view>成交时间:{{item.createTime}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </block>
+    </view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>
+<view class="bottom-bar box white-bg text-center">
+    <view class="box-flex box box-center">
+        <view class="box" bindtap="chooseAll">
+            <view hidden="{{!chooseAll}}" class="check-icon-box choose">
+                <view class="icon icon-choose"></view>
+            </view>
+            <view hidden="{{chooseAll}}" class="check-icon-box"></view>
+            <view>全选</view>
+        </view>
+    </view>
+    <view class="box-flex">总计:
+        <text class="font-red"><text class="font-small">￥</text>{{total}}</text>
+    </view>
+    <view class="box-flex pay-btn" bindtap="orderSubmit">去结算</view>
+</view>

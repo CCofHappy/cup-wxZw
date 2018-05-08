@@ -1,0 +1,42 @@
+<!--pages/reward-list/reward-list.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!rewardList ||rewardList.length==0}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" /> 
+    </view>
+</block>
+<block wx:else> 
+<view class='reward-list-box'>
+    <view class='list-box box' wx:for="{{rewardList}}"> 
+        <view class='icon-box box box-center' wx:if="{{index==0}}">
+            <image src='{{imgUrl}}miniweb/icon/ic_reward1@3x.png' mode="widthFix"></image>
+        </view>
+         <view class='icon-box box box-center' wx:elif="{{index==1}}">
+            <image src='{{imgUrl}}miniweb/icon/ic_reward2@3x.png' mode="widthFix"></image>
+        </view>
+        <view class='icon-box box box-center' wx:elif="{{index==2}}">
+            <image src='{{imgUrl}}miniweb/icon/ic_reward3@3x.png' mode="widthFix"></image>
+        </view>  
+        <view class='icon-box box box-center font-center' wx:else>
+            {{index+1}}
+        </view>
+        <view class='box box-between box-align-center'>
+            <view class="box box-align-center">
+                <view class='box box-center'><image src='{{item.imgUrl}}'></image></view>{{item.uname}}
+            </view>
+            <view class='font-red-dark'>￥{{item.amountAll}}</view>
+        </view>
+    </view>
+    <view class="loading-tip font-gray-lighter text-center" wx:if="{{recordRecord.length!=0}}">-- 没有更多内容了 --</view>
+</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block> 
+
+<give-reward giveRewardOpen='{{giveRewardOpen}}' pid='{{pid}}' name='{{name}}' headImg='{{head}}' payAfter='{{payAfter}}' payAfterPrice='{{payAfterPrice}}' uCount='{{uCount}}' amountAll='{{amountAll}}' type='{{type}}'></give-reward>
+
+
+
+<view class='give-btn btn-red-dark text-center' bindtap='openGiveReward' wx:if="{{customerInfo.customerSeq != uid}}">我也要打赏</view>
+

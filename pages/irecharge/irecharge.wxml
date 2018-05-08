@@ -1,0 +1,20 @@
+<!--irecharge.wxml-->
+<view class="conttainer">
+<form bindsubmit="paySubmit">
+  <view class="input-box white-bg">
+    <view class="box">
+      <view class="title">金额（元）：</view>
+      <input type="number" placeholder="请输入金额" name="money" maxlength="7"/>
+    </view>
+  </view>
+   <view class="pay-type white-bg">
+      <view>
+        <label class="pay-box box choose">
+          <view class="type-box pay-choeck weixin">微信支付 <text class="font-small font-gray-more">微信专属服务</text></view>
+          <radio value="value" checked="1"/>
+        </label>
+      </view>
+  </view>
+  <button form-type="submit" class="submit-btn">确认支付</button>
+</form>
+</view>

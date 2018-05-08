@@ -1,0 +1,41 @@
+<!--home-auction.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<!--我的竞拍按钮-->
+<view wx:if="{{customerInfo}}"><navigator class="mine-record-btn" url="/pages/mine-auction/mine-auction" hover-class="none"></navigator></view>
+<block wx:if="{{auctionList.length == 0}}">
+  <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+  <view class="container">
+    <view class="cate-list">
+    <block wx:for="{{auctionList}}">
+      <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+      <view class="list-item box white-bg">
+        <view class="item-img box box-center">
+          <image class="list-img-size seize-image-1" src="{{item.auctionGoodsIcon}}" mode="aspectFill"></image>
+        </view>
+        <view class="itme-text box box-align-center">
+          <view>
+            <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+            <view class="font-gray">拍品编码:{{item.auctionGoodsCode}}</view>
+            <view class="font-gray">净含量:{{item.jingHangLiang}}ml  酒精度:{{item.jiuJingDu}}%</view>
+            <view class="font-gray">加价幅度:<text class="font-small">￥</text>{{item.jiaJiaStep}}</view>
+            <view class="font-gray">起拍价:<text class="font-small font-red">￥</text><text class="font-red">{{item.qiPaiJia}}</text></view>
+            <view class="font-red" wx:if="{{item.state == 3}}">当前价:<text class="font-small">￥</text>{{item.currPrice}}</view>
+            <view class="font-red" wx:if="{{item.state == 4}}">成交价:<text class="font-small">￥</text>{{item.currPrice}}</view>
+            <view class="font-red" wx:if="{{item.state == 5}}">成交价:流拍</view>
+            <view class="font-gray" wx:if="{{item.state == 2}}">开始时间:{{item.startTime}}</view>
+            <view class="font-gray" wx:if="{{item.state > 2}}">结束时间:{{item.endTime}}</view>
+          </view>
+        </view>
+      </view>
+      </navigator>
+    </block>
+    </view>
+  </view>
+  <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+  <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+  <view class="loading">玩命加载中…</view>
+</block>

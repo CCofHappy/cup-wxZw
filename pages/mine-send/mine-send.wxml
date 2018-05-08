@@ -1,0 +1,131 @@
+<!--mine-send.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='tab'>
+    <view class='box white-bg choose-bar'>
+        <view class='btn {{bottomLine ? "":"action"}}' bindtap='chooseBar'>线上送拍</view>
+        <view class='btn {{bottomLine ? "action":""}}' bindtap='chooseBar'>线下送拍</view>
+        <view class='bottom-line {{bottomLine}}'></view>
+    </view>
+</view>
+<view wx:if='{{!bottomLine}}' style='padding-top:88rpx;'>
+    <block wx:if="{{!sendList.length}}">
+        <view hidden="{{showLoading}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}" />
+        </view>
+    </block>
+    <block wx:else>
+        <view class="container">
+            <view class="cate-list">
+                <block wx:for="{{sendList}}">
+                    <navigator url="/pages/send-detail/send-detail?id={{item.auctionGoodsSeq}}&sendSeq={{item.auctionGoodsSendSeq}}" hover-class="none">
+                        <view class="list-item box box-center white-bg">
+                            <view>
+                                <image src="{{item.auctionIcon}}" mode="aspectFill" class="list-img-size seize-image-1"></image>
+                            </view>
+                            <view class="itme-text box box-align-center">
+                                <view class="send-detail">
+                                    <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+                                    <view class="font-gray">送拍时间: {{item.sendTime}}</view>
+                                    <view class="font-gray" wx:if="{{item.qiPaiJia}}">起拍价:
+                                        <text class="font-small">￥</text>{{item.qiPaiJia}}
+                                    </view>
+                                    <view class="font-gray">保留价:
+                                        <text class="font-small">￥</text>{{item.lowestPrice}}
+                                    </view>
+                                    <view class="font-gray" wx:if="{{item.priceStep}}">加价幅度:
+                                        <text class="font-small">￥</text>{{item.priceStep}}
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+        </view>
+        <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+        <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+    </block>
+</view>
+<view style='padding-top:88rpx;' wx:else>
+    <block wx:if="{{!outlineList.length}}">
+        <view hidden="{{showLoading}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}" />
+        </view>
+    </block>
+    <block wx:else>
+        <view wx:for="{{outlineList}}" class='outline-container white-bg'>
+            <view class='outline-title box'>
+                <view class='outline-num'>{{item.batch.batch}}</view>
+                <view class='outline-date font-gray'>{{item.batch.sendTime}}</view>
+            </view>
+            <view class='outline-content'>
+                <view class="container">
+                    <view class="cate-list">
+                        <block wx:for="{{item.list}}">
+                            <navigator url="/pages/send-detail/send-detail?id={{item.auctionGoodsSeq}}&sendSeq={{item.auctionGoodsSendSeq}}" hover-class="none">
+                                <view class="list-item box box-center white-bg">
+                                    <image src="{{item.auctionIcon}}" mode="aspectFill" class="list-img-size seize-image-1"></image>
+                                    <view class="itme-text box box-align-center">
+                                        <view class="send-detail">
+                                            <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+                                            <view class="font-gray" wx:if="{{item.startingPrice}}">起拍价:
+                                                <text class="font-small">￥</text>{{item.startingPrice}}
+                                            </view>
+                                            <view class="font-gray">保留价:
+                                                <text class="font-small">￥</text>{{item.lowestPrice}}
+                                            </view>
+                                            <view class="font-gray" wx:if="{{item.priceStep}}">加价幅度:
+                                                <text class="font-small">￥</text>{{item.priceStep}}
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </navigator>
+                        </block>
+                    </view>
+                </view>
+            </view>
+            <view class='outline-button box'>
+                <view class='send-btn red' wx:if="{{item.batch.auditState == 121}}" bindtap='agreenBtn' id="{{index}}">确认上拍</view>
+                <view class='send-btn'>
+                    <navigator url="/pages/send-batch-detail/send-batch-detail?batch={{item.batch.batch}}" hover-class="none">查看详情</navigator>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="fill-express" wx:if="{{openAgreeBox}}">
+    <view class="shadow box box-center text-center">
+        <view class="fill-express-container white-bg">
+            <view class="fill-express-box">
+                <view class="fill-express-code" style="font-size:36rpx;margin:10rpx 0;">确定要上拍您的拍品吗?</view>
+                <checkbox-group bindchange="checkboxChange">
+                    <label class="box box-center" style='margin:10rpx 0;'>
+                        <checkbox value="agree" checked="checked" color="#c72202" />
+                        <view>我已阅读并同意</view>
+                    </label>
+                    <view class="box box-center" style="color:#3A90ED;">
+                        <navigator url="/pages/beating-protocol/beating-protocol" hover-class="none">
+                            《委托拍卖合同》
+                        </navigator>
+                        <navigator url="/pages/given-protocol/given-protocol" hover-class="none">
+                            《送拍声明书》
+                        </navigator>
+                    </view>
+                </checkbox-group>
+            </view>
+            <view class="fill-express-btn box">
+                <button class="box-flex"  bindtap="closeAgreeBox">取消</button>
+                <block wx:if="{{ifChecked}}">
+                    <button class="box-flex" type='warn' bindtap="setAgree">确定上拍</button>
+                </block>
+                <block wx:else>
+                    <button class="box-flex" type='warn' bindtap="setAgree" disabled='disabled'>确定上拍</button>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

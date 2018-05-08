@@ -1,0 +1,49 @@
+<!--pages/search-wine-result/search-wine-result.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{searchList.length==0||!searchList}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<view class='container' wx:else>
+    <view class='box search-box' wx:for="{{searchList}}">
+        <view class='box box-center img-box'>
+            <image src="{{item.image}}" class='search-img seize-image-1' mode="aspectFit"></image>
+        </view>
+        <view class='weui-flex__item box box-align-center' bindtap='chooseWine' data-item="{{item}}">
+            <view>
+                <view class='cn-name'>{{item.fullName}}</view>
+                <view class="en-name">{{item.enName}}</view>
+                <view class="alcohol">酒精度：{{item.strength}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&searchList.length!=0}}">没有更多内容</view>
+</view>
+
+<view class="add-wine-shadow box box-center" hidden="{{!addWineOpen}}">
+    <view class="add-wine-box">
+        <view class='wine-title text-center'>填写酒款信息</view>
+        <view class='wine-detail'>
+            <view class='box'>
+                <text>品 牌：</text>
+                <input maxlength='10' bindinput='brandInput'></input>
+            </view>
+            <view class='box'>
+                <text>名 称：</text>
+                <input maxlength='20' bindinput='nameInput'></input>
+            </view>
+            <view class='box'>
+                <text>酒精度：</text>
+                <input maxlength='5' bindinput='strengthInput' type='digit'></input>
+            </view>
+        </view>
+        <view class='wine-btn-box box text-center'>
+            <view class='cancle btn' bindtap='closeAddWine'>取消</view>
+            <view class='success btn font-red-dark' bindtap='addWine'>确定</view>
+        </view>
+    </view>
+</view>
+<view class='add-btn box box-center white-bg' bindtap='openAddWine'>
+   + 未找到酒款，手动添加
+</view>

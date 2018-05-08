@@ -1,0 +1,107 @@
+<!--pages/share-publish/share-publish.wxml-->
+<view class='container'>
+    <form class="publish-form" bindsubmit="formSubmit" report-submit="true">
+        <view class='imgs-box'>
+            <view class='img-box' wx:for="{{imgList}}">
+                <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+                <image src="{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class='img-box img-button' wx:if="{{imgList.length<9}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+            </view>
+        </view>
+        <view class='detail-box'>
+            <view class='none-title'>
+                <input type='text' name="title" placeholder="请输入你的帖子标题" maxlength="50" value='{{formValue.title}}'></input>
+                <textarea name="content" placeholder="请输入你的帖子内容" maxlength="500" placeholder-class="input-placeholder" bindinput='fontCount' value='{{formValue.content}}'/>
+                <view class='textarea-tip'>最多可以输入{{500-fontCount}}个字符</view>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseFocus' data-num='1'>
+                <view>品牌</view>
+                <input type='text' name="brand" focus="{{focus==1}}" value='{{formValue.brand}}' maxlength="10"></input>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseFocus' data-num='2'>
+                <view>分享瓶净含量（ml）</view>
+                <input type='number' name="netContent" focus="{{focus==2}}" maxlength="4" value='{{formValue.netContent}}'></input>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseFocus' data-num='3'>
+                <view>酒精度（度）</view>
+                <input type='digit' name="alcoholContent" focus="{{focus==3}}" maxlength="5" value='{{formValue.alcoholContent}}'></input>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseFocus' data-num='4'>
+                <view>分享瓶数量（份）</view>
+                <input type='number' name="number" focus="{{focus==4}}" maxlength="3" value='{{formValue.number}}'></input>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseFocus' data-num='5'>
+                <view>分享瓶单价（元）</view>
+                <input type='number' name="price" focus="{{focus==5}}" maxlength="5" value='{{formValue.price}}'></input>
+            </view>
+            <view class='detail-list box box-between' bindtap='choseDayTime'>
+                <view>截止时间</view>
+                <input type='text' placeholder='请选择' disabled='true' value='{{dayTime?dayTime+"天":""}}' name="endTime"></input>
+            </view>
+            <view class='detail-list box box-between'>
+                <view>抢购</view>
+                <switch checked='{{soldTimeOpen}}' bindchange="showBar" data-type='1'/>
+            </view>
+            <view class='detail-list box box-between' bindtap='openSoldBox' hidden='{{!needSoldTime}}'>
+                <view>抢购开始时间</view>
+                <input type='text' placeholder='请选择' disabled='true' value='{{soldTime?soldTime:""}}' name="presellTime"></input>
+            </view>
+            <view class='detail-list box box-between'>
+                <view>限购</view>
+                <switch checked='{{limitOpen}}' bindchange="showBar" data-type='2'/>
+            </view>
+            <view class='detail-list box box-between'  bindtap='choseFocus' data-num='6' hidden='{{!needLimit}}'>
+                <view>每人限购数（份）</view>
+                <input type='number' name="limitations" focus="{{focus==6}}" maxlength="1" value='{{limitValue}}' bindinput='limitChange'></input>
+            </view>
+            <view class='detail-list box box-between'>
+                <view>最低成团数</view>
+                <switch checked='{{leastCountOpen}}' bindchange="showBar" data-type='3'/>
+            </view>
+            <view class='detail-list box box-between'  bindtap='choseFocus' data-num='7' hidden='{{!needLeastCount}}'>
+                <view>成团数量（份）</view>
+                <input type='number' name="minNumber" focus="{{focus==7}}" maxlength="2" value='{{leastValue}}' bindinput='leastChange'></input>
+            </view>
+        </view>
+        <view class='box'>
+            <button class="weui-flex__item btn-red" formType="submit" disabled="{{btnDisabled}}" data-type='send'>发布</button>
+            <button class="weui-flex__item btn-save" formType="submit" data-type='save'>保存草稿</button>
+        </view>
+        <checkbox-group bindchange="checkboxChange" class="agree-box">
+            <view class="box font-small">
+                <label class="box">
+                    <checkbox value="agree" checked="checked" color="#c72202" />
+                    <view>我已阅读并同意</view>
+                </label>
+                <view style="color:#3A90ED;">
+                    <navigator url="/pages/share-agreement/share-agreement" hover-class="none">
+                        《中威网分享吧协议》
+                    </navigator>
+                </view>
+            </view>
+        </checkbox-group>
+    </form>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命上传中…</view>
+    </block>
+</view>
+<view class="sole-time-shadow" style="display:{{soldBoxShadow}}" bindtap="closeSoldBox"></view>
+<view class="sole-time-box" animation="{{animationData}}">
+  <picker-view class="text-center white-bg" indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{hours}}" style="line-height: 50px">{{item}}时</view>
+    </picker-view-column>
+  </picker-view>
+  <view class='sole-time-tips text-center white-bg'>预售时间最早为24小时以后，请合理安排时间</view>
+  <view class="sole-time-btn text-center font-bold" bindtap="closeSoldBox">完成</view>
+</view>

@@ -1,0 +1,55 @@
+<!--mine-finance.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class="container">
+  <view class="topper box">
+    <view>{{month}}月</view>
+    <view class="date-btn box box-align-center" bindtap="openDate">
+      <view class="icon icon-date"></view>
+    </view>
+  </view>
+  <block wx:if="{{!financeList.length}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+  </block>
+  <block wx:else>
+    <view class="list-box">
+      <block wx:for="{{financeList}}">
+        <view class="item-box box box-align-center">
+          <view class="time-box font-gray-lighter text-center">
+            <view style="font-size:32rpx;">{{item.dayTime}}</view>
+            <view>{{item.hourTime}}</view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 101}}">
+            <view class="icon icon-bond"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 102}}">
+            <view class="icon icon-bond"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 103}}">
+            <view class="icon icon-charge"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 104}}">
+            <view class="icon icon-shopping"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 105}}">
+            <view class="icon icon-withdrawals"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 106}}">
+            <view class="icon icon-transferred"></view>
+          </view>
+          <view class="icon-box" wx:if="{{item.payType == 107}}">
+            <view class="icon icon-deduction"></view>
+          </view>
+          <view class="detail-box">
+            <view class="font-bold">{{item.price}}<text class="font-small">元</text></view>
+            <view>{{item.msg}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+  </block>
+</view>
+<view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+

@@ -1,0 +1,22 @@
+<!--address-choose.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!addressList.length}}">
+  <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<view class="container"> 
+  <block wx:for="{{addressList}}">
+  <view class="address-box white-bg {{item.choose}}">
+  <view class="box title-box">
+    <view class="address-name box-flex" bindtap="chooseAddress" id="{{index}}">{{item.consignee}} {{item.phone}}</view>
+    <navigator class="edit-btn box box-center" url="/pages/address-edit/address-edit?id={{item.deliveryAddrSeq}}" hover-class="none">
+      <image class="icon icon-edit"></image> 编辑 
+    </navigator>
+  </view>
+    <view class="address-detail box" bindtap="chooseAddress" id="{{index}}"><view wx:if="{{index==0}}" class="defaults-icon font-small  box box-center">默认</view>{{item.province}}</view>
+  </view>
+  </block>
+  <navigator url="/pages/address-add/address-add" hover-class="none">
+  <button class="add-btn btn-red">添加新地址</button>
+  </navigator>
+</view>
+

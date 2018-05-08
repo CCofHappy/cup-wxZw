@@ -1,0 +1,39 @@
+/* mine-weibi.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+page{
+  background: #efefef;
+}
+
+.weibi-count{
+  font-size: 70rpx;
+}
+
+.title-content{
+  line-height: 88rpx;
+  height: 88rpx;
+  padding: 0 30rpx;
+  position: relative;
+}
+
+.weibi-list .null-tip{
+  margin: 0;
+  height: 300rpx;
+  line-height: 480rpx;  
+}
+
+.weibi-list .list-box{
+  border-top: 2rpx solid #efefef; 
+}
+
+.weibi-list .list-box .box-flex{
+  margin: 20rpx 0;
+}
+
+.titel-bottom{
+  width: 100%;
+  height: 4rpx;
+  background: #876A2B;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

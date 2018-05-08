@@ -1,0 +1,61 @@
+<!--personalInfo-modify.wxml-->
+<view class="container">
+  <view class="user-head">
+    <view class="user-head-img">
+      <view class="icon icon-camera"></view>
+      <view class="box box-center">
+        <image wx:if="{{userList.headerPic}}" class="head-icon" bindtap="uploadHead" src="{{userList.headerPic}}" style="width:100%;height:100%;" mode="aspectFill"></image>
+        <image wx:else class="head-icon" bindtap="uploadHead" src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+      </view>
+      <view class="user-code">ID:{{customerInfo.customerCode}}</view>
+    </view>
+  </view>
+  <navigator url="/pages/personalInfo-name/personalInfo-name?value={{userList.realName || ''}}" hover-class="none">
+  <view class="items-list"> 
+    <view class="fn-left">姓名</view>
+    <view wx:if="{{userList.realName}}" class="font-gray-more fn-float">{{userList.realName}}</view>
+    <view wx:else class="font-gray-more fn-float">未设置</view>
+  </view>
+  </navigator>
+  <navigator url="/pages/personalInfo-nickName/personalInfo-nickName?value={{userList.nickName || ''}}" hover-class="none">
+  <view class="items-list">
+    <view class="fn-left">昵称</view>
+    <view wx:if="{{userList.nickName}}" class="font-gray-more fn-float">{{userList.nickName}}</view>
+    <view wx:else class="font-gray-more fn-float">未设置</view>
+  </view>
+  </navigator>
+  <view class="items-list"  bindtap="changeSex">
+    <view class="fn-left">性别</view>
+    <view wx:if="{{userList.sex==1}}" class="font-gray-more fn-float">男</view>
+    <view wx:elif="{{userList.sex==0}}" class="font-gray-more fn-float">女</view>
+    <view wx:else class="font-gray-more fn-float">未设置</view>
+  </view>
+  <navigator url="/pages/personalInfo-autograph/personalInfo-autograph?value={{userList.autograph || ''}}" hover-class="none">
+  <view class="items-list" style="margin-bottom:10rpx;">
+    <view class="fn-left">签名</view>
+  </view>
+  </navigator>
+  <view class="items-list" style="background-image:none;">
+    <view class="fn-left">手机号码</view>
+    <view wx:if="{{userList.CustomerMobile}}" class="font-gray-more fn-float">{{userList.CustomerMobile}}</view>
+    <view wx:else class="font-gray-more fn-float">未设置</view>
+  </view>
+  <navigator url="/pages/personalInfo-email/personalInfo-email?value={{userList.Email || ''}}" hover-class="none">
+  <view class="items-list" style="margin-bottom:10rpx;">
+    <view class="fn-left">电子邮箱</view>
+    <view wx:if="{{userList.Email}}" class="font-gray-more fn-float">{{userList.Email}}</view>
+    <view wx:else class="font-gray-more fn-float">未设置</view>
+  </view>
+  </navigator>
+
+  <navigator url="/pages/address-list/address-list" hover-class="none">
+  <view class="items-list">
+    <view class="fn-left">修改收货地址</view>
+  </view>
+  </navigator>
+  <navigator url="/pages/personalInfo-pwd/personalInfo-pwd?type=login" hover-class="none">
+   <view class="items-list">
+    <view class="fn-left">修改登录密码</view>
+  </view>
+  </navigator>
+</view>

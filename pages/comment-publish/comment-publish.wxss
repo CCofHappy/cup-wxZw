@@ -1,0 +1,49 @@
+/* pages/comment-publish/comment-publish.wxss */
+@import '../share-publish/share-publish.wxss';
+.add-wine{
+    padding: 30rpx;
+}
+
+.add-wine-btn{
+    background: #f3f3f3;
+    height: 180rpx;
+}
+
+.slider-box{
+    padding: 0 30rpx;
+    line-height: 84rpx;
+}
+
+.slider-box .slider-title{
+    padding-right: 20rpx;
+    width: 100rpx;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.slider-box slider{
+    margin:0 36rpx;
+    width: 100%;
+}
+
+.none-title.comment{
+    border-top:20rpx solid #f2f2f2;
+}
+
+.wine-detail-box{
+    padding: 30rpx;
+}
+
+.wine-detail-box .img-box{
+    margin-right: 10rpx;
+    width: 200rpx;
+    height: 200rpx;
+    flex-shrink: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.wine-detail-box .name{
+    font-size: 32rpx;
+    color: #282828;
+}

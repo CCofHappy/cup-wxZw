@@ -1,0 +1,64 @@
+<!--component/shareOrder/item.wxml-->
+<import src="../nullTip/nullTip.wxml" />
+<block wx:if="{{!shareOrder ||shareOrder.length==0}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" /> 
+    </view>
+</block>
+<block wx:else>
+    <view class="order-item" wx:for="{{shareOrder}}" wx:if="{{item.state==0&& orderCountDown[index]||item.state!=0}}">
+        <view class="order-item">
+            <view class='order-time box box-between'>
+                <text class='box-flex'>{{item.createTime}}</text>
+                <text class='box-flex text-right'>
+                <block wx:if="{{item.state==0}}">待付款</block>
+                <block wx:elif="{{item.state==1}}">等待发货</block>
+                <block wx:elif="{{item.state==2}}">等待收货</block>
+                <block wx:elif="{{item.state==3}}">已完成</block>
+                <block wx:else>已取消</block>
+                </text>
+            </view>
+            <view class='weui-flex'>
+                <block wx:if="{{type=='shareOrder'}}">
+                    <navigator url="/pages/share-detail/share-detail?pid={{item.pid}}&&uid={{item.uid}}" hover-class="none">
+                        <image src="{{item.imgUrl?item.imgUrl:goodsImage}}" class='order-img' mode="aspectFit" style="width:200rpx;height:200rpx;"></image>
+                    </navigator>
+                </block>
+                <block wx:else>
+                    <image src="{{item.imgUrl?item.imgUrl:goodsImage}}" class='order-img' mode="widthFix" style="width:200rpx;height:145rpx;"></image>
+                </block>
+                <view class='weui-flex__item'>
+                    <view class='order-title'>{{item.title}}</view>
+                    <view class="order-attr" wx:if="{{type=='shareOrder'}}">净含量：{{item.capacity?item.capacity:item.netContent}} 酒精度：{{item.alcoholContent}}</view>
+                    <view class="order-attr" wx:else>规格：{{item.capacity?item.capacity:item.netContent}}</view>
+                    <view class="order-attr box box-between">
+                        <view class='price'>￥{{item.price}}</view> 
+                        <view>x{{item.number}}</view>
+                    </view>
+                </view>
+            </view>
+            <!-- <view class='box box-end order-sum'>
+                <text class='font-gray'>共 {{item.number}} 套商品 合计：<text class="font-price">￥<text class="order-price">{{item.price*item.number}}</text></text>
+                </text>
+            </view> -->
+            <view class='box box-between order-sum'>
+                <view class='box box-align-center font-red'>
+                    <view wx:if="{{item.state==0&&orderCountDown&&type=='shareOrder'}}">
+                        剩余时间：{{orderCountDown[index]}}
+                    </view>
+                    <view wx:if="{{item.state==4&&type=='shareOrder'}}">
+                        取消原因：{{item.cancel_cause}}
+                    </view>
+                </view>
+                <view>
+                    <text class='order-btn' wx:if="{{item.state==0&&type!='shareOrder'}}" bindtap='cancelOrder' data-OrderNo='{{item.orderNo}}'>取消订单</text>
+                    <text class='order-btn pay' wx:if="{{item.state==0}}" bindtap='buyNow' data-ItemData="{{item}}">立即支付</text>          
+                    <text class='order-btn' wx:if="{{item.state>1&&item.state<4}}" bindtap="checkLogistics" data-itemData='{{item}}'>查看物流</text>
+                    <text class='order-btn pay' wx:if="{{item.state==2}}" bindtap='confirmGet' data-itemData='{{item}}'>确认收货</text>
+                    <text class='order-btn pay'wx:if="{{item.state>2&&type!='shareOrder'}}" bindtap='deleteOrder' data-OrderId='{{item.boid}}' data-State='{{item.state}}'>删除订单</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>
+<view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&shareOrder.length!=0}}">没有更多内容</view>

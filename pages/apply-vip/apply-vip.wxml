@@ -1,0 +1,27 @@
+<form bindsubmit="formSubmit" bindreset="formReset" report-submit="true">
+    <view class='container'>
+        <view class="section box box-align-center">
+            <text>真实姓名：</text>
+            <input placeholder="请输入您的真实姓名" name="trueName" value="{{formValue}}" auto-focus/>
+        </view>
+        <view class="section">
+            <view>请上传身份证正反面：</view>
+            <view class='imgs-box'>
+                <view class='img-box' wx:for="{{imgList}}">
+                    <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+                    <image src="{{item}}" mode="aspectFill"></image>
+                </view>
+                <view class='img-box img-button' bindtap='uploadImg'  style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");' wx:if="{{imgList.length<2}}">
+                </view>
+            </view>
+        </view>
+        <view class='tips'>
+            <view>温馨提示：</view>
+            <view>1、输入的真实姓名请与身份证上的保持一致</view>
+            <view>2、身份证的正反面照片一定要清晰可见（大小在3M以下）</view>
+            <view>按照以上要求提交的申请资料才不会影响最终的认证审核结果，否则您需要重新提交申请资料。</view>
+        </view>
+    </view>
+
+    <button class="btn-red" formType="submit">申请认证</button>
+</form>

@@ -1,0 +1,3 @@
+<view class="container">
+  <image src="{{imgUrl}}miniweb/outline-send.jpg" style="width:100%;" mode="widthFix"></image>
+</view>

@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "我参与的",
+    "usingComponents": {
+        "count-down": "../../component/countDown/countDown",
+        "give-reward": "../../component/giveReward/giveReward"
+    }
+}

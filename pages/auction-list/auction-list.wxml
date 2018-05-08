@@ -1,0 +1,66 @@
+<!--我的竞拍按钮-->
+<view wx:if="{{customerInfo}}">
+    <navigator class="mine-record-btn" url="/pages/mine-auction/mine-auction"></navigator>
+</view>
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{auctionSessionList.length == 0}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="container">
+        <block wx:for="{{auctionSessionList}}" wx:for-item="item">
+            <view wx:if="{{(item.state!=3||item.state==3&&listTime[index])&&item.auctionCount>0}}">
+                <view class="auction-session">
+                    <navigator url="/pages/auction-detail/auction-detail?id={{item.auctionSessionSeq}}" hover-class="none">
+                        <view class="session-img">
+                            <view wx:if="{{item.state>3}}">
+                                <image class="icon icon-auction-deal"></image>
+                            </view>
+                            <image class="seize-image-2" src="{{item.auctionSessionIcon}}" mode="aspectFill">
+                            </image>
+                            <view class="auction-state" wx:if="{{item.state==2}}">
+                                <view class="auction-state-sale onshow" wx:if="{{listTime[index]}}">预展中</view>
+                                <view class="auction-state-sale" wx:else="{{listTime[index]}}">拍卖中</view>
+                                <view class="auction-state-desc" wx:if="{{listTime[index]}}">距开始 
+                                    <text class="font-red">{{listTime[index].day?listTime[index].day:0}}</text>天
+                                    <text class="font-red">{{listTime[index].hour?listTime[index].hour:0}}</text>时
+                                    <text class="font-red">{{listTime[index].minute?listTime[index].minute:0}}</text>分
+                                    <text class="font-red">{{listTime[index].second?listTime[index].second:0}}</text>秒
+                                </view>
+                            </view>
+                            <view class="auction-state" wx:if="{{item.state==3}}">
+                                <view class="auction-state-sale">拍卖中</view>
+                                <view class="auction-state-desc">距结束 
+                                    <text class="font-red">{{listTime[index].day?listTime[index].day:0}}</text>天
+                                    <text class="font-red">{{listTime[index].hour?listTime[index].hour:0}}</text>时
+                                    <text class="font-red">{{listTime[index].minute?listTime[index].minute:0}}</text>分
+                                    <text class="font-red">{{listTime[index].second?listTime[index].second:0}}</text>秒
+                                </view>
+                            </view>
+                        </view>
+                        <view class="session-info">
+                            <text class="session-name">{{item.auctionSessionName}}{{test[1]}}</text>
+                            <view class="box">
+                                <view class="box-flex">
+                                    <text class="font-red font-bold">{{item.auctionCount}}</text>件拍品</view>
+                                <view class="box-flex text-center" wx:if="{{item.state!=4}}">
+                                    <text class="font-red font-bold">{{item.printCount}}</text>次出价</view>
+                                <view class="box-flex text-center" wx:if="{{item.state==4}}">
+                                    <text class="font-red font-bold">{{item.finalCount}}</text>件成交</view>
+                                <view class="box-flex text-right">
+                                    <text class="font-red font-bold">{{item.surroundCatchCount}}</text>次围观</view>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

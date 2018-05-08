@@ -1,0 +1,200 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{loadError}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+<view wx:if="{{customerInfo}}">
+    <navigator class="mine-record-btn" url="/pages/mine-auction/mine-auction"></navigator>
+</view>
+<view class="container">
+    <view>
+        <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" style="width:{{bannerWidth}}px;height:{{bannerHeight}}px;">
+            <block wx:for="{{recommendBanner}}" wx:key="*this" wx:for-item="item">
+                <swiper-item data-contents="" bindtap="viewDetail">
+                    <navigator wx:if="{{item.forwardType == 1}}" url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <image src="{{item.pic}}" class="slide-image seize-image-2" style="width:100%;" mode="aspectFill" />
+                    </navigator>
+                    <navigator wx:elif="{{item.forwardType == 2}}" url="/pages/auction-detail/auction-detail?id={{item.auctionSessionSeq}}" hover-class="none">
+                        <image src="{{item.pic}}" class="slide-image seize-image-2" style="width:100%;" mode="aspectFill" />
+                    </navigator>
+                    <view wx:else>
+                        <image src="{{item.pic}}" class="slide-image seize-image-2" style="width:100%;" mode="aspectFill" />
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="box auction-item">
+        <view class="box-flex">
+            <navigator url="/pages/auction-date/auction-date" hover-class="none">
+                <image mode="aspectFit" src="{{imgUrl}}home/auction-date.png" style="width:190rpx;height:90rpx;"></image>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="/pages/auction-list/auction-list?type=3" hover-class="none">
+                <image mode="aspectFit" src="{{imgUrl}}home/session.png" style="width:190rpx;height:90rpx;"></image>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="/pages/auction-list/auction-list?type=4" hover-class="none">
+                <image mode="aspectFit" src="{{imgUrl}}home/onhistory.png" style="width:190rpx;height:90rpx;"></image>
+            </navigator>
+        </view>
+    </view>
+    <view class="brand-container box">
+        <block wx:for="{{brand}}" wx:key="*this" wx:for-item="item">
+            <view class="brand-item">
+                <navigator url="/pages/cate-list/cate-list?id={{item.metaDataSeq}}" hover-class="none">
+                    <image class="seize-image-1" src="{{item.icon}}" style="width:130rpx;height:130rpx;" mode="aspectFill"></image>
+                    <view>
+                        <text>{{item.metaDataValue}}</text>
+                    </view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+    <view class="home-item" wx:if="{{datAuction.length}}">
+        <view class="home-item-title">每日一拍
+            <view class="fn-float items-list">
+                <navigator url="/pages/home-auction/home-auction?tab=1" hover-class="none">更多 ></navigator>
+            </view>
+        </view>
+        <view class="home-item-subtitle font-gray-more">每日新品 限时抢拍</view>
+        <view class="home-item-content">
+            <block wx:for="{{datAuction}}" wx:for-item="item" wx:key="*this">
+                <view class="home-item-cell">
+                    <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <image class="seize-image-1" src="{{item.auctionGoodsIcon}}" style="width:356rpx;height:356rpx;" mode="aspectFill"></image>
+                        <view class="text-overflow font-bold">{{item.auctionGoodsName}}</view>
+                        <view class="font-gray text-overflow font-small">净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 2}}">起拍价:
+                            <text class="font-red">￥{{item.qiPaiJia}}</text>
+                        </view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 3}}">当前价:
+                            <text class="font-red">￥{{item.currPrice}}</text>
+                        </view>
+                        <view class="font-red font-small" wx:if="{{item.state == 4}}">成交价:￥{{item.currPrice}}</view>
+                        <view class="font-red font-small" wx:if="{{item.state == 5}}">成交价:流拍</view>
+                    </navigator>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <view class="home-item" wx:if="{{showSession&&showSession.auctionCount>0}}">
+        <view class="home-item-title">预展专场</view>
+        <view class="home-item-subtitle font-gray-more">公平 快捷 高效 权威</view>
+        <navigator url="/pages/auction-detail/auction-detail?id={{showSession.auctionSessionSeq}}" hover-class="none">
+            <view class="home-item-content">
+                <image src="{{showSession.auctionSessionIcon}}" class="seize-image-2" style="width:710rpx;height:426rpx;" mode="aspectFill"></image>
+                <view class="auction-state" wx:if="{{showTime}}">
+                    <text class="auction-state-sale onshow">预展中</text>
+                    <view class="auction-state-desc">距离开始 <text class="font-red">{{showTime.day}}</text>天<text class="font-red">{{showTime.hour}}</text>时<text class="font-red">{{showTime.minute}}</text>分<text class="font-red">{{showTime.second}}</text></view>
+                </view>
+                <view class="auction-state" wx:else>
+                    <text class="auction-state-sale">拍卖中</text>
+                </view>
+            </view>
+        </navigator>
+        <view class="home-item-footer font-bold">{{showSession.auctionSessionName}}</view>
+    </view>
+
+    <view class="home-item" wx:if="{{saleSession&&saleSession.auctionCount>0}}">
+        <view class="home-item-title">拍卖专场</view>
+        <view class="home-item-subtitle font-gray-more">公平 快捷 高效 权威</view>
+        <navigator url="/pages/auction-detail/auction-detail?id={{saleSession.auctionSessionSeq}}" hover-class="none">
+            <view class="home-item-content">
+                <image src="{{saleSession.auctionSessionIcon}}" class="seize-image-2" style="width:710rpx;height:426rpx;" mode="aspectFill"></image>
+                <view class="auction-state" wx:if="{{saleTime}}">
+                    <text class="auction-state-sale">拍卖中</text>
+                    <view class="auction-state-desc">距离结束 <text class="font-red">{{saleTime.day}}</text>天<text class="font-red">{{saleTime.hour}}</text>时<text class="font-red">{{saleTime.minute}}</text>分<text class="font-red">{{saleTime.second}}</text></view>
+                </view>
+                <view class="auction-state" wx:else>
+                    <text class="auction-state-sale over">已结束</text>
+                </view>
+            </view>
+        </navigator>
+        <view class="home-item-footer font-bold">{{saleSession.auctionSessionName}}</view>
+    </view>
+
+    <view class="home-item" wx:if="{{recommendAuction.length}}">
+        <view class="home-item-title">推荐收藏
+            <view class="fn-float items-list">
+                <navigator url="/pages/home-auction/home-auction?tab=2" hover-class="none">更多</navigator>
+            </view>
+        </view>
+        <view class="home-item-subtitle font-gray-more">珍稀佳酿 用心推荐</view>
+        <view class="home-item-content">
+            <block wx:for="{{recommendAuction}}" wx:for-item="item" wx:key="*this">
+                <view class="home-item-cell">
+                    <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <image wx:if="{{item.auctionGoodsIcon}}" src="{{item.auctionGoodsIcon}}" class="seize-image-1" style="width:348rpx;height:348rpx;" mode="aspectFill"></image>
+                        <view class="text-overflow font-bold">{{item.auctionGoodsName}}</view>
+                        <view class="font-gray text-overflow font-small">净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 2}}">起拍价:
+                            <text class="font-red">￥{{item.qiPaiJia}}</text>
+                        </view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 3}}">当前价:
+                            <text class="font-red">￥{{item.currPrice}}</text>
+                        </view>
+                        <view class="font-red font-small" wx:if="{{item.state == 4}}">成交价:￥{{item.currPrice}}</view>
+                        <view class="font-red font-small" wx:if="{{item.state == 5}}">成交价:流拍</view>
+                    </navigator>
+                </view>
+            </block>
+        </view>
+    </view>
+
+    <view class="home-item" wx:if="{{drinkAuction.length}}">
+        <view class="home-item-title">饮用精选
+            <view class="fn-float items-list">
+                <navigator url="/pages/home-auction/home-auction?tab=3" hover-class="none">更多</navigator>
+            </view>
+        </view>
+        <view class="home-item-subtitle font-gray-more">品质精选 味觉盛宴</view>
+        <view class="home-item-content">
+            <block wx:for="{{drinkAuction}}" wx:for-item="item" wx:key="*this">
+                <view class="home-item-cell">
+                    <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <image src="{{item.auctionGoodsIcon}}" class="seize-image-1" style="width:348rpx;height:348rpx;" mode="aspectFill"></image>
+                        <view class="text-overflow font-bold">{{item.auctionGoodsName}}</view>
+                        <view class="font-gray text-overflow font-small">净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 2}}">起拍价:
+                            <text class="font-red">￥{{item.qiPaiJia}}</text>
+                        </view>
+                        <view class="font-gray font-small" wx:if="{{item.state == 3}}">当前价:
+                            <text class="font-red">￥{{item.currPrice}}</text>
+                        </view>
+                        <view class="font-red font-small" wx:if="{{item.state == 4}}">成交价:￥{{item.currPrice}}</view>
+                        <view class="font-red font-small" wx:if="{{item.state == 5}}">成交价:流拍</view>
+                    </navigator>
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="home-item" wx:if="{{historyAuction.length}}">
+        <view class="home-item-title">历史拍品
+            <view class="fn-float items-list">
+                <navigator url="/pages/home-auction/home-auction?tab=5" hover-class="none">更多</navigator>
+            </view>
+        </view>
+        <view class="home-item-subtitle font-gray-more">稀世佳酿 值得回味</view>
+        <view class="home-item-content">
+            <block wx:for="{{historyAuction}}" wx:for-item="item" wx:key="*this">
+                <view class="home-item-cell">
+                    <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <image src="{{item.auctionGoodsIcon}}" class="seize-image-1" style="width:348rpx;height:348rpx;" mode="aspectFill"></image>
+                        <view class="text-overflow font-bold">{{item.auctionGoodsName}}</view>
+                        <view class="font-gray text-overflow font-small">净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                        <view class="font-red font-small" wx:if="{{item.state==4}}">成交价:￥{{item.currPrice}}</view>
+                        <view class="font-red font-small" wx:if="{{item.state==5}}">成交价:流拍</view>
+                    </navigator>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

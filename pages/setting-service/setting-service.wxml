@@ -1,0 +1,55 @@
+<view class="container">
+    <view class="items-box white-bg">
+        <view class="items-list {{checkOne}}" bindtap="checkbox" data-num="1">配送说明</view>
+        <view class="text-content {{checkOne}}">
+            <view class="font-bold">配送时间</view>
+            <view>(1) 中威网为保包裹尽快送达，快递公司原则上每天24小时不间断提货，非特殊情况，每一笔订单都将在下单后24小时内发货。</view>
+            <view>(2) 我们默认的配送方式为德邦快递、顺丰速运；如有特殊要求，请及时联络客服中心。</view>
+            <view>(3) 若您订单时效较急，可联络客服中心为您安排空运，空运所产生的相关费用，由您承担。</view>
+            <view class="font-bold" style="margin-top: 30rpx;">配送费用</view>
+            <view>1、中威网商城区全场消费实付金额满人民币300元包邮（除港澳台），实付金额不满人民币300元需加20元运费。（温馨提示：实付金额指订单除使用返现金额、红包、优惠券及威币时所实际支付的金额）</view>
+            <view>2、中威网拍卖区所有成交拍品全场包邮。</view>
+            <view>3、若您订单时效较急，可联系我们的客服中心为您安排空运，空运所产生的相关费用，由您承担。</view>
+            <view class="font-bold" style="margin-top: 30rpx;">配送安全</view>
+            <view>因酒类属特殊商品，为保证货品安全，每瓶酒都采用酒类专用安全包装，以确保在运输途中不会因挤压、碰撞等因素造成破损；如签收时出现破、漏、损情况，请与快递人员当面核实，并对破损进行拍照取证后致电中威网客服热线
+                <text class="font-bold">400-830-5299</text> 人工咨询亦或直接拒签。
+            </view>
+        </view>
+        <view class="items-list {{checkTwo}}" bindtap="checkbox" data-num="2">常见问题</view>
+        <view class="text-content {{checkTwo}}">
+            <view class="font-bold">1、问：关于色差？</view>
+            <view>答：中威网所有商品均为实物拍摄，由于光线、像素、个人显示器及个人视觉感观原因，不排除色差的存在。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">2、问：我用扫码软件扫不出来，这是为什么？</view>
+            <view>答：扫码软件扫描的原理是需要软件开发商收录了这个产品以后，才可以扫描出结果，我们有些产品是新品，软件的开发商没有收录这些产品的条形码（或者二维码），当然扫不出来了，而且各个扫码软件收录的信息也不相同，所以扫码只可以作为参考。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">3、问：为什么我收的酒瓶盖渗酒？</view>
+            <view>答：酒水在快递运输途中发生少量渗酒属于正常现象，不影响饮用，快递不能始终保持瓶口朝上，再加上偶有在装卸货中遇到问题，故瓶口少量渗酒。（因酒类属特殊商品，为保证货品安全，每瓶酒都采用酒类专用安全包装，以确保在运输途中不会因挤压、碰撞等因素造成破损，目前中威网尚未发生过商品破、漏、损的状况）。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">4、问：万一我买的酒碎了怎么办？</view>
+            <view>答：万一出现破损，请您尽快将破损照片传给我们客服人员，您可以选择退款，或者要求我们重发，我们核实清楚后，24小时内给您满意的处理结果。如商品是在运输途中破损，中威网承诺24小时内可为您免费补寄1次，倘若再次破损，我们全额退款。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">5、问：快递送件的时候让我先签收，我要先验货，不然怎么知道有没有问题？</view>
+            <view>答：千万别跟快递纠结，各地的快递素质参差不齐，他们轻而易举就能搞坏您一天的好心情，不要紧，您可以先签收了，然后当着快递员的面打开包装，如果破损请拍照并尽快与我们的客服人员取得联系或直接拒签。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">6、问：如果在运输途中，赠品漏发和破损怎么办？</view>
+            <view>答：赠品如有漏发、破损，您可提供照片，我们会在您下次购买商品时一起寄出。带来不便，敬请谅解。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">7、问：我收到的酒标，为什么和以前喝的酒标签不一样？</view>
+            <view>答：因厂家会在没有任何提前通知的情况下更改产品包装或者一些附件，再加上部分产品批次会有不同，中威网商城中的商品图片无法做到实时更新，请以收到的实物为准，对外观要求十分严格的买家，请咨询清楚再拍下商品，详情可咨询客服。</view>
+
+            <view class="font-bold" style="margin-top: 30rpx;">8、问：为什么有的酒身上有刮痕？</view>
+            <view>答：某些洋酒瓶身上的刮痕，为国际代码刮痕，而非生产日期，酒的品质不变，请各位知悉。</view>
+        </view>
+        <view class="items-list {{checkThree}}" bindtap="checkbox" data-num="3">品质保障</view>
+        <view class="text-content {{checkThree}}">
+            <view>  中威网商城保证所有商品都是通过正规进货渠道购进的。如果您在购买商品后发现质量问题，请与客服中心400-830-5299联系，我们将针对您提出的具体问题，作出合适的处理！每一位在中威网商城购物的顾客都可以享有七天无理由退换货的权利</view>
+            <view style="margin:20rpx 0;">以下情况属于商品质量问题：</view>
+            <view>1、酒品酒标、瓶盖、瓶塞及酒瓶爆裂等外包装损坏；</view>
+            <view>2、酒品出现酒液外流现象；</view>
+            <view>3、酒品中发现以假充真、以次充好的。</view>
+            <view style="margin:20rpx 0;">保障承诺:每一位在中威网商城区购物的顾客都可以享有"假一罚十"的权利。
+注：如果您认为在商城区购买的商品是假货，并能提供质检机构的证明文件，经确认后，在全额返还商品金额的同时，再以威币的形式返还十倍的商品金额。</view>
+        </view>
+    </view>
+</view>

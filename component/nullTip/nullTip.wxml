@@ -1,0 +1,6 @@
+<template name="nullTip">
+    <view class="null-tip">
+        {{nullTip.tipText}}
+    </view>
+    <view class='refresh-btn' bindtap='onPullDownRefresh' wx:if="{{loadError}}">重新加载</view>
+</template>

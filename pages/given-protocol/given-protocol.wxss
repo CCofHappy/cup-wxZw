@@ -1,0 +1,13 @@
+/* given-protocol.wxss */
+.protocol-box{
+  margin:60rpx 70rpx;
+  padding:40rpx 60rpx;
+  border: 2rpx solid #ededed;
+  border-radius: 10rpx;
+  box-shadow: 10rpx 10rpx 10rpx #ededed;
+}
+
+.protocol-title{
+  font-size: 40rpx;
+  margin: 30rpx auto;
+}

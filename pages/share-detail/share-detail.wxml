@@ -1,0 +1,256 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='container' bindtap='closeImgBox'>
+    <view class='icon-end' wx:if="{{bbsInfo.isEnd==1&&bbsInfo.minNumber&&bbsInfo.sold < bbsInfo.minNumber}}">
+        <image src="{{imgUrl}}miniweb/icon/ic_invalid@3x.png" style="width:100%;height:100%;" mode="widthFix"></image>
+    </view>
+    <view class='icon-end' wx:elif="{{bbsInfo.isEnd==1}}">
+        <image src="{{imgUrl}}miniweb/icon/ending.png" style="width:100%;height:100%;" mode="widthFix"></image>
+    </view>
+    <block wx:if="{{!bbsInfo}}">
+        <view hidden="{{showLoading}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}" />
+        </view>
+    </block>
+    <block wx:else>
+        <view class='content-box'>
+            <view class='content-title'>{{bbsInfo.title}}</view>
+        </view>
+        <view class='header-box box box-align-center'>
+            <view class='icon-del box box-center' wx:if="{{bbsInfo.state==2}}" bindtap='deletePost'>
+                <image src="{{imgUrl}}miniweb/icon/Slice 18.png" style="width:100%" mode="widthFix"></image>
+            </view>
+            <view class='box'>
+                <view class='author-img'>
+                    <image wx:if="{{bbsInfo.customerImgUrl}}" src='{{bbsInfo.customerImgUrl}}' mode='aspectFill'></image>
+                    <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                </view>
+                <view>
+                    <view class='box'>
+                        <view class='author-name'>{{bbsInfo.name}}</view>
+                        <view class='box box-align-center'>
+                            <image src='{{imgUrl}}miniweb/ic_level{{bbsInfo.level || 1}}.png' class='icon-tag'></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{bbsInfo.v >0}}"></image>
+                        </view>
+                    </view>
+                    <view class='creat-time'>{{bbsInfo.auditTime}}</view>
+                </view>
+            </view>
+            <block wx:if="{{customerInfo.customerSeq != uid}}">
+                <view class='icon icon-care' bindtap='aboutFollow' wx:if="{{bbsInfo.isFollow==0}}" style='background-image:url("{{imgUrl}}miniweb/icon/follow.png");'></view>
+                <view class='icon icon-care' bindtap='aboutFollow' data-Cancel="1" wx:else style='background-image:url("{{imgUrl}}miniweb/icon/followed.png");'></view>
+            </block>
+        </view>
+        <view class='content-box'>
+            <block  wx:if="{{bbsInfo.state==1}}">
+            <count-down  endTime='{{bbsInfo.endTime}}' presellTime='{{bbsInfo.presellTime}}' serverTime='{{serverTime}}' isEnd="{{bbsInfo.isEnd}}"></count-down>
+            </block>
+            <view class='content-detail text-center'>
+                <view class='box'>
+                    <view class='box-flex'>限购数</view>
+                    <view class='box-flex'>{{bbsInfo.limitations?bbsInfo.limitations+"份":"--"}}</view>
+                    <view class='box-flex'>成团数</view>
+                    <view class='box-flex'>{{bbsInfo.minNumber?bbsInfo.minNumber+"份":"--"}}</view>
+                    <view class='box-flex'>已售</view>
+                    <view class='box-flex'>{{bbsInfo.sold?bbsInfo.sold:0}}份</view>
+                </view>
+                <view class='box'>
+                    <view class='box-flex'>净含量</view>
+                    <view class='box-flex'>{{bbsInfo.netContent}}</view>
+                    <view class='box-flex'>酒精度</view>
+                    <view class='box-flex'>{{bbsInfo.alcoholContent}}</view>
+                    <view class='box-flex'>分享数</view>
+                    <view class='box-flex'>{{bbsInfo.number}}份</view>
+                </view>
+                <view class='box'>
+                    <view class='box-flex'>单价</view>
+                     <view class='box-flex'>{{bbsInfo.price>=10000?bbsInfo.price/10000+'万':bbsInfo.price}}元</view>
+                    <view class='box-flex'>品牌</view>
+                    <view class='box-flex two textview-overflow1'>{{bbsInfo.brand}}</view>
+                </view>
+            </view>
+            <view class='sold-tips' wx:if="{{bbsInfo.minNumber&&bbsInfo.minNumber>0}}">
+                <icon type="warn" size="14" color="#282828"/> 
+                <text>温馨提示：此帖设置了成团数量，达到成团数，则此帖生效；若未达到成团数，则此帖无效，系统自动取消所有订单，并将订单金额退还至参与者中威钱包。</text>
+            </view>
+            <view wx:if="{{bbsInfo.state==2}}" class='fail-tip'>
+                <view class='fail-title'>审核不通过的原因</view>
+                <view>{{bbsInfo.auditDesc}}</view>
+            </view>
+            <view class='content-form text-center' wx:if="{{bbsInfo.postOrder.length>0}}">
+                <view class='box form-list'>
+                    <view class='box-flex'>序号 </view>
+                    <view class='box-flex'>参与人</view>
+                    <view class='box-flex'>参与数</view>
+                    <view class='box-flex'> 状态</view>
+                </view>
+                <view class='box form-list' wx:for="{{bbsInfo.postOrder}}">
+                    <view class='box-flex'> {{index+1}}</view>
+                    <view class='box-flex text-overflow'>{{item.name}}</view>
+                    <view class='box-flex'>{{item.number}}份</view>
+                    <block wx:if="{{item.state==0}}">
+                        <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid}}" bindtap='sendDetail' data-OrderNo='{{item.order_no}}' data-Number='{{item.number}}' data-index='{{index}}' style='color:#A72125;text-decoration: underline;'>待付款</view>
+                        <view class='box-flex' style='color:#009688;' wx:else>待付款</view>
+                    </block>
+                    <block wx:if="{{item.state==1}}">
+                        <view class='box-flex' wx:if="{{customerInfo.customerSeq==uid}}" bindtap='deliveryBtn' data-OrderNo='{{item.order_no}}' data-Data='{{item}}' style='color:#A72125;text-decoration: underline;'>待发货</view>
+                        <view class='box-flex' wx:else> 待发货</view>
+                    </block>
+                    <block wx:if="{{item.state==2 || item.state == 201}}">
+                        <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid}}" style='color:#A72125;text-decoration: underline;'>
+                            <view bindtap='gotoLogistics' data-OrderNo='{{item.order_no}}' data-Data='{{item}}'>待收货</view>
+                        </view>
+                        <view class='box-flex' wx:elif="{{customerInfo.customerSeq==uid}}" style='color:#009688;text-decoration: underline;'>
+                            <view bindtap='gotoLogistics' data-Data='{{item}}'>待收货</view>
+                        </view>
+                        <view class='box-flex' wx:else>
+                            待收货
+                        </view>
+                    </block>
+                    <block wx:if="{{item.state==3}}">
+                        <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid || customerInfo.customerSeq==uid}}" style='color:#A72125;text-decoration: underline;'>
+                            <view bindtap='gotoLogistics' data-Data='{{item}}'>已完成</view>
+                        </view>
+                        <view class='box-flex' wx:else> 已完成</view>
+                    </block>
+                    <block wx:if="{{item.state==4}}">
+                        <view class='box-flex'> 已失效</view>
+                    </block>
+                </view>
+            </view>
+            <view class='share-detail-btn'>
+                <block wx:if="{{bbsInfo.isEnd!=1 && uid!=customerInfo.customerSeq && bbsInfo.state == 1 || bbsInfo.isEnd!=1 && !customerInfo}}">
+                    <button type="default" class='join-btn-end' disabled='disabled' wx:if="{{bbsInfo.presell==1}}">
+                        <text class="font-bold">预售中</text>
+                    </button>
+                    <button type="primary" class='join-btn-end' disabled='disabled' wx:if="{{bbsInfo.isOrder==1}}">
+                        <text class="font-bold">我已参与</text>
+                    </button>
+                    <button type="primary" class='join-btn-end' disabled='disabled' wx:if="{{bbsInfo.number == bbsInfo.sold && bbsInfo.isOrder!=1}}">
+                        <text class="font-bold">已售罄</text>
+                    </button>
+                    <button type="primary" class='join-btn' bindtap='sendDetail' loading='{{navigateLock}}' wx:if="{{bbsInfo.number > bbsInfo.sold && bbsInfo.isOrder!=1&&bbsInfo.presell!=1}}">
+                        <text class="font-bold">我要参与</text>
+                    </button>
+                </block>
+                <block wx:else>
+                    <button type="primary" class='join-btn' bindtap='overShareClick' wx:if="{{bbsInfo.isEnd!=1 && bbsInfo.state == 1 }}">
+                        <text class="font-bold">结束分享</text>
+                    </button>
+                </block>
+            </view>
+            <view class='content-text'>
+                <rich-text selectable="true" nodes="{{bbsInfo.content}}" style='word-break:break-all;'></rich-text>
+            </view>
+            <view class='detail-img ' wx:for="{{bbsInfo.imgUrl}}">
+                <image src='{{item.image_url}}' mode='widthFix'></image>
+            </view>
+            <block wx:if="{{bbsInfo.state==1}}" >
+                <view class="icon give-btn" bindtap='openGiveReward' wx:if="{{customerInfo.customerSeq != uid}}">
+                    <image src='{{imgUrl}}miniweb/icon/ic_reward@3x.png' style="width:100%" mode="widthFix"></image>
+                </view>
+                <view class='text-center font-small'>已有{{rewardList.length}}人打赏</view>
+                <view class='icon-bar box box-center' wx:if="{{rewardList.length>0}}">
+                    <view class='box box-center' wx:for="{{rewardList}}" wx:if="{{index<8}}">
+                        <image wx:if="{{item.imgUrl}}" src='{{item.imgUrl}}' mode='aspectFill'></image>
+                        <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                    </view>
+                </view>
+                <view class='box box-center checkGive font-small' wx:if="{{rewardList.length>0}}">
+                    <navigator url="/pages/reward-list/reward-list?uid={{bbsInfo.uid}}&pid={{bbsInfo.pid}}&type=1&head={{bbsInfo.customerImgUrl}}&name={{bbsInfo.name}}" hover-class="none">查看打赏榜</navigator>
+                </view>
+            </block>
+        </view>
+        <view class='content-text tips-box'>
+            <view class="tips">郑重提示：</view>
+            <view class="msg">中威网分享吧为威士忌爱好者提供交流平台，管理员只负责在吧规范围内维护正常的交易秩序。对分享酒品的质量、品相和价格不承担审查和担保责任。请参与者对所分享酒品仔细考量。感谢支持！</view>
+            <view class="msg">未成年人请勿饮酒！请勿酒后驾车！孕妇请勿饮酒！</view>
+        </view>
+        <view class='comment-box' wx:if="{{bbsInfo.state==1&&bbsInfo.replyList.length!=0}}">
+            <view class='comment-list' wx:for="{{bbsInfo.replyList}}">
+                <view class='comment-head box'>
+                    <view class='box'>
+                        <view class='author-img'>
+                            <image wx:if="{{item.uimgUrl}}" src='{{item.uimgUrl}}' mode='aspectFill'></image>
+                            <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                        </view>
+                        <view>
+                            <view class='box'>
+                                <view class='author-name'>{{item.name}}</view>
+                                <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{item.uid==uid}}"></view>
+                                <view class='box box-align-center'>
+                                    <image src='{{imgUrl}}miniweb/ic_level{{item.level}}.png' class='icon-tag'></image>
+                                    <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{item.v>0}}"></image>
+                                </view>
+                            </view>
+                            <view class='creat-time'>{{item.reply_time}}</view>
+                        </view>
+                    </view>
+                    <view class='reply-btn text-center' bindtap="setReplyID" data-Uid="{{item.uid}}" data-Rid="{{item.rid}}" data-Name="{{item.name}}" wx:if="{{item.uid!=customerInfo.customerSeq}}">回复</view>
+                </view>
+                <view class='comment-content'>
+                    <view class='comment-text'>{{item.content}}</view>
+                    <view class='reply-imgs' wx:for='{{item.replyImage}}'>
+                        <image src='{{item}}' mode='widthFix'></image>
+                    </view>
+                    <view class='reply-box' wx:for="{{item.comment}}" bindtap="setReplyID" data-Uid="{{item.uid}}" data-Rid="{{item.rid}}" data-Name="{{item.uname}}">
+                        <view class='fn-left box box-center'>
+                            <text class='reply-uname'>{{item.uname}}</text>
+                            <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{item.uid==uid}}"></view>
+                        </view>
+                        <text class='maohao'></text>
+                        <text>回复 {{item.runame}}：</text>
+                        <text class='reply-content'>{{item.content}}</text>
+                    </view>
+                    <view class='reply-more box box-center' wx:if="{{item.comment.length==4}}">
+                        <navigator url="/pages/share-reply/share-reply?rid={{item.rid}}&up={{uid}}&pid={{pid}}&type=1" hover-class="none">查看更多</navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命加载中…</view>
+    </block>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&bbsInfo.state==1}}">没有更多内容</view>
+    <view class="fill-express" wx:if="{{openExpress}}">
+        <view class="shadow box box-center text-center">
+            <view class="fill-express-container white-bg">
+                <view class="fill-express-box">
+                    <view class="fill-express-code" style="font-size:36rpx;">填写物流信息</view>
+                    <view class="fill-express-input">
+                        <input placeholder="快递单号" type="number" bindinput="expressInput" value="{{expressNum}}" style="margin:20rpx auto 40rpx;padding:10rpx;width:320rpx;" class="white-bg" />
+                        <image src='{{imgUrl}}miniweb/icon/scan-code@3x.png' bindtap="scanExpress" class="scan"></image>
+                    </view>
+                    <view style='margin:40rpx auto;max-width:440rpx;' class='text-left'>
+                        <view>参与者：{{deliveryData.name}}</view>
+                        <view>收货人：{{deliveryData.consignee_person}}</view>
+                        <view>手机号码：{{deliveryData.consignee_mobile}}</view>
+                        <view>收货地址：
+                            <text selectable="true">{{deliveryData.delivery_addr}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="fill-express-btn box">
+                    <view class="box-flex" bindtap="expressCancel">取消</view>
+                    <view class="box-flex" bindtap="expressEnter">确认</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<give-reward giveRewardOpen='{{giveRewardOpen}}' pid='{{bbsInfo.pid}}' name='{{bbsInfo.name}}' headImg='{{bbsInfo.customerImgUrl}}' payAfter='{{payAfter}}' payAfterPrice='{{payAfterPrice}}' uCount='{{bbsInfo.uCount}}' amountAll='{{bbsInfo.amountAll}}'></give-reward>
+<view class='reply-bar white-bg' wx:if="{{bbsInfo.state==1}}">
+    <view class='box box-align-center input-box'>
+        <view class='icon icon-reply' style='background-image:url("{{imgUrl}}miniweb/icon/comment-add.png");' wx:if="{{replyRid}}"></view>
+        <view class='icon icon-reply' style='background-image:url("{{imgUrl}}miniweb/icon/ic_sendPic@3x.png");' bindtap='openImgBox' wx:else></view>
+        <input placeholder='{{replyName?"回复"+replyName+"：":"我有话要说"}}' focus="{{focus}}" value='{{sendContent}}' bindinput='sendContent' bindblur='clearID' confirm-type="发送" bindconfirm="sendMessage"></input>
+    </view>
+    <view class='imgs-box' wx:if="{{openImgBox}}">
+        <view class='img-box' wx:for="{{postImgList}}">
+            <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+            <image src="{{item}}" mode="aspectFill"></image>
+        </view>
+        <view class='img-box img-button' wx:if="{{postImgList.length<3}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+        </view>
+    </view>
+</view>

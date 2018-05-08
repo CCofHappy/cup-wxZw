@@ -1,0 +1,51 @@
+<!--component/giveReward/giveReward.wxml-->
+<view hidden='{{!giveRewardOpen}}' class='give-reward-shadow box box-center'>
+    <view class='give-reward-box' style='background-image:url("{{imgUrl}}miniweb/bg_reward@3x.png")'>
+        <view class='close-btn' bindtap='closeReward'>
+            <image src='{{imgUrl}}miniweb/icon/ic_close_w@3x.png' style="width:100%" mode="widthFix"></image>
+        </view>
+        <view class='top text-center'>
+            <view class='head-icon box box-center'>
+                <image wx:if="{{headImg}}" src='{{headImg}}' mode='aspectFill'></image>
+                <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+            </view>
+            <view class='author-name textview-overflow1'>{{name}}</view>
+            <view>此帖共收到 <text class='font-red'>{{uCount||'0'}}</text> 人打赏，合计 <text class='font-red'>{{amountAll||'0'}}</text> 元</view>
+        </view>
+        <view class='give-reward-money'>
+            <view class='tips'>楼主辛苦了，打赏个红包</view>
+            <view class='box box-between text-center'>  
+                <view class='money-btn {{buttonValue==1?"active":""}}' bindtap='changemoney' data-money="1">1元</view>
+                <view class='money-btn {{buttonValue==5?"active":""}}' bindtap='changemoney' data-money="5">5元</view>
+                <view class='money-btn {{buttonValue==10?"active":""}}' bindtap='changemoney' data-money="10">10元</view>
+            </view>
+            <view class='box box-between text-center'>  
+                <view class='money-btn {{buttonValue==50?"active":""}}' bindtap='changemoney' data-money="50">50元</view>
+                <view class='money-btn {{buttonValue==100?"active":""}}' bindtap='changemoney' data-money="100">100元</view>
+                <view class='money-btn {{buttonValue==200?"active":""}}' bindtap='changemoney' data-money="200">200元</view>
+            </view>
+        </view>
+        <view class='give-reward-input text-center'>
+            <input type='number' placeholder="其他金额" bindinput='inputmoney' maxlength="10" value='{{inputValue}}'></input>
+        </view>
+        <view class='give-reward-submit text-center' bindtap='giveReward'>
+            打赏
+        </view>
+    </view>
+</view>
+<view hidden='{{!payAfter}}' class='give-reward-shadow box box-center'>
+    <view class='pay-after-box'>
+        <view class='pay-after-title'>
+            <image src='{{imgUrl}}miniweb/icon/ic_payAfter@3x.png' style="width:100%" mode="widthFix"></image>
+        </view>
+        <view class='text-center pay-after-content'>
+            <view class='font-red-dark'>￥{{payAfterPrice}}</view>
+            <view class='tips'>打赏成功</view>
+            <view class='font-gray-lighter font-small'>您的每一次打赏都是楼主进步的动力</view>
+            <view class='pay-after-colse text-center' bindtap='closePayAfter'>
+                确定
+            </view>
+        </view>
+    </view>
+
+</view>

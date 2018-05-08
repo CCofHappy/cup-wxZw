@@ -1,0 +1,134 @@
+<!--pages/share-join/share-join.wxml-->
+<view class='container'>
+    <block wx:if="{{!shareDetail}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </block>
+    <block wx:else>
+        <view class='top-box'>
+            <view class='top-top-box box'>
+                <view class='left-box'>
+                    <image src='{{shareDetail.imgUrl[0].image_url?shareDetail.imgUrl[0].image_url:shareDetail.imgUrl}}' mode='aspectFill'></image>
+                </view>
+                <view class='right-box'>
+                    <view class='count-title textview-overflow1'>{{shareDetail.title}}</view>
+                    <view class='box-between box'>
+                        <view>参与数量</view>
+                        <view class='box'>
+                            <view class='conut-btn' bindtap='changeCount' data-num='0'>-</view>
+                            <view>{{count}}</view>
+                            <view class='conut-btn' bindtap='changeCount' data-num='1'>+</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class='content-detail text-center'>
+                <view class='box'>
+                    <view class='box-flex'>限购数</view>
+                    <view class='box-flex'>{{shareDetail.limitations?shareDetail.limitations+"份":"--"}}</view>
+                    <view class='box-flex'>成团数</view>
+                    <view class='box-flex'>{{shareDetail.minNumber?shareDetail.minNumber+"份":"--"}}</view>
+                    <view class='box-flex'>已售</view>
+                    <view class='box-flex'>{{shareDetail.sold?shareDetail.sold:0}}份</view>
+                </view>
+                <view class='box'>
+                    <view class='box-flex'>净含量</view>
+                    <view class='box-flex'>{{shareDetail.netContent}}</view>
+                    <view class='box-flex'>酒精度</view>
+                    <view class='box-flex'>{{shareDetail.alcoholContent}}</view>
+                    <view class='box-flex'>分享数</view>
+                    <view class='box-flex'>{{shareDetail.numberAll?shareDetail.numberAll:shareDetail.number}}份</view>
+                </view>
+                <view class='box'>
+                    <view class='box-flex'>价格</view>
+                     <view class='box-flex'>{{shareDetail.price>=10000?shareDetail.price/10000+'万':shareDetail.price}}元/份</view>
+                    <view class='box-flex'>品牌</view>
+                    <view class='box-flex two textview-overflow1'>{{shareDetail.brand}}</view>
+                </view>
+            </view>
+            <view class='sold-tips box' wx:if="{{shareDetail.limitations&&shareDetail.limitations>0}}">
+                <icon type="warn" size="14" color="#282828"/> 
+                <text>该分享帖为限购帖，每个用户限购{{shareDetail.limitations?shareDetail.limitations:0}}份。</text>
+            </view> 
+        </view>
+        <view class='bottom-box'>
+            <navigator url='/pages/address-choose/address-choose'>
+                <view class='address-box' style='background-image:url("{{imgUrl}}miniweb/icon/address.png");' wx:if="{{addressInfo}}">
+                    <view class='box box-between'>
+                        <view>收货人：{{addressInfo.consignee}}</view>
+                        <view>{{addressInfo.phone}}</view>
+                    </view>
+                    <view class='address-text'>收货地址：{{addressInfo.province + ' ' + addressInfo.addr}}</view>
+                </view>
+                <view class='address-box' style='background-image:url("{{imgUrl}}miniweb/icon/address.png");' wx:else>
+                    请添加收货地址
+                </view>
+            </navigator>
+            <view class='pay-box'>
+                <view class='pay-title'>请选择支付方式</view>
+                <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='1'>
+                    <view class='box box-align-center' data-num='1'>
+                        <view class='icon icon-zhongwei' style='background-image:url("{{imgUrl}}miniweb/icon/pay-zw.png");'></view>
+                        <view>中威钱包</view>
+                    </view>
+                    <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+                    <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+                </view>
+                <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='2'>
+                    <view class='box box-align-center' data-num='2'>
+                        <view class='icon icon-weixin' style='background-image:url("{{imgUrl}}miniweb/icon/pay-weixin.png");'></view>
+                        <view>微信</view>
+                    </view>
+                    <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+                    <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<form bindsubmit="shareSubmit" report-submit="true">
+    <view class='bottom-bar text-center box'>
+        <view class='white-bg box box-center'>实付款：
+            <text class='price'>
+                <text class='font-small'>￥</text>{{shareDetail.price*count?shareDetail.price*count:0}}</text>
+        </view>
+        <block wx:if="{{switchBtn}}">
+            <button class='submit' form-type="submit">提交订单</button>
+        </block>
+        <block wx:else>
+            <button class='submit' form-type="submit" disabled='disabled'>提交订单</button>
+        </block>
+    </view>
+</form>
+<view class="pay-password-container box box-center text-center" wx:if="{{openPayPassword}}">
+    <view class="pay-password-box white-bg">
+        <view class="pay-title">
+            <text style="font-size:28rpx;">请输入支付密码</text>
+            <image src="{{imgUrl}}miniweb/icon/ic_close@3x.png" class="close-password-box" bindtap='closePayPassword'></image>
+        </view>
+        <view class="pay-value">
+            <text class="font-small font-bold">￥</text>
+            <text class='pay-value'>{{shareDetail.price*count}}</text>
+        </view>
+        <view class="password-box" bindtap="bindPayClick" style='padding-bottom:40rpx;'>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 0}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 1}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 2}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 3}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 4}}"></view>
+            </view>
+            <view class="fn-float box box-center" style="border-right:1px solid #999;">
+                <view class="bull" wx:if="{{payLength > 5}}"></view>
+            </view>
+            <input class="" type="number" maxlength="6" value="{{payPassword}}" focus="{{payFocus}}" bindinput="bindPayInput" style="height:0;min-height:0;" auto-focus/>
+        </view>
+    </view>
+</view>

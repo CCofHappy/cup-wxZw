@@ -1,0 +1,41 @@
+<!--mine-foot.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{footList.length==0}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="container">
+        <view style="overflow:hidden">
+            <view class="clear-btn fn-float" bindtap="clearBtn">清除我的足迹</view>
+        </view>
+        <view class="cate-list">
+            <block wx:for="{{footList}}">
+                <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}">
+                    <view class="list-item box white-bg">
+                        <view class="item-img">
+                            <image src="{{item.auctionGoodsIcon}}" mode="widthFix" class="list-img-size seize-image-1"></image>
+                        </view>
+                        <view class="itme-text box box-align-center">
+                            <view>
+                                <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+                                <view class="font-gray">拍品编码: {{item.auctionGoodsCode}}</view>
+                                <view class="font-gray">净含量: {{item.jingHangLiang}}ml</view>
+                                <view class="font-gray">酒精度: {{item.jiuJingDu}}%</view>
+                                <view class="font-gray">起拍价:
+                                    <text class="font-red"><text class="font-small">     ￥</text>{{item.qiPaiJia}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

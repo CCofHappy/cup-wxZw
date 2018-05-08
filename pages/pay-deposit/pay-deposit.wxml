@@ -1,0 +1,90 @@
+<!--pay-deposit.wxml-->
+<view class="container">
+  <form bindsubmit="bondSubmit">
+  <view class="pay-choose white-bg">
+  <radio-group bindchange="bondType" name="bondType">
+      <view wx:if="{{!bondInfo.diState}}">
+        <label class="pay-box box {{auction}}">         
+          <view class="choose-box pay-choeck auction">
+             单品保证金 <text class="font-red font-bold"><text class="font-small">￥</text>{{bondInfo.auctionGoodsBond}}</text><view class="font-small">仅对此件拍品有效</view>
+          </view>
+          <radio value="102"/>        
+        </label>
+      </view> 
+      <view wx:else>
+        <label class="pay-box box">         
+          <view class="choose-box pay-choeck auction font-gray-lighter">
+             单品保证金 <text class="font-red font-bold"><text class="font-small">￥</text>{{bondInfo.auctionGoodsBond}}</text><view class="font-small">仅对此件拍品有效</view>
+          </view>
+          <radio value="102" disabled="disabled"/>        
+        </label>
+      </view> 
+      <view>
+        <label class="pay-box box {{session}}">
+          <view class="choose-box pay-choeck session" wx:if="{{bondInfo.disparityBond == bondInfo.auctionSessionBond}}">
+            全场保证金 <text class="font-bold"><text class="font-small">￥</text>{{bondInfo.auctionSessionBond}}</text>
+            <view class="font-small">针对全场拍品有效</view>
+          </view>
+          <view class="choose-box pay-choeck session" wx:else>
+            全场保证金 <text class="font-bold" style="text-decoration:line-through;margin-right:10rpx;"><text class="font-small">￥</text>{{bondInfo.auctionSessionBond}}</text>
+             <text class="font-red font-bold"><text class="font-small">￥</text>{{bondInfo.disparityBond}}</text>
+            <view class="font-small" >补差价 <text class="font-small">￥</text>{{bondInfo.disparityBond}} 可转全场保证金,针对全场拍品有效</view>
+          </view>
+          <radio value="101" checked="1"/>
+        </label>
+      </view>
+  </radio-group>
+  </view>
+  <view class="pay-type white-bg">
+    <view class="title pay-box font-bold">支付方式</view>
+    <radio-group bindchange="payType" name="payType">
+      <view>
+        <label class="pay-box box {{wallet}}">
+          <view class="type-box pay-choeck wallet">中威钱包 <text class="font-small font-gray-more">极速安全支付</text></view>
+          <radio value="1" checked="1" />
+        </label>
+      </view>
+      <view>
+        <label class="pay-box box {{weixin}}">
+          <view class="type-box pay-choeck weixin">微信支付 <text class="font-small font-gray-more">微信专属服务</text></view>
+          <radio value="2" />
+        </label>
+      </view>
+    </radio-group>
+  </view>
+  <view class="pay-rule white-bg box box-align-center pay-box">
+    <checkbox-group bindchange="ruleChange">
+    <label class="box box-align-center">
+      <checkbox value="agree" checked="1" color="#C72202"/>竞拍需同意中威网《拍卖规则》
+    </label>
+    </checkbox-group>
+    <navigator class="font-gold" url="" bindtap="gotoNotice" hover-class="none">查看规则</navigator>
+  </view>
+  <view class="pay-tips white-bg">
+    <view class="title pay-box font-bold">注意事项</view>
+    <view class="tips font-gray-more pay-box">
+      <view class="font-small">1.若竞拍成功，保证金转拍卖金额，您只需支付其余款项。</view>
+      <view class="font-small">2.若竞拍出局,保证金将退回到中威钱包。</view>
+      <view class="font-small">3.若竞拍成功,您48小时内未成功支付,保证金将不予退还。</view>
+    </view>
+  </view>
+  <button class="bond-btn" formType="submit">报名，支付保证金</button>
+  </form>
+</view>
+<view class="pay-password-container box box-center text-center" wx:if="{{openPayPassword}}">
+  <view class="pay-password-box white-bg">
+    <view class="pay-title">请输入支付密码</view>
+    <!-- <view class="pay-tips">支付金额</view> -->
+    <view class="pay-value font-bold"><text class="font-small">￥</text>{{totalFee}}</view>
+    <view class="password-box" bindtap="bindPayClick">
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 0}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 1}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 2}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 3}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 4}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 5}}"></view></view>
+    </view>
+    <input class="" type="number" maxlength="6" value="{{payPassword}}" focus="{{payFocus}}" bindinput="bindPayInput" style="height:0;min-height:0;" auto-focus/>
+    <view class="cancel" bindtap="closePayPassword">取消</view>
+  </view>
+</view>

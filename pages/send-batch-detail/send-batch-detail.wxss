@@ -1,0 +1,5 @@
+@import '../../pages/send-detail/send-detail.wxss';
+
+.font-gray-more{
+  margin: 10rpx 0;
+}

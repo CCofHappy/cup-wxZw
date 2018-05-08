@@ -1,0 +1,69 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<import src="../../component/callPrice/callPrice.wxml" />
+<import src="../../component/oneHand/oneHand.wxml" />
+<view wx:if="{{customerInfo}}">
+    <navigator class="mine-record-btn" url="/pages/mine-auction/mine-auction"></navigator>
+</view>
+<block wx:if="{{!auctionDetail}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+    <view class="container">
+        <view class="auction-session">
+            <view class="session-img">
+                <image class="seize-image-2" src="{{auctionDetail.auctionSessionIcon}}" mode="aspectFill"></image>
+                <view class="auction-state" wx:if="{{auctionDetail.state==2}}">
+                    <view class="auction-state-desc" wx:if="{{auctionTime}}">距开始 
+                        {{auctionTime.day}} 天 {{auctionTime.hour}} 时 {{auctionTime.minute}} 分 {{auctionTime.second}} 秒
+                    </view>
+                    <view class="auction-state-desc" wx:else>拍卖中
+                    </view>
+                </view>
+                <view class="auction-state" wx:if="{{auctionDetail.state==3}}">
+                    <view class="auction-state-desc" wx:if="{{auctionTime}}">距结束 
+                        {{auctionTime.day}} 天 {{auctionTime.hour}} 时 {{auctionTime.minute}} 分 {{auctionTime.second}} 秒
+                    </view>
+                    <view class="auction-state-desc" wx:else>已结束
+                    </view>
+                </view> 
+            </view>
+            <view class="session-info">
+                <view class="session-name">{{auctionDetail.auctionSessionName}}</view>
+                <view class="session-tips font-red" wx:if="{{ auctionDetail.state==3 && auctionDetail.delay > 0 }}">温馨提示：本拍场部分拍品由于有用户在最后5分钟出价，故针对这些拍品延迟5分钟。</view>
+                <view class="box">
+                    <view class="box-flex">
+                        <text class="font-red">{{auctionDetail.auctionCount}}</text>件拍品</view>
+                    <view class="box-flex text-center">
+                        <text class="font-red">{{auctionDetail.printCount}}</text>次出价</view>
+                    <view class="box-flex text-right">
+                        <text class="font-red">{{auctionDetail.surroundCatchCount}}</text>次围观</view>
+                </view>
+            </view>
+            <view class="session-introduce" wx:if="{{auctionDetail.auctionSessionDesc}}">
+                <view class="title">专场介绍</view>
+                <text class="textview-overflow-three {{descOpen}}">{{auctionDetail.auctionSessionDesc}}
+                </text>
+                <view class="open-btn text-center" bindtap="descOpen" wx:if="{{descOpen == 'open'}}">
+                    <text class="up">收起</text>
+                </view>
+                <view class="open-btn text-center" bindtap="descOpen" wx:else>
+                    <text class="down">展开</text>
+                </view>
+            </view>
+        </view>
+        <view class="pro-list" wx:for="{{auctionList}}">
+            <auction-goods auctionGoods="{{item}}"></auction-goods>
+        </view>
+        <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+        <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+    </view>
+    <view wx:if="{{callPriceOpen}}">
+        <template is="callPrice" data="{{callPriceInfo: callPriceInfo}}" />
+    </view>
+    <view wx:if="{{oneHandOpen}}">
+        <template is="oneHand" data="{{imgUrl: imgUrl,oneHandStep:oneHandStep}}"/>
+    </view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

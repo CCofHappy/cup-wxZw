@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "拍卖专场",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "auction-goods": "../../component/auctionGoods/auctionGoods"
+    }
+}

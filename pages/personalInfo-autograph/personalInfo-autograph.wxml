@@ -1,0 +1,16 @@
+<!--pages/personalInfo-autograph/personalInfo-autograph.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit">
+    <view class="input-box">
+      <view class="input-list box name">
+        <view class="input-title">签名</view>
+        <input type="text" name="autograph" placeholder="请输入您的签名" maxlength="20" placeholder-style="font-family:'微软雅黑'" value="{{nickValue}}"/>
+      </view>
+    </view>
+    <view class="tips">
+      签名不能超过20字符。
+    </view>
+    <button form-type="submit">保存</button>
+  </form>
+</view>
+

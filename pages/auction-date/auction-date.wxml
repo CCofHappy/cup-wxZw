@@ -1,0 +1,29 @@
+<!--auction-date.wxml-->
+<view class="container">
+    <view class="date-year-month font-bold text-center">
+        <view class="fn-left" bindtap="leftTap">◀</view>
+        {{date.year}}年 {{date.month}}月
+        <view class="fn-float" bindtap="rightTap">▶</view>
+    </view>
+    <view class="date-title text-center font-bold">
+        <view class="fn-left box box-center">一</view>
+        <view class="fn-left box box-center">二</view>
+        <view class="fn-left box box-center">三</view>
+        <view class="fn-left box box-center">四</view>
+        <view class="fn-left box box-center">五</view>
+        <view class="fn-left box box-center">六</view>
+        <view class="fn-left box box-center">日</view>
+    </view>
+    <view class="date-content text-center">
+        <view class="fn-left box box-center" wx:for="{{empty}}"> </view>
+        <view class="fn-left" wx:for="{{days}}">
+            <view class="show-date font-bold box box-center" bindtap='jumpSession' data-date="{{item}}" wx:if="{{item >= auctionDateOpen.one[0] && item <= auctionDateOpen.one[1]||item >=auctionDateOpen.two[0] && item <= auctionDateOpen.two[1]}}">
+                <view>{{item}}<view class="font-small">预展</view></view>
+            </view>
+            <view class="sale-date font-bold box box-center" bindtap='jumpSession' data-date="{{item}}" wx:elif="{{item > auctionDateOpen.one[1] && item <= auctionDateOpen.one[2]||item > auctionDateOpen.two[1] && item <= auctionDateOpen.two[2]}}">
+                <view>{{item}}<view class="font-small">拍卖</view></view>
+            </view>
+            <view class="font-bold box box-center" wx:else>{{item}}</view>
+        </view>
+    </view>
+</view>

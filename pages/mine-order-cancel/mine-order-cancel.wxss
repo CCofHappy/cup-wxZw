@@ -1,0 +1,47 @@
+/* mine-order-cancel.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+@import '../../pages/mine-order/mine-order.wxss';
+
+.order-num{
+    border: none;
+}
+
+.auction-detail{
+    background: #f9f9f9;
+    border: none;
+}
+
+.auction-img{
+    width: 30%;
+}
+
+.auction-img image{
+    width: 100%;
+}
+
+.font-gray-more .font-red{
+    font-size: 32rpx;
+    color: #942C15;
+}
+
+.font-gray-more .font-small{
+    line-height: 40rpx;
+}
+
+.btn-bar{
+    padding: 20rpx 30rpx;
+    overflow: hidden;
+}
+
+.appeal-btn{
+    height: 56rpx;
+    line-height: 56rpx;
+    border: 2rpx solid #942C15;
+    padding: 0 50rpx;
+    color:  #942C15;
+}
+
+.appeal-btn.appeal-send{
+    color:  #fff;
+    background: #942C15;
+}

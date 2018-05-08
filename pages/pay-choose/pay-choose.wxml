@@ -1,0 +1,50 @@
+<!--pay-choose.wxml-->
+<view class="conttainer">
+<form bindsubmit="paySubmit" report-submit="true">
+  <view class="input-box white-bg">
+    <view class="box">
+      <view class="title">订单金额：</view>
+      <view class="price">{{payFee}}元</view>
+      <view class="font-red" wx:if="{{wbBalance>0}}">（威币抵扣：{{wbBalance}}元）</view>
+    </view>
+  </view>
+  <view class="pay-type white-bg">
+    <view class="title pay-box font-bold">请选择支付方式</view>
+    <radio-group bindchange="payType" name="payType">
+      <view>
+        <label class="pay-box box {{wallet}}">
+          <view class="type-box pay-choeck wallet">中威钱包 <text class="font-small font-gray-more">极速安全支付</text></view>
+          <radio value="1" checked="1" />
+        </label>
+      </view>
+      <view>
+        <label class="pay-box box {{weixin}}">
+          <view class="type-box pay-choeck weixin">微信支付 <text class="font-small font-gray-more">微信专属服务</text></view>
+          <radio value="2" />
+        </label>
+      </view>
+    </radio-group>
+    <view class='items-list' bindtap="offlinePay">
+        <text> 线下支付</text>
+    </view>
+  </view>
+  <button form-type="submit" class="submit-btn" disabled='{{payLock}}'>确认支付</button>
+</form>
+</view>
+<view class="pay-password-container box box-center text-center" wx:if="{{openPayPassword}}">
+  <view class="pay-password-box white-bg">
+    <view class="pay-title">请输入支付密码</view>
+    <view class="pay-tips">支付金额</view>
+    <view class="pay-value font-bold"><text class="font-small">￥</text>{{payFee}}</view>
+    <view class="password-box" bindtap="bindPayClick">
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 0}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 1}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 2}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 3}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 4}}"></view></view>
+      <view class="fn-float box box-center"><view class="bull" wx:if="{{payLength > 5}}"></view></view>
+    </view>
+    <input class="" type="number" maxlength="6" value="{{payPassword}}" focus="{{payFocus}}" bindinput="bindPayInput" style="height:0;min-height:0;" auto-focus/>
+    <view class="cancel" bindtap="closePayPassword">取消</view>
+  </view>
+</view>

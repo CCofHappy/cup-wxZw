@@ -1,0 +1,23 @@
+<!--pages/search-wine/search-wine.wxml-->
+<view class='container'>
+    <view class='search-bar box'>
+        <view class='icon-box' style='background-image:url("{{imgUrl}}miniweb/icon/comment-add.png");'></view>
+        <input placeholder='请输入产品或名称' bindconfirm="searchBtn" value='{{searchValue}}' bindinput='searchInput' maxlength='30'></input>
+        <view class='send-btn text-center' bindtap='searchBtn'>搜索</view>
+    </view>
+    <view class='search-list-box' wx:if="{{searchList.length>0}}">
+        <view class='title-box box box-between box-align-center'>
+            <view class='title'>搜索历史</view>
+            <view class='icon-delete' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 18.png");' bindtap='searchDelete'></view>
+        </view>
+        <view class='fn-left value-box' wx:for="{{searchList}}">
+            <navigator url="/pages/search-wine-result/search-wine-result?value={{item}}" hover-class="none">
+            {{item}}
+            </navigator>
+        </view>
+    </view>
+    <view class='search-list-box' wx:else>
+        <view class='font-gray-lighter text-center'>没有搜索历史</view>
+    </view>
+
+</view>

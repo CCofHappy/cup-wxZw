@@ -1,0 +1,120 @@
+@import '../../component/nullTip/nullTip.wxss';
+.slide-image{
+  width: 100%;
+}
+.brand-container{ 
+  background: #fff;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20rpx;
+  border-bottom: 5px solid #dddddd;
+}
+.brand-item{
+  width:21%;
+  padding:2%;
+  text-align: center;
+  color: #876A2B;
+}
+.brand-item image{
+  width: 100%;
+}
+.section{
+  margin: 10px 0;
+  text-align: center;
+}
+.section-title{
+  background: #fff;
+  height: 30px;
+  line-height: 30px;
+}
+.auction-item{
+  border-bottom: 5px solid #dddddd;
+  padding: 15rpx 0 5rpx;
+}
+.auction-item .box-flex{
+  text-align: center;
+}
+
+.home-item{
+  padding: 15rpx 20rpx;
+  border-bottom: 5px solid #dddddd;
+}
+.home-item .home-item-title{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.home-item-title .fn-float{
+  font-weight: normal;
+  font-size: 28rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 40rpx 0 20rpx;
+}
+.home-item .home-item-subtitle{
+  padding-bottom: 15rpx;
+}
+.home-item .home-item-footer{
+  padding: 10rpx 0;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.home-item .home-item-content{
+  position: relative;
+}
+.auction-state{
+  position: absolute;
+  bottom: 25rpx;
+  left: 0;
+  color: #fff;
+  font-size: 26rpx;
+}
+.auction-state .font-red{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.auction-state-sale{
+  padding: 10rpx;
+  background: #C72202;
+  margin-right: 5rpx;
+}
+.auction-state-sale.onshow{
+  background: #3bb46a;
+}
+.auction-state-sale.over{
+  background: #b6b6b6;
+}
+.auction-state-desc{
+  color: #A2A1A1;
+  padding: 6rpx 16rpx;
+  background: rgba(255,255,255,.9);
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  display: inline-block;
+}
+.home-item-content{
+  display:-webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+.home-item-cell{
+  width: 49%;
+  padding: 20rpx 0;
+}
+.home-item-cell:nth-child(2n){
+  padding-left: 1%;
+}
+.home-item-cell:nth-child(2n+1){
+  padding-right: 1%;
+}
+.scroll-item-container{
+  display: flex;
+  display:-webkit-box;
+  overflow-x: auto;
+}
+.scroll-item-container .scroll-item{
+  padding: 10rpx;
+}
+.auction-state-desc .font-red{
+    margin: 0 6rpx;
+}

@@ -1,0 +1,28 @@
+<!--pages/mine-follower/mine-follower.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='container'>
+    <block wx:if="{{followerList.length==0}}">
+        <view hidden="{{showLoading}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}" />
+        </view>
+    </block>
+    <block wx:else>
+        <view class='follow-box box box-align-center' wx:for="{{followerList}}">
+            <view class='follow-img' style='background-image:url("{{imgUrl}}default/default_head_Portrait@2x.png");'>
+                <image src='{{item.uimgUrl}}' mode='aspectFill'></image>
+            </view>
+            <view class='follow-text'>
+                <view class='follow-name'>{{item.uname}}</view>
+                <view class='follow-autograph textview-overflow' wx:if="{{item.autograph}}">{{item.autograph}}</view>
+                <view class='follow-autograph textview-overflow' wx:else>这家伙超懒，没有留下任何东西</view>
+                <view class='follow-count'>发帖数：{{item.postCount}}</view>
+                <view class='icon icon-care' bindtap='aboutFollow' data-Upid="{{item.customerSeq}}" wx:if="{{item.isFollow==0}}" style='background-image:url("{{imgUrl}}miniweb/icon/follow.png");'></view>
+                <view class='icon icon-care' bindtap='aboutFollow' data-Upid="{{item.customerSeq}}" wx:else data-Cancel="1" style='background-image:url("{{imgUrl}}miniweb/icon/followed.png");'></view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命加载中…</view>
+    </block>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&followerList.length!=0}}">没有更多内容</view>
+</view>

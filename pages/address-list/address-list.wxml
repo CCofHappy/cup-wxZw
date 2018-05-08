@@ -1,0 +1,33 @@
+<!--address-list.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!addressList.length}}">
+  <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<view class="container">
+  <radio-group bindchange="radioChange">
+  <block wx:for="{{addressList}}">
+  <view class="address-box white-bg">
+    <view class="address-name">{{item.consignee}} {{item.phone}}</view>
+    <view class="address-detail">{{item.province}}{{item.addr}}</view>
+    <view class="address-tools box">
+      <view class="default">
+        <label class="box box-center" >
+          <radio value="{{item.deliveryAddrSeq}}" checked="{{item.flag}}" color="#c72202" />设为默认
+        </label>
+      </view>
+      <view class="box">
+        <navigator class="edit-btn box box-center" url="/pages/address-edit/address-edit?id={{item.deliveryAddrSeq}}" hover-class="none">
+          <view class="icon icon-edit"></view> 编辑 
+        </navigator>
+        <view class="delete-btn box box-center" id="{{item.deliveryAddrSeq}}" bindtap="deleteAddress">
+          <view class="icon icon-delete"></view> 删除
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>
+  </radio-group>
+  <navigator url="/pages/address-add/address-add" hover-class="none">
+  <button class="add-btn btn-red">添加新地址</button>
+  </navigator>
+</view>

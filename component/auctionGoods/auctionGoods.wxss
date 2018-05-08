@@ -1,0 +1,239 @@
+/* component/auctionGoods/auctionGoods.wxss */
+@import '../../app.wxss';
+.goods-box{
+    width: 100%;
+    overflow: hidden;
+}
+
+.weui-flex{
+    display: flex;
+    width: 912rpx;
+    transition: all .5s;
+}
+
+.active-btn{
+    margin-left: 24rpx;
+    width: 186rpx;
+    flex-shrink: 0;
+    background: #942c15;
+    color: #fff;
+    font-size: 32rpx;
+}
+
+.pro-item-desc {
+    margin: 10rpx 0;
+}
+
+.pro-item-desc .pro-item-line {
+    border-bottom: 2rpx dashed #ccc;
+}
+
+.pro-item-desc .pro-itme-line:last-child {
+    border-bottom: none;
+}
+
+.pro-item-line .pro-item-label {
+    color: #9a9a9a;
+    border: 2rpx solid #9a9a9a;
+    padding: 0 4rpx;
+    border-radius: 3px;
+    font-size: 20rpx;
+    margin: 6rpx 6rpx 6rpx 0;
+}
+
+.weui-flex .pro-name {
+    font-weight: bold;
+    font-size: 36rpx;
+    width: 350rpx;
+}
+
+.weui-flex .pro-sec {
+    font-size: 24rpx;
+    color: #656565;
+}
+
+.weui-flex .pro-list-left {
+    position: relative;
+    width: 43%;
+    padding: 0 10rpx;
+}
+.price-tag{
+    width: 80rpx;
+    height: 76rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.weui-flex .pro-list-right {
+    width: 57%;
+}
+
+.pro-current {
+    position: relative;
+    background: #f6f1e8;
+    margin-top: 10rpx;
+}
+
+.pro-current .pro-current-price {
+    font-size: 32rpx;
+    width: 100%;
+    height: 190rpx;
+}
+
+.pro-current-price>view {
+    padding: 0 20rpx;
+    height: 50%;
+}
+
+.pro-current-price>view:first-child{
+    border-bottom: 2rpx solid #d6ccb8;
+}
+
+.pro-current-price .price-txt {
+    font-weight: bold;
+}
+
+.pro-current-price .small {
+    font-size: 24rpx;
+}
+
+.pro-current-price .font-red {
+    color: #942c15;
+    font-weight: bold;
+}
+
+.pro-current .myprice {
+    color: #656565;
+    font-size: 28rpx;
+}
+.pro-current .myprice-2{
+     line-height: 100rpx;
+     padding: 0;
+}
+.pro-timer {
+    padding: 20rpx 0;
+}
+.booked-box{
+    font-size: 24rpx;
+}
+.pro-timer image , .booked-box image{
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
+}
+.pro-btn-box{
+    margin-top: 10rpx;
+}
+.pro-btn-box .want-txt{
+    align-items: flex-end;
+    display: flex;
+    font-size: 24rpx;
+    justify-content:center;
+}
+.pro-btn-box .pro-btn {
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    background: #942c15;
+    height: 35px;
+    line-height: 35px;
+}
+.pro-btn.booked {
+    background: #A5A5A5;
+    margin-right: 10rpx;
+}
+.pro-btn.one-hand {
+    background: #805c42;
+    margin-right: 10rpx;
+}
+.pro-btn.call-price {
+    background: #942c15;
+}
+
+.icon-record{
+  position: absolute;
+  top: -2rpx;
+  left: -2rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.icon-delay{
+  position: absolute;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.booked-shadow{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 100000;
+}
+
+.booked-container{
+    width: 450rpx;
+    padding: 40rpx 50rpx; 
+    position: relative;
+}
+
+.booked-title{
+    font-size: 32rpx;
+    padding-bottom: 30rpx;
+    border-bottom: 2rpx solid #ddd; 
+    margin-bottom: 40rpx;
+}
+
+.booked-content{
+    line-height: 60rpx;
+    height: 60rpx;
+    margin-bottom: 40rpx;
+}
+
+.booked-content input{
+    height: 60rpx;
+    line-height: 60rpx;
+    border: 2rpx solid #ccc;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+}
+
+.booked-content .count-box .font-bold{
+    font-size: 40rpx;
+    border: 2rpx solid #ccc;
+    height: 60rpx;
+    width: 60rpx;
+    line-height: 56rpx;
+    box-sizing: border-box;
+}
+
+.booked-content .count-box .font-bold:first-child{
+    margin-right: 50rpx;
+}
+
+.booked-content .count-box .font-bold:last-child{
+    margin-left: 50rpx;
+}
+.booked-content .price-title,.booked-content .count-title{
+    margin-right: 30rpx;
+    flex-shrink: 0;
+}
+
+.booked-container .close-btn{
+    position: absolute;
+    top: 30rpx;
+    right: 30rpx;
+}
+
+.booked-btn{
+    margin-top: 20rpx;
+    background: #942C15;
+    padding: 15rpx 100rpx;
+    color: #fff;
+}

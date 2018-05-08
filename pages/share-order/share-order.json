@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "分享吧订单",
+    "usingComponents": {
+        "share-order": "../../component/shareOrder/shareOrder"
+    }
+}

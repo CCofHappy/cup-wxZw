@@ -1,0 +1,23 @@
+/* auction-record.wxss */
+@import '../../pages/send-detail/send-detail.wxss';
+
+view.view-inline{
+  display: inline-block;
+}
+
+.list-item{
+  position: relative;
+}
+
+.icon-box{
+  position: absolute;
+  right: 8%;
+  bottom: 35%;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.icon-box image{
+  width: 100%;
+  height: 100%;
+}

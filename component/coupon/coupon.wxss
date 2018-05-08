@@ -1,0 +1,131 @@
+/***优惠券领取panel的样式***/
+.pick-area{
+    position:fixed;
+    z-index:10;
+    width:100%;
+    bottom:0;
+}
+.coupon-mark{
+    position: fixed;
+    z-index: 9;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 0;
+    background:#000;
+    opacity:.5;
+}
+.pick-title{
+    padding:20rpx 0;
+}
+.pick-area .pick-title,.pick-area .pick-name{
+    font-size:36rpx;
+}
+.pick-area .pick-list{
+    margin-bottom:20px;
+}
+.pick-area .pick-rule{
+    font-size:14px;
+}
+.pick-area .pick-time{
+    font-size:12px;
+    color:#858080;
+}
+.pick-area .pick-name{
+    margin:8px 0;
+}
+.pick-area .pick-item{
+    margin:0 40rpx;
+    margin-bottom:10rpx;
+    border-bottom:1px solid #e8e8e8;
+}
+.pick-area .pick-item:last-child{
+    border:none;
+}
+.pick-rule,.pick-time{
+    margin:10rpx 0;
+}
+.pick-item .recevie{
+    justify-content:center;
+    align-items:center;
+}
+.pick-item .recevie label.gold{
+    border:1rpx solid #c89664;
+}
+.pick-item .recevie label.unUsable{
+    border:1rpx solid #ddd;
+}
+.pick-item .recevie label{
+    border-radius: 10rpx;
+    padding:10rpx;
+}
+.pick-area .priceInfo{
+    position:relative;
+}
+.pick-area .priceInfo image{
+    position: absolute;
+    width:204rpx;
+    height:204rpx;
+    top:-65rpx;
+    left:26rpx;
+    border:1rpx solid #d7d7d7;
+
+}
+.pick-area .priceInfo .amountinfo{
+    padding-left:250rpx;
+}
+.pick-area .amountinfo .gold{
+    font-size:48rpx;
+    padding:20rpx 0;
+}
+.pick-area .sizelist{
+    margin: 45rpx 0;
+}
+.pick-area .sizelist .amountEdit{
+    margin-left:26rpx;
+}
+.pick-area .sizelist .amountEdit input{
+    display: inline-block;
+    width:80rpx;
+    height:50rpx;
+    border:1rpx solid #d7d7d7;
+}
+.pick-area .sizelist .amountEdit label{
+    height:56rpx;
+    line-height:50rpx;
+    width:40rpx;
+    font-size:28rpx;
+    display:inline-block;
+    vertical-align:top;
+    background:#f7fafa;
+    margin:0 10rpx;
+}
+.pick-area .sizelist .spec-item{
+    margin:30rpx 26rpx;
+}
+.pick-area .sizelist .spec-name{
+    padding:20rpx 0;
+}
+.pick-area .sizelist .spec-detail{
+    margin:10rpx 0 10rpx 6rpx;
+    background:#f7fafa;
+    padding:10rpx 40rpx;
+}
+.pick-area .sizelist .activity_spec{
+    border:1rpx solid #c89664;
+}
+.pick-area .operate radio-group{
+    display:flex;
+}
+.pick-area .operate radio{
+    display: none;
+}
+.pick-area .operate view{
+    width:100%;
+    font-size:28rpx;
+    height:76rpx;
+    line-height:76rpx;
+}
+.pick-area .operate .nowBuy{
+    background-color:#052841;
+}

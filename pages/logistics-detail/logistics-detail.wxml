@@ -1,0 +1,55 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class="container">
+    <view class="logistics-state box box-center" wx:if="{{urlFrom == 'share'&& shareLogistics.state==201}}">
+        <icon type="success" size="30"/>
+        <view class='outline-tips' wx:if="{{customerInfo.customerSeq!=shareLogistics.uid}}">等待买家收货</view>
+        <view class='outline-tips' wx:else>卖家已安排线下送货</view>
+    </view>
+    <view class="logistics-state box box-center" wx:elif="{{urlFrom == 'share' && !expressNumber}}">
+        <icon type="success" size="30"/>
+        <view class='outline-tips' wx:if="{{customerInfo.customerSeq!=shareLogistics.uid}}">买家已收货</view>
+        <view class='outline-tips' wx:else>我已收货</view>
+
+    </view>
+    <view class="logistics-state" wx:else>
+        <view wx:if="{{logisticsData.info.expressChina?logisticsData.info.expressChina:logisticsData.express}}"> 物流公司：
+            <text class="font-red">{{logisticsData.info.expressChina?logisticsData.info.expressChina:logisticsData.express}}</text>
+        </view>
+        <view wx:else> 物流公司：
+            <text class="font-red">更新中...</text>
+        </view>
+        <view wx:if="{{logisticsData.info.expressNumber?logisticsData.info.expressNumber:logisticsData.nu}}"> 物流单号：
+            <text class="font-red">{{logisticsData.info.expressNumber?logisticsData.info.expressNumber:logisticsData.nu}}</text>
+        </view>
+        <view wx:else> 物流单号：
+            <text class="font-red">{{expressNumber}}</text>
+        </view>
+        <view> 物流状态：
+            <text class="font-red">{{logisticsState}}</text>
+        </view>
+    </view>
+    <view class="logistics-state" wx:if="{{type == 'share'||type == 'shareBottle'}}">
+        <!--只有帖子详情处查看物流信息需展示收货人信息-->
+        {{shareLogistics.consignee_person}} {{shareLogistics.consignee_mobile}}
+        <view class="font-gray">{{shareLogistics.delivery_addr}}</view>
+    </view>
+    <button type="primary" class='join-btn' bindtap='getGoodsBtn' wx:if="{{orderNo&&uid&&shareLogistics.state==2}}">
+        <text class="font-bold">确认收货</text>
+    </button>
+    <block wx:if="{{!logisticsData.data}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </block>
+    <block wx:else>
+        <view class="logistics-detail record-box white-bg">
+            <block wx:for="{{logisticsData.data}}">
+                <view class="record-list box">
+                    <view class="bull"></view>
+                    <view class="record-text">
+                        <view>{{item.ftime}}</view>
+                        <view>{{item.conText?item.conText:item.context}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </block>
+</view>

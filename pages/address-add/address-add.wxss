@@ -1,0 +1,55 @@
+/* address-add.wxss */
+page{
+  background: #efefef;
+}
+
+.add-box{
+  margin: 10rpx 0;
+}
+
+.input-box{
+  padding:0 30rpx;
+  line-height: 88rpx;
+  height: 88rpx;
+  border-bottom: 2rpx solid #efefef;
+}
+
+.input-box .input-title{
+  width: 25%;
+}
+
+.input-box input{
+  width: 75%;
+  line-height: 88rpx;
+  height: 88rpx;
+}
+
+.save-btn{
+  margin:80rpx 30rpx;
+}
+
+.address-box{
+  width:100%;
+  position: fixed;
+  bottom: -600rpx;
+  z-index: 10001;
+}
+
+.address-close-btn{
+  font-size: 32rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  background: #C72202;
+  color: #fff;  
+}
+
+.address-box-shadow{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}

@@ -1,0 +1,33 @@
+<template name="callPrice">
+  <view class="call-price-shadow box box-center text-center">
+    <view class="call-price-container white-bg">
+      <view class="call-price-box">
+        <view class="call-price-name">{{callPriceInfo.auctionGoodsName}}</view>
+        <view>
+          <text style="margin-right:10rpx;">当前价:<text class="font-small">￥</text>{{callPriceInfo.lastPrice}}  </text>  
+          <text>加价幅度:<text class="font-small">￥</text>{{callPriceInfo.jiaJiaStep}}</text>
+        </view>
+        <view class="price-content">
+          <view class="price-title">出价金额(￥)</view>      
+          <view class="price-box box">
+            <view class="font-bold" bindtap="offerPriceReduce">-</view>
+            <input type="number" maxlength="7" bindinput="offerPriceInput" value="{{callPriceInfo.offerPrice}}"/>
+            <view class="font-bold" bindtap="offerPriceAdd">+</view>
+          </view>
+        </view>
+        <view class="price-content">
+          <view class="price-title">设置心理最高价(￥)</view>      
+          <view class="price-box box">
+            <view class="font-bold" bindtap="maxPriceReduce">-</view>
+            <input type="number" maxlength="7" bindinput="maxPriceInput" value="{{callPriceInfo.maxPrice}}"/>
+            <view class="font-bold" bindtap="maxPriceAdd">+</view>
+          </view>
+        </view> 
+      </view>
+      <view class="price-btn box">
+        <view class="box-flex" bindtap="priceCancel">取消</view>
+        <view class="box-flex" bindtap="priceEnter">确认出价</view>
+      </view>
+    </view>
+  </view>
+</template>

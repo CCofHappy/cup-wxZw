@@ -1,0 +1,16 @@
+<view class="container">
+    <view class='title'>《转账信息及注意事项》</view>
+    <view>一、对公账户</view>
+    <view>开户行：工商银行惠州东方威尼斯支行</view>
+    <view>账号：2008 0222 0920 0036 227</view>
+    <view class='item'>二、中威收到您的转账后，将为您的中威钱包充值同等金额，使用中威钱包支付订单，完成交易。</view>
+    <view class='item'>三、转账时请在备注中填写自己的中威账号和订单编号以便及时为您充值。</view>
+    <view class='item'>备注：如有疑问或查询转账结果请联系客服</view>
+
+    <view class='box box-center call-container'>
+        <image src='{{imgUrl}}miniweb/icon/ic_callService@3x.png' mode='widthFix' class='call' bindtap="callService"></image>
+    </view>
+    <view class='box box-center' bindtap="callService">
+        <text class='call-txt'>拨打客服电话</text>
+    </view>
+</view>

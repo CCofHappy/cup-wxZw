@@ -1,0 +1,22 @@
+.one-hand-container{
+    padding: 80rpx 60rpx 60rpx 60rpx; 
+    position: relative;
+}
+
+.one-hand-container image{
+    width: 166.5rpx;
+    height: 198rpx;
+}
+
+.one-hand-container .close-btn{
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+}
+
+.one-hand-container .one-hand-btn{
+    margin-top: 20rpx;
+    background: #942C15;
+    padding: 15rpx 100rpx;
+    color: #fff;
+}

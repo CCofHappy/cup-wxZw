@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "历史竞拍",
+    "usingComponents": {
+        "auction-goods": "../../component/auctionGoods/auctionGoods"
+    }
+}

@@ -1,0 +1,59 @@
+/* component/shareOrder/shareOrder.wxss */
+@import '../../app.wxss';
+@import '../nullTip/nullTip.wxss';
+.order-item{
+    border-top: 10rpx solid #f2f2f2;
+    padding: 0 0 8rpx 0;
+    background: #fff;
+}
+.order-item .weui-flex{
+    padding: 30rpx 20rpx;
+    background: #F9F9F9;
+}
+.order-time{
+    padding: 20rpx;
+}
+.order-title{
+    font-size: 32rpx;
+    color: #282828;
+}
+.order-attr{
+    color: #656565;
+    font-size: 24rpx;
+}
+.order-attr.box-between{
+    margin: 20rpx 0;
+    line-height: 54rpx;
+}
+.order-attr .price{
+    color: #9c2415;
+    font-size: 32rpx;
+}
+.order-img{
+    width: 35%;
+    margin-right:20rpx;
+}
+.font-price{
+    color: #942C15;
+}
+.order-price{
+    font-size: 36rpx;
+}
+.order-sum{
+    padding: 12rpx 24rpx 0 24rpx;
+}
+.order-sum .font-gray{
+    font-size: 22rpx;
+}
+.order-btn{
+    display:inline-block;
+    padding:8rpx 20rpx;
+    border:2rpx solid #656565;
+    margin-left:20rpx;
+    border-radius:10rpx;
+    color:#656565;
+}
+.order-btn.pay{
+    border-color: #942C15;
+    color: #942C15;
+}

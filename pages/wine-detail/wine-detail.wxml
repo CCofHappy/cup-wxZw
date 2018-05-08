@@ -1,0 +1,78 @@
+<!--pages/wine-detail/wine-detail.wxml-->
+<view class='container'>
+    <view class='wine-detail'>
+        <view class='wine-img'>
+             <image src="{{interflowWine.image}}" class='seize-image-1' mode="aspectFit"></image>
+        </view>
+        <view class='detail-box'>
+            <view class='wine-name'>{{interflowWine.fullName?interflowWine.fullName:'暂缺'}}</view>
+            <view class='en-name font-gray-lighter'>{{interflowWine.enName?interflowWine.enName:'暂缺'}}</view>
+            <view class='wine-info'>
+                <view class='box'>
+                    <view style='width: 60%;'>品牌：{{interflowWine.brandName?interflowWine.brandName:'暂缺'}}</view>
+                    <view>酒精度：{{interflowWine.strength?interflowWine.strength:'暂缺'}}</view>
+                </view>
+                <view class='box'>
+                    <view style='width: 60%;'>系列：{{interflowWine.serie?interflowWine.series:'暂缺'}}</view>
+                    <view>年份：{{interflowWine.statedAge?interflowWine.statedAge:'暂缺'}}</view>
+                </view>
+            </view>
+            <view class='box box-between wine-orther'>
+                <view class='wine-point point-color'>总体评分：{{interflowWine.totalScore}}分</view>
+                <view class='wine-publish'>
+                    <navigator url='/pages/comment-publish/comment-publish' hover-class='none'>写酒评</navigator>
+                </view>
+            </view>
+        </view>
+        <view class='wine-note-box'>
+            <view class='wine-note' wx:for="{{interflowList}}">
+                <navigator url="/pages/interflow-detail/interflow-detail?pid={{item.pid}}&&uid={{item.uid}}&&interflowType=2" hover-class="none">
+                    <view class='box box-align-center author-box'>
+                        <view class='author-img'>
+                            <image wx:if="{{item.customerImgUrl}}" src='{{item.customerImgUrl}}' mode='aspectFill'></image>
+                            <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                        </view>
+                        <view>
+                            <view class='box box-align-center'>
+                                <view class='author-name'>{{item.name}}</view>
+                                <image src='{{imgUrl}}miniweb/ic_level{{item.level || 1}}.png' class='icon-tag'></image>
+                                <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{item.v>0}}"></image>
+                            </view>
+                            <view class='creat-time'>{{item.createTime}}</view>
+                        </view>
+                    </view>
+                    <view class='textview-overflow comment-introduction'>{{item.content}}</view>
+                    <view class='content-img'>
+                        <view class='img-box' wx:for="{{item.imgUrl}}" wx:if="{{index<3}}">
+                            <image src='{{item.url}}' class='seize-image-1' mode='aspectFill'></image>
+                        </view>
+                    </view>
+                </navigator>
+                <view class='content-other'>
+                    <view class='fn-float box'>
+                        <view class='box box-center'>
+                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/comment-count.png");'></view>
+                            <text>{{item.replyCount?item.replyCount:0}}</text>
+                        </view>
+                        <view class='box box-center'>
+                            <block wx:if="{{item.isPraise == 0}}">
+                                <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/ic_good_unpress.png");' bindtap="clickCall" data-Pid="{{item.pid}}"></view>
+                                <text>{{item.praise?item.praise:0}}</text>
+                            </block>
+                            <block wx:else>
+                                <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/ic_good_pressed.png");'></view>
+                                <text class="font-red-dark">{{item.praise?item.praise:0}}</text>
+                            </block>
+                        </view>
+                        <view class='box box-center'>
+                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/ic_redbag@3x.png");' bindtap='openGiveReward' data-Data='{{item}}' data-Type='2'></view>
+                            <text>{{item.uCount?item.uCount:0}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&interflowList.length!=0}}">没有更多内容</view>
+        </view>
+    </view>
+</view>
+<give-reward giveRewardOpen='{{giveRewardOpen}}' pid='{{rewardPid}}' name='{{rewardName}}' headImg='{{rewardImgUrl}}' payAfter='{{payAfter}}' payAfterPrice='{{payAfterPrice}}' uCount='{{rewardUCount}}' amountAll='{{rewardAmountAll}}' type='{{postType}}'></give-reward>

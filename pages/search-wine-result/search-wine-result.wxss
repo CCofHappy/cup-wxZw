@@ -1,0 +1,97 @@
+/* pages/search-wine-result/search-wine-result.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+
+.container{
+    padding-bottom: 100rpx;
+}
+
+.search-box{
+    padding: 20rpx 30rpx;
+    border-bottom: 2rpx solid #efefef;
+}
+
+.search-box .img-box{
+    width:200rpx;
+    height:200rpx;
+    overflow: hidden
+}
+
+.search-box .search-img{
+    height:200rpx;
+    margin-right: 10rpx;
+}
+
+.add-wine-shadow{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .8);
+    z-index: 1000;
+}
+
+.add-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100rpx;
+    border-top: 2rpx solid #efefef;
+}
+
+.add-wine-box{
+    height: 600rpx;
+    width: 600rpx;
+    background: #fff;
+    position: relative;
+}
+
+.add-wine-box .wine-title{
+    margin:40rpx auto;
+    font-size: 32rpx;
+    color: #282828;
+}
+
+.add-wine-box .wine-detail{
+    padding: 0 60rpx;
+}
+
+.add-wine-box .wine-detail .box{
+    margin-bottom: 40rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.add-wine-box .wine-detail .box input{
+    width: 100%;
+    border: 2rpx solid #ccc;
+    padding: 0 16rpx;
+    height: 60rpx;
+}
+
+.add-wine-box .wine-detail .box text{
+    flex-shrink : 0;
+    margin-right: 20rpx;
+}
+
+.wine-btn-box{
+    height: 100rpx;
+    line-height: 100rpx;
+    border-top: 2rpx solid #ccc;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.wine-btn-box .cancle{
+    border-right: 2rpx solid #ccc;
+    box-sizing: border-box;
+}
+
+.wine-btn-box .btn{
+    width: 50%;
+    font-size: 32rpx;
+}
+

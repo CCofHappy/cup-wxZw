@@ -1,0 +1,13 @@
+<!--pages/mine-post-chose/mine-post-chose.wxml-->
+<view class='container'>
+    <view class='items-list'>
+        <navigator url="/pages/mine-post/mine-post" hover-class="none">
+            <text> 我发起的</text>
+        </navigator>
+    </view>
+    <view class='items-list'>
+        <navigator url="/pages/mine-post-join/mine-post-join" hover-class="none">
+            <text> 我参与的</text>
+        </navigator>
+    </view>
+</view>

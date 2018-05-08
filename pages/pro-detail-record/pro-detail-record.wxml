@@ -1,0 +1,38 @@
+<!--pages/pro-detail-record/pro-detail-record.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='list-box box'> 
+    <view class="first-bar weui-flex">
+        <view class="weui-flex__item"><view class="placeholder">状态</view></view>
+        <view class="weui-flex__item"><view class="placeholder">出价人</view></view>
+        <view class="weui-flex__item"><view class="placeholder">金额</view></view>
+    </view>
+    <view class="last-bar">
+        <view class="box box-center">时间</view>
+    </view>
+</view>
+<block wx:if="{{!recordRecord||recordRecord.length==0}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+<view class='call-price-box'>
+    <view class='list-box box price-list' wx:for="{{recordRecord}}"> 
+        <view class="first-bar weui-flex">
+            <view class="weui-flex__item box box-align-center">
+                <view class="price-icon first" wx:if="{{index==0&&item.offerState==1 || index==1 &&recordRecord[0].offerState==0}}">领先</view>
+                <view class="price-icon" wx:elif="{{item.offerState==0}}">无效</view>
+                <view class="price-icon" wx:else>出局</view>
+            </view>
+            <view class="weui-flex__item"><view class="placeholder">{{customerInfo.customerSeq==item.customerSeq?'我的出价':item.signNo}}</view></view>
+            <view class="weui-flex__item"><view class="placeholder">￥{{item.price}}</view></view>
+        </view>
+        <view class="last-bar time text-center">
+            <view>{{item.createTime[0]}}</view>     
+            <view>{{item.createTime[1]}}</view>           
+        </view>
+    </view>
+    <view class="font-gray-lighter text-center" wx:if="{{recordRecord.length!=0}}">-- 没有更多内容了 --</view>
+</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

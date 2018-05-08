@@ -1,0 +1,66 @@
+/* auction-list.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+page{
+  background-color:#efefef;
+}
+
+.auction-session{
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.auction-session image{
+  width: 100%;
+}
+
+.session-info{
+  padding: 0 10px;
+}
+
+.session-info .session-name{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.session-info .box{
+  margin-top: 5px;
+  padding-bottom: 10px; 
+}
+
+.session-img{
+  position: relative
+}
+
+.auction-state{
+  position: absolute;
+  bottom: 30rpx;
+  left: 0;
+  color: #fff;
+  font-size: 26rpx;
+}
+.auction-state .font-red{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.auction-state-sale{
+  padding: 10rpx;
+  background: #C72202;
+  margin-right: 5rpx;
+}
+.auction-state-sale.onshow{
+  background: #3bb46a;
+}
+.auction-state-desc{
+  color: #A2A1A1;
+  padding: 10rpx 16rpx;
+  background: rgba(255,255,255,.9);
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.auction-state-desc .font-red{
+    margin: 0 6rpx;
+}
+
+.auction-state{
+    display: flex;
+}

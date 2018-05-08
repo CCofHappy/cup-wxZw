@@ -1,0 +1,41 @@
+<!--pages/mine-wallet/mine-wallet.wxml-->
+<view class="container white-bg">
+  <view class='wallet-header box box-center'>
+    <view>
+      <view class='wallet-count text-center'>{{userList.balance?userList.balance:0}}</view>
+      <view class='text-center'>账户余额(元)</view>
+    </view>
+  </view>
+  <view class='wallet-list'>
+    <view class='items-list'>
+      <navigator url="/pages/irecharge/irecharge" hover-class="none" class='box box-align-center'>
+        <view class="icon-other icon-service"></view>
+        <text>充值</text>
+      </navigator>
+    </view>
+    <view class='items-list'>
+      <navigator url="/pages/iwithdraw/iwithdraw" hover-class="none" class='box box-align-center'>
+        <view class="icon-other icon-service"></view>
+        <text>提现</text>
+      </navigator>
+    </view>
+    <view class='items-list'>
+      <navigator url="/pages/mine-finance/mine-finance" hover-class="none" class='box box-align-center'>
+        <view class="icon-other icon-service"></view>
+        <text>财务明细</text>
+      </navigator>
+    </view>
+    <view class='items-list'>
+      <navigator url="/pages/mine-weibi/mine-weibi" hover-class="none" class='box box-align-center'>
+        <view class="icon-other icon-service"></view>
+        <text>我的威币</text>
+      </navigator>
+    </view>
+    <view class='items-list'>
+      <navigator url="/pages/personalInfo-pwd/personalInfo-pwd?type=pay" hover-class="none" class='box box-align-center'>
+        <view class="icon-other icon-service"></view>
+        <text>修改支付密码</text>
+      </navigator>
+    </view>
+  </view>
+</view>

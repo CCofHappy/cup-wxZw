@@ -1,0 +1,16 @@
+/* pages/share-order/share-order.wxss */
+page{
+    background-color: #f2f2f2;
+}
+.order-btn {
+    position: fixed;
+    bottom: 30rpx;
+    right: 30rpx;
+    width: 85rpx;
+    height: 85rpx;
+    border-radius: 50%;
+}
+.icon-order {
+    width: 97%;
+    height: 97%;
+}

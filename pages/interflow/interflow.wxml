@@ -1,0 +1,182 @@
+<!--pages/interflow/interflow.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='container'>
+    <view class="weui-tab">
+        <view class="weui-navbar">
+            <block wx:for="{{tabs}}" wx:key="*this">
+                <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                    <view class="weui-navbar__title">{{item}}</view>
+                </view>
+            </block>
+            <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel">
+            <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                <navigator url="/pages/share-bottle/share-bottle" hover-class="none">
+                    <image src="{{imgUrl}}/miniweb/share-entrance.jpg" style="width:100%;height:160rpx;" mode="widthFix"></image>
+                </navigator>
+                <navigator url="/pages/share-rule/share-rule" hover-class="none">
+                    <view class="list-box box box-align-center">
+                        <image src='{{imgUrl}}/miniweb/ic_advice.png' style="width:88rpx;height:50rpx;margin-top:-10rpx;" mode="widthFix"></image>
+                        <text class='advice'>【中威网社区公告】</text>
+                        <text class='content-text'>欢迎加入中威网社区！</text>
+                    </view>
+                </navigator>
+                <block wx:if="{{!interflowList ||interflowList.length==0}}">
+                    <view hidden="{{showLoading}}">
+                        <template is="nullTip" data="{{nullTip: nullTip}}" />
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class='list-box' wx:for="{{interflowList}}">
+                        <view class='header-box box box-align-center'>
+                            <view class='box'>
+                                <view class='author-img'>
+                                    <image wx:if="{{item.customerImgUrl}}" src='{{item.customerImgUrl}}' mode='aspectFill'></image>
+                                    <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                                </view>
+                                <view>
+                                    <view class='box box-align-center'>
+                                        <view class='author-name'>{{item.name}}</view>
+                                        <image src='{{imgUrl}}miniweb/ic_level{{item.level || 1}}.png' class='icon-tag'></image>
+                                        <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{item.v >0 }}"></image>
+                                    </view>
+                                    <view class='creat-time'>{{item.createTime}}</view>
+                                </view>
+                            </view>
+                            <block wx:if="{{customerInfo.customerSeq!=item.uid}}">
+                                <view class='icon icon-care' bindtap='aboutFollow' data-Upid="{{item.uid}}" wx:if="{{item.isFollow==0}}" style='background-image:url("{{imgUrl}}miniweb/icon/follow.png");'></view>
+                                <view class='icon icon-care' data-Upid="{{item.uid}}" data-Cancel="1" wx:else style='background-image:url("{{imgUrl}}miniweb/icon/followed.png");'></view>
+                            </block>
+                        </view>
+                        <view class='content-box'>
+                            <navigator url="/pages/interflow-detail/interflow-detail?pid={{item.pid}}&uid={{item.uid}}&activeIndex = 0&interflowType=3" hover-class="none">
+                                <view class='content-title box box-align-center'>
+                                    <image src='{{imgUrl}}miniweb/icon/ic_top.png' wx:if="{{item.isTop == 1 }}" style='width:70rpx;height:30rpx;margin-right:6rpx;'></image>
+                                    <view class='selected-icon' wx:if="{{item.label.length> 0 }}">精</view>
+                                    <view class='text-overflow'>{{item.title}}</view>
+                                </view>
+                                <view class='content-img'>
+                                    <view class='img-box' wx:for="{{item.imgUrl}}" wx:if="{{index<3}}">
+                                        <image src='{{item.url}}' class='seize-image-1' mode='aspectFill'></image>
+                                    </view>
+                                </view>
+                                <view class='look-count-box'><text>{{item.scanCount?item.scanCount:0}}次浏览</text></view>
+                            </navigator>
+                            <view class='content-other'>
+                                <view class='box'>
+                                    <view class='box-flex box box-center'>
+                                        <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/comment-count.png");'></view>
+                                        <text>{{item.replyCount?item.replyCount:0}}</text>
+                                    </view>
+                                    <view class='box-flex box box-center'>
+                                        <block wx:if="{{item.isPraise == 0}}">
+                                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/{{reCall}}");' bindtap="clickCall" data-Pid="{{item.pid}}"></view>
+                                            <text>{{item.praise?item.praise:0}}</text>
+                                        </block>
+                                        <block wx:else>
+                                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/ic_good_pressed.png");'></view>
+                                            <text class="font-red-dark">{{item.praise?item.praise:0}}</text>
+                                        </block>
+                                    </view>
+                                    <view class='box-flex box box-center'>
+                                        <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/ic_redbag@3x.png");' bindtap='openGiveReward' data-Data='{{item}}' data-Type='3'></view>
+                                        <text>{{item.uCount?item.uCount:0}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&interflowList.length!=0}}">没有更多内容</view>
+            </view>
+            <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                <navigator url="/pages/share-bottle/share-bottle" hover-class="none">
+                    <image src="{{imgUrl}}/miniweb/share-entrance.jpg" style="width:100%;height:160rpx;" mode="widthFix"></image>
+                </navigator>
+                <navigator url="/pages/share-rule/share-rule" hover-class="none">
+                    <view class="list-box box box-align-center">
+                        <image src='{{imgUrl}}/miniweb/ic_advice.png' style="width:88rpx;height:50rpx;margin-top:-10rpx;" mode="widthFix"></image>
+                        <text class='advice'>【中威网社区公告】</text>
+                        <text class='content-text'>欢迎加入中威网社区！</text>
+                    </view>
+                </navigator>
+                <block wx:if="{{commentList.length==0||!commentList}}">
+                    <view hidden="{{showLoading}}">
+                        <template is="nullTip" data="{{nullTip: nullTip}}" />
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class='list-box' wx:for="{{commentList}}">
+                        <view class='header-box box box-align-center'>
+                            <view class='box'>
+                                <view class='author-img'>
+                                    <image wx:if="{{item.customerImgUrl}}" src='{{item.customerImgUrl}}' mode='aspectFill'></image>
+                                    <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                                </view>
+                                <view>
+                                    <view class='box box-align-center'>
+                                        <view class='author-name'>{{item.name}}</view>
+                                        <image src='{{imgUrl}}miniweb/ic_level{{item.level || 1}}.png' class='icon-tag'></image>
+                                        <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{item.v>0}}"></image>
+                                    </view>
+                                    <view class='creat-time'>{{item.createTime}}</view>
+                                </view>
+                            </view>
+                            <block wx:if="{{customerInfo.customerSeq!=item.uid}}">
+                                <view class='icon icon-care' bindtap='aboutFollow' data-Upid="{{item.uid}}" wx:if="{{item.isFollow==0}}" style='background-image:url("{{imgUrl}}miniweb/icon/follow.png");'></view>
+                                <view class='icon icon-care' data-Upid="{{item.uid}}" data-Cancel="1" wx:else style='background-image:url("{{imgUrl}}miniweb/icon/followed.png");'></view>
+                            </block>
+                        </view>
+                        <view class='content-box'>
+                            <navigator url="/pages/interflow-detail/interflow-detail?pid={{item.pid}}&&uid={{item.uid}}&&activeIndex = 1&&interflowType=2" hover-class="none">
+                                <view class='box box-between box-align-center'>
+                                    <image src='{{imgUrl}}miniweb/icon/ic_top.png' wx:if="{{item.isTop == 1 }}" style='width:70rpx;height:30rpx;margin-right:6rpx;'></image>
+                                    <view class='selected-icon' wx:if="{{item.label.length> 0 }}">精</view>
+                                    <view class='content-title textview-overflow1'>{{item.title}}</view> <view class='comment-point'>{{item.totalScore}}分</view>
+                                </view>
+                                <view class='textview-overflow comment-introduction'>{{item.content}}</view>
+                                <view class='content-img'>
+                                    <view class='img-box' wx:for="{{item.imgUrl}}" wx:if="{{index<3}}">
+                                        <image src='{{item.url}}' mode='aspectFill'></image>
+                                    </view>
+                                </view>
+                                <view class='look-count-box'><text>{{item.scanCount?item.scanCount:0}}次浏览</text></view>
+                            </navigator>
+                            <view class='content-other'>
+                                <view class='box'>
+                                    <view class='box-flex box box-center'>
+                                        <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/comment-count.png");'></view>
+                                        <text>{{item.replyCount?item.replyCount:0}}</text>
+                                    </view>
+                                    <view class='box-flex box box-center'>
+                                        <block wx:if="{{item.isPraise == 0}}">
+                                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/{{reCall}}");' bindtap="clickCall" data-Pid="{{item.pid}}"></view>
+                                            <text>{{item.praise?item.praise:0}}</text>
+                                        </block>
+                                        <block wx:else>
+                                            <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/ic_good_pressed.png");'></view>
+                                            <text class="font-red-dark">{{item.praise?item.praise:0}}</text>
+                                        </block>
+                                    </view>
+                                    <view class='box-flex box box-center'>
+                                        <view class='icon icon-count' style='background-image:url("{{imgUrl}}miniweb/icon/ic_redbag@3x.png");' bindtap='openGiveReward' data-Data='{{item}}' data-Type='2'></view>
+                                        <text>{{item.uCount?item.uCount:0}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMoreCom&&commentList.length!=0}}">没有更多内容</view>
+            </view>
+        </view>
+    </view>
+</view>
+<give-reward giveRewardOpen='{{giveRewardOpen}}' pid='{{rewardPid}}' name='{{rewardName}}' headImg='{{rewardImgUrl}}' payAfter='{{payAfter}}' payAfterPrice='{{payAfterPrice}}' uCount='{{rewardUCount}}' amountAll='{{rewardAmountAll}}' type='{{postType}}'></give-reward>
+<view class='publish-btn box box-center white-bg' hover-class='none' bindtap='goPublish'>
+    <view class='icon icon-publish' style='background-image:url("{{imgUrl}}miniweb/icon/post.png");'></view>
+</view>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

@@ -1,0 +1,111 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!snedDetail}}">
+  <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+  <view class="container">
+    <view class="list-item box white-bg">
+      <view class="item-img box box-center">
+        <image src="{{snedDetail.auctionIcon}}" mode="aspectFill" class="list-img-size"></image>
+      </view>
+      <view class="itme-text box box-align-center">
+        <view class="send-detail">
+          <view class="font-bold textview-overflow">{{snedDetail.auctionGoodsName}}</view>
+          <view class="font-gray-more" wx:if="{{snedDetail.auditState < 10}}">净含量:{{snedDetail.jingHangLiang}}ml 酒精度:{{snedDetail.jiuJingDu}}%</view>
+          <view class="font-gray-more" wx:if="{{snedDetail.auditState < 10}}">拍品编码: {{snedDetail.auctionGoodsCode}}</view>
+          <view class="font-gray-more">起拍价:
+            <text class="font-small">￥</text>{{snedDetail.qiPaiJia}}</view>
+          <view class="font-gray-more">保留价:
+            <text class="font-small">￥</text>{{snedDetail.lowestPrice}}</view>
+          <view class="font-gray-more">加价幅度:
+            <text class="font-small">￥</text>{{snedDetail.jiaJiaStep}}</view>
+          <view class="font-gray-more font-red" wx:if="{{snedDetail.auditState == 3}}">当前价:
+            <text class="font-small">￥</text>{{snedDetail.currPrice}}</view>
+          <view class="font-gray-more" wx:if="{{snedDetail.auditState == 4}}">成交价:
+            <text class="font-small">￥</text>{{snedDetail.currPrice}}</view>
+          <view class="font-gray-more" wx:if="{{snedDetail.auditState == 5}}">流拍价:
+            <text class="font-small">￥</text>{{snedDetail.currPrice}}</view>
+          <view class="font-gray-more">送拍时间：{{snedDetail.sendTime}}</view>
+          <view wx:if="{{snedDetail.auditState < 10}}">
+            <view class="font-gray-more">开拍时间：{{snedDetail.startTime}}</view>
+            <view class="font-gray-more" wx:if="{{snedDetail.auditState == 4}}">成交时间：{{snedDetail.endTime}}</view>
+            <view class="font-gray-more" wx:else>结束时间：{{snedDetail.endTime}}</view>
+          </view>
+          <view class="font-red-dark" style='margin-top:10rpx;' wx:if="{{snedDetail.auditState > 2 && snedDetail.auditState < 10}}">
+            <navigator url="/pages/auction-record/auction-record?type=2&id={{snedDetail.auctionGoodsSeq}}" hover-class="none" class='fn-float'>
+              <view class="send-btn text-center red" wx:if="{{snedDetail.showBtn}}">叫价轨迹</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="record-box white-bg">
+      <block wx:for="{{snedRecord}}">
+        <view class="record-list box" wx:if="{{item.state != 1}}">
+          <view class="bull"></view>
+          <view class="record-text">
+            <view>{{item.updatDate}}</view>
+            <view wx:if="{{item.state == 2}}">拍品展示中,所在拍场
+              <navigator style="display:inline-block;color: #876A2B;text-decoration: underline;" url="/pages/auction-detail/auction-detail?id={{item.auctionSessionSeq}}">【{{item.auctionSessionName}}】</navigator>
+            </view>
+            <view wx:if="{{item.state == 3}}">拍品拍卖中</view>
+            <view wx:if="{{item.state == 4}}">拍品已成交，成交价￥{{item.currPrice}}，得拍人{{item.signNo}}</view>
+            <view wx:if="{{item.state == 5}}">拍品已流拍</view>
+            <view wx:if="{{item.state == 10}}">拍品等待初审</view>
+            <view wx:if="{{item.state == 11}}">拍品通过终审，等待上拍。</view>
+            <view wx:if="{{item.state == 12}}">拍品终审不通过，请重新提交资料！审核失败原因：{{item.auditAdvice}}
+              <navigator style="display:inline-block;color: #876A2B;" url="/pages/logistics-detail/logistics-detail?sendid={{snedDetail.returnLogisticsSeq}}">【查询物流信息】</navigator>
+            </view>
+            <view wx:if="{{item.state == 13}}">拍品已加入拍场，等待预展。</view>
+            <view wx:if="{{item.state == 101 && snedDetail.auditState != 101}}">拍品已经通过初审，请尽快将拍品寄到：广东省惠州市惠城区江北华贸金融街12号楼103，联系电话：400-830-5299。收货人：李霞</view>
+            <view wx:if="{{item.state == 101 && snedDetail.auditState == 101}}">拍品已经通过初审，请尽快将拍品寄到：广东省惠州市惠城区江北华贸金融街12号楼103，联系电话：400-830-5299。收货人：李霞
+              <text style="color: #876A2B;display:inline;" bindtap="fillExpress">【选择寄货方式】</text>
+            </view>
+            <view wx:if="{{item.state == 102}}">拍品初审不通过，请重新提交资料！审核失败原因：{{item.auditAdvice}}</view>
+            <view wx:if="{{item.state == 111}}">拍品已经寄出
+              <navigator style="display:inline-block;color: #876A2B;" url="/pages/logistics-detail/logistics-detail?sendid={{snedDetail.sendLogisticsSeq}}">【查询物流信息】</navigator>
+            </view>
+            <view wx:if="{{item.state == 112}}">拍品已送至中威网</view>
+            <view wx:if="{{item.state == 121}}">拍品信息已经入库，等待您的确认。</view>
+            <view wx:if="{{item.state == 122}}">您已确认拍品上拍信息无误，等待加入拍场。</view>
+          </view>
+        </view>
+      </block>
+      <view class="font-gray-lighter text-center">-- 没有更多内容了 --</view>
+    </view>
+
+    <view class="fill-express" wx:if="{{openExpress}}">
+      <view class="shadow box box-center text-center">
+        <view class="fill-express-container white-bg">
+          <view class="fill-express-box">
+            <view class="fill-express-code" style="font-size:36rpx;padding:20rpx 0;margin-bottom:30rpx;border-bottom:2rpx solid #ddd;">请选择寄货方式</view>
+            <view class="fill-express-radio">
+              <radio-group class="radio-group" bindchange="radioChange">
+                <label class="radio">
+                  <radio value="1" checked="true"/>邮寄
+                </label>
+                <label class="radio">
+                  <radio value="2" />线下送货
+                </label>
+              </radio-group>
+            </view>
+
+            <view wx:if="{{expressInpt}}" >
+              <view class="fill-express-input">
+                <input placeholder="请输入快递单号" type="text" bindblur="expressInput" style="margin:0 auto 40rpx;padding:10rpx;width:300rpx;" class="white-bg" value="{{expressNum}}"/>
+                <image src='{{imgUrl}}miniweb/icon/scan-code@3x.png'  bindtap="scanExpress" class="scan"></image>
+              </view>
+            </view>
+          </view>
+          <view class="fill-express-btn box">
+            <view class="box-flex" bindtap="expressCancel">取消</view>
+            <view class="box-flex" bindtap="expressEnter">确认</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if="{{showLoading}}">
+  <view class="loading">玩命加载中…</view>
+</block>

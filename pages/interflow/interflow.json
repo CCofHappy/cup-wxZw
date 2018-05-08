@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "交流吧",
+    "usingComponents": {
+        "give-reward": "../../component/giveReward/giveReward"
+    }
+}

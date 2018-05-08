@@ -1,0 +1,120 @@
+<swiper indicator-dots="true" autoplay="false" interval="3000" duration="1000" style="height:520rpx;">
+  <block wx:for="{{headerImgs}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" mode="widthFix" style="width: 100%;"/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="bottle-container">
+    <text class="bottle-title">{{bottleInfo.name}} </text>
+    <view class="bottle-desc">{{bottleInfo.desc}}</view>
+    <view class="box box-center">
+        <view class="box-flex">
+            <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[0].price}}</text>
+            <text  class='font-gray ft-12'>({{bottleInfo.secs[0].name}})</text>
+        </view>
+        <view class="box-flex">
+            <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[1].price}}</text>
+            <text  class='font-gray ft-12'>({{bottleInfo.secs[1].name}})</text>
+        </view>
+        <view class="box-flex text-center">
+            <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[2].price}}</text>
+            <text  class='font-gray ft-12'>({{bottleInfo.secs[2].name}})</text>
+        </view>
+    </view>
+</view>
+ <view class="bottle-container">
+    <text class="bottle-title"> 分享瓶信息</text>
+    <view class='content-table text-center'>
+        <view class='box table-list'>
+            <view class='box-flex bg-color'>容量 </view>
+            <view class='box-flex'>{{bottleInfo.capacity}}</view>
+            <view class='box-flex bg-color'>材质</view>
+            <view class='box-flex'> {{bottleInfo.material}}</view>
+        </view>
+        <view class='box table-list'>
+            <view class='box-flex bg-color'>颜色 </view>
+            <view class='box-flex'>{{bottleInfo.color}}</view>
+            <view class='box-flex bg-color'>玻璃厚度</view>
+            <view class='box-flex'> {{bottleInfo.thickness}}</view>
+        </view>
+        <view class='box table-list'>
+            <view class='box-flex bg-color'>瓶净重 </view>
+            <view class='box-flex'>{{bottleInfo.weight}}</view>
+            <view class='box-flex bg-color'>瓶高度</view>
+            <view class='box-flex'> {{bottleInfo.height}}</view>
+        </view>
+        <view class='box table-list'>
+            <view class='box-flex bg-color'>瓶直径 </view>
+            <view class='box-flex'>{{bottleInfo.diameter}}</view>
+            <view class='box-flex bg-color'>瓶口外径</view>
+            <view class='box-flex'> {{bottleInfo.outside}}</view>
+        </view>
+        <view class='box table-list'>
+            <view class='box-flex bg-color'>瓶口内径 </view>
+            <view class='box-flex'>{{bottleInfo.inside}}</view>
+            <view class='box-flex bg-color'>备注</view>
+            <view class='box-flex'> {{bottleInfo.remarks}}</view>
+        </view>
+    </view>
+</view>
+
+<scroll-view class="desc-container">
+    <text class="bottle-title"> 分享瓶详情 </text>
+    <image mode="widthFix" src="{{bottleInfo.deatails[0]}}" lazy-load="true" style="width: 100%;margin-top:20rpx; "></image>
+    <image mode="widthFix" src="{{bottleInfo.deatails[1]}}" lazy-load="true"  class="bottle-desc-img"></image>
+    <image mode="widthFix"  src="{{bottleInfo.deatails[2]}}" lazy-load="true"  class="bottle-desc-img"></image>
+    <image mode="widthFix" src="{{bottleInfo.deatails[3]}}" lazy-load="true"  class="bottle-desc-img"></image>
+    <image mode="widthFix" src="{{bottleInfo.deatails[4]}}" lazy-load="true"  style="width: 100%;margin:-20rpx 0 90rpx;"></image>
+</scroll-view>
+
+<view class="footer-bar box box-center" bindtap='gotoBuy'>我要购买</view>
+
+<view class='order-btn box box-center white-bg' hover-class='none' bindtap='gotoOrder'>
+    <view class='icon icon-order' style='background-image:url("{{imgUrl}}miniweb/icon/order-btn@3x.png");'></view>
+</view>
+
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<!--弹出框 选择商品属性 -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}" hover-stop-propagation="true">
+    <view style='margin:0 24rpx;'>
+        <view class="box attr-box" style="padding-top: 60rpx;">
+            <view class="box-flex box">
+                <image mode="widthFix" src="{{headerImgs[0]}}" style="width: 90%;height:106rpx;"></image>
+            </view>
+            <view class="box-flex">
+                <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[0].price}}</text>
+                <view style="margin-left:10rpx;">{{bottleInfo.secs[0].name}}</view>
+            </view>
+            <view class="box-flex">
+                <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[1].price}}</text>
+                <view style="margin-left:6rpx;">{{bottleInfo.secs[1].name}}</view>
+            </view>
+            <view class="box-flex">
+                <text class="bottle-price"><text class="bottle-r">￥</text>{{bottleInfo.secs[2].price}}</text>
+                <view style="margin-left:8rpx;">{{bottleInfo.secs[2].name}}</view>
+            </view>
+        </view>
+         <view class="box attr-box">
+            <view class='box-flex'>配送方式</view>
+            <view class='box-flex text-right'>邮费到付</view>
+        </view> 
+        <view class="box attr-box">
+            <view class='box-flex'>购买数量</view>
+            <view class='box-flex box box-end'>
+                <text class="num-plus box box-center" bindtap='plusBottle' >-</text>
+                <input type="number" class="bottle-num" value="{{bottleNum}}" bindblur='changeNum'/>
+                <text class="num-plus box box-center" bindtap='addBottle'>+</text>
+            </view>
+        </view>
+        <view class="box attr-box">
+        <view class='box-flex text-right'>
+            <text class='bottle-r'>共 {{bottleNum}} 件商品 合计：</text><text class="bottle-price"><text class="bottle-r">￥</text>{{totalPrice}}</text>
+        </view>
+    </view>
+    </view>
+    <view class="footer-bar box box-center" bindtap='confirmBuy'>确 定</view>
+</view>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

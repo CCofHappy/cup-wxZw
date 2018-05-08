@@ -1,0 +1,77 @@
+/* pages/wine-detail/wine-detail.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+@import '../share/share.wxss';
+.wine-img{
+    width: 200rpx;
+    height: 200rpx;
+    margin: 30rpx auto;
+}
+
+.wine-img image{
+    width: 100%;
+    height: 100%;
+}
+
+.detail-box{
+    border-bottom: 20rpx solid #f2f2f2;
+    padding: 0 30rpx;
+}
+
+.wine-name{
+    font-size: 40rpx;
+    color: #282828;
+    line-height: 1.5;
+}
+
+.wine-info{
+    background: #FAF9F5;
+    margin-top: 30rpx;
+    padding: 0 20rpx;
+}
+
+.wine-info .box{
+    border-bottom: 1px dotted #CDCDCD;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #9F9F9F
+}
+
+.wine-info .box:last-child{
+    border: none;
+}
+
+.wine-orther{
+    margin:  20rpx 0;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.wine-point{
+    font-size: 32rpx;
+}
+
+.wine-orther .wine-publish navigator{
+    color: #fff;
+    font-size: 32rpx;
+    display: block;
+    padding: 0 70rpx;
+    background: #F5A623;
+}
+
+.wine-note{
+    padding: 30rpx 30rpx 20rpx 30rpx;
+    border-bottom: 2rpx solid #ddd;
+}
+
+.wine-note .author-box{
+    margin-bottom: 20rpx; 
+}
+
+.wine-note .content-other{
+    border: none;
+}
+
+.wine-note .content-other .box-center{
+    margin-left:60rpx;
+    margin-right: 0;
+}

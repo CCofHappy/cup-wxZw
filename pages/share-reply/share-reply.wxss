@@ -1,0 +1,4 @@
+@import '../../pages/share-detail/share-detail';
+.comment-content{
+  padding-left:0;
+}

@@ -1,0 +1,27 @@
+/* pages/mine-wallet/mine-wallet.wxss */
+page{
+  background: #efefef;
+}
+.wallet-header{
+  height: 320rpx;
+}
+
+.wallet-count{
+  font-size: 60rpx;
+  color: #A72125;
+}
+
+.wallet-list .items-list{
+  border-top: 2rpx solid #efefef;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.icon-other{
+  width: 40rpx;
+  height: 40rpx;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 20rpx;
+}

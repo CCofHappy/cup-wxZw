@@ -1,0 +1,2 @@
+/* pages/personalInfo-autograph/personalInfo-autograph.wxss */
+@import "../personalInfo-name/personalInfo-name.wxss";

@@ -1,0 +1,19 @@
+<view class="concainer">
+  <view class="logo">
+    <image src="{{imgUrl}}/logo-3.png" style="width:280rpx;height:158rpx;" mode="widthFix"></image>
+  </view>
+  <view class="login-box">
+    <view class="login-list tel">
+      <input type="number" placeholder="请输入手机号码" bindinput="inputClick" placeholder-class="input-placeholder"/>
+    </view>
+    <view class="login-list pwd">
+      <input password placeholder="请输入密码" bindinput="pwdClick"/>
+    </view>
+    <button type="primary" bindtap="loginBtnClick"> <text class="font-bold">登录</text> </button>
+    <view class="orther box font-gray-more">
+      <view class="forget"><navigator url="/pages/forgetPwd/forgetPwd">忘记密码?</navigator></view>
+      <view class="register"><navigator url="/pages/register/register">注册</navigator></view>
+    </view>
+  </view>
+</view>
+

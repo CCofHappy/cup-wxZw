@@ -1,0 +1,117 @@
+.ft-12 {
+    font-size: 24rpx;
+}
+.bottle-r {
+    font-size: 20rpx;
+}
+.bottle-container {
+    padding: 20rpx 24rpx;
+    border-bottom: 20rpx solid #f2f2f2;
+}
+.bottle-title {
+    font-size: 36rpx;
+    font-weight: 600;
+}
+.desc-container {
+    padding-top: 20rpx;
+}
+.desc-container .bottle-title {
+    padding: 0 24rpx;
+}
+.bottle-price {
+    font-size: 40rpx;
+    color: #942c15;
+}
+.bottle-desc {
+    color: #656565;
+    font-size: 24rpx;
+    font-weight: 500;
+}
+.bottle-desc-img {
+    margin-top: -20rpx;
+    width: 100%;
+}
+.footer-bar {
+    height: 100rpx;
+    width: 100%;
+    background: #942c15;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    font-size: 36rpx;
+}
+.order-btn {
+    position: fixed;
+    top: 30rpx;
+    right: 30rpx;
+    width: 85rpx;
+    height: 85rpx;
+    border-radius: 50%;
+}
+.icon-order {
+    width: 97%;
+    height: 97%;
+}
+.content-table {
+    margin: 20rpx 0;
+}
+.table-list {
+    border: 1rpx solid #bbb;
+    border-top: none;
+    color: #4a4a4a;
+    font-size: 24rpx;
+}
+.bg-color{
+    background: #f2f2f2;
+}
+.table-list:first-child {
+    border-top: 1rpx solid #bbb;
+}
+.table-list .box-flex {
+    padding: 10rpx 0;
+    border-right: 1rpx solid #bbb;
+}
+.table-list .box-flex:last-child {
+    border-right: none;
+}
+/*使屏幕变暗  */
+.commodity_screen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.3;
+    overflow: hidden;
+    z-index: 1000;
+    color: #fff;
+}
+/*对话框 */
+.commodity_attr_box {
+    height: 740rpx;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    background: #fff;
+}
+.attr-box {
+    padding: 40rpx;
+    border-bottom: 1px solid #f2f2f2;
+}
+.bottle-num {
+    width: 140rpx;
+    background: #f2f2f2;
+    height: 60rpx;
+    margin: 0 4rpx;
+    text-align: center;
+}
+.num-plus {
+    background: #f3f3f3;
+    width: 60rpx;
+    height: 60rpx;
+    text-align: center;
+}

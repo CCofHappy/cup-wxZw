@@ -1,0 +1,47 @@
+<view class='container'>
+  <view class='comment-list'>
+    <view class='comment-head box'>
+      <view class='box'>
+        <view class='author-img'>
+          <image wx:if="{{replyInfo.tm.uimgUrl}}" src='{{replyInfo.tm.uimgUrl}}' mode='aspectFill'></image>
+          <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image> 
+        </view>
+        <view>
+          <view class='box'>
+            <view class='author-name'>{{replyInfo.tm.name}}</view>
+            <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{replyInfo.tm.uid==up}}"></view>
+            <view class='box box-align-center'>
+                <image src='{{imgUrl}}miniweb/ic_level{{replyInfo.tm.level || 1}}.png' class='icon-tag'></image>
+                <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{replyInfo.tm.v > 0}}"></image>
+            </view>
+          </view>
+          <view class='creat-time'>{{replyInfo.tm.reply_time}}</view>
+        </view>
+      </view>
+      <view class='reply-btn text-center' bindtap="setReplyID" data-Uid="{{replyInfo.tm.uid}}" data-Rid="{{replyInfo.tm.rid}}" data-Name="{{item.name}}"  wx:if="{{replyInfo.tm.uid!=customerInfo.customerSeq}}">回复</view>
+    </view>  
+    <view class='comment-content'>
+      <view class='comment-text'>{{replyInfo.tm.content}}</view> 
+      <view class='reply-box' wx:for="{{replyInfo.dataList}}"  bindtap="setReplyID" data-Uid="{{item.uid}}" data-Rid="{{item.rid}}" data-Name="{{item.uname}}">
+        <view class='fn-left box box-center'>
+          <text class='reply-uname'>{{item.uname}}</text>
+          <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{item.uid==up}}"></view>
+        </view>
+        <text class='maohao'>：</text>
+        <text>回复 {{item.runame}}：</text>
+        <text class='reply-content'>{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{showLoading}}">
+  <view class="loading">玩命加载中…</view>
+</block>
+<view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore}}">没有更多内容</view>
+</view>
+
+<view class='reply-bar white-bg'>
+    <view class='box box-align-center input-box'>
+        <view class='icon icon-reply' style='background-image:url("{{imgUrl}}miniweb/icon/comment-add.png");'></view>
+        <input placeholder='{{replyName?"回复"+replyName+"：":"我有话要说"}}' focus="{{focus}}" value='{{sendContent}}' bindinput='sendContent' bindblur='clearID' confirm-type="发送" bindconfirm="sendMessage"></input>
+    </view>
+</view>

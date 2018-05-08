@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "打赏榜",
+    "usingComponents": {
+        "give-reward": "../../component/giveReward/giveReward"
+    }
+}

@@ -1,0 +1,187 @@
+<!--pages/interflow-detail/interflow-detail.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class='container' bindtap='closeImgBox'>
+    <block wx:if="{{!bbsInfo}}">
+        <view hidden="{{showLoading}}">
+            <template is="nullTip" data="{{nullTip: nullTip}}" />
+        </view>
+    </block>
+    <block wx:else>
+        <view class='content-box'>
+            <view class='content-title'>{{bbsInfo.title}}</view>
+        </view>
+        <view class='header-box box box-align-center'>
+            <view class='box'>
+                <view class='author-img'>
+                    <image wx:if="{{bbsInfo.customerImgUrl}}" src='{{bbsInfo.customerImgUrl}}' mode='aspectFill'></image>
+                    <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                </view>
+                <view>
+                    <view class='box'>
+                        <view class='author-name'>{{bbsInfo.name}}</view>
+                        <view class='box box-align-center'>
+                            <image src='{{imgUrl}}miniweb/ic_level{{bbsInfo.level || 1}}.png' class='icon-tag'></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{bbsInfo.v >0}}"></image>
+                        </view>
+                    </view>
+                    <view class='creat-time'>{{bbsInfo.createTime}}</view>
+                </view>
+            </view>
+            <block wx:if="{{customerInfo.customerSeq != uid}}">
+                <view class='icon icon-care' bindtap='aboutFollow' wx:if="{{bbsInfo.isFollow==0}}" style='background-image:url("{{imgUrl}}miniweb/icon/follow.png");'></view>
+                <view class='icon icon-care' bindtap='aboutFollow' data-Cancel="1" wx:else style='background-image:url("{{imgUrl}}miniweb/icon/followed.png");'></view>
+            </block>
+        </view>
+        <view class='content-box comment-wine' wx:if="{{interflowType==2}}" >
+            <view class='box comment-wine-box' bindtap='jumpWineDetail' data-id="{{bbsInfo.productId}}">
+                <view class='image-box'>
+                    <image src="{{bbsInfo.product[0].image}}" class='seize-image-1' mode="aspectFit"></image>
+                </view>
+                <view class='weui-flex__item box box-align-center'>
+                    <view>
+                        <view class='cn-name font-bold textview-overflow'>{{bbsInfo.productId?bbsInfo.product[0].fullName:bbsInfo.title}}</view>
+                        <view class="en-name font-small font-gray-lighter textview-overflow" wx:if="{{bbsInfo.productId&&bbsInfo.product[0].enName}}">{{bbsInfo.product[0].enName}}</view>
+                        <view class="alcohol font-gray-lighter">酒精度：{{bbsInfo.strength?bbsInfo.strength:'暂无'}}</view>
+                    </view>
+                </view>
+            </view>
+            
+            <view class='comment-wine-point point-color '>总体评分：{{bbsInfo.totalScore}}分</view>
+            <view class='comment-wine-content'>
+                <view class='comment-wine-title box box-between box-align-center'>
+                    <view class='box box-align-center'>
+                        <image src='{{imgUrl}}miniweb/icon/ic_aroma@3x.png' mode="widthFix"></image>闻香
+                    </view>
+                    <view class='point-color'>
+                        {{bbsInfo.aromaNumber}}分
+                    </view>
+                </view>
+                <view class='comment-wine-text'>
+                    {{bbsInfo.aroma}}
+                </view>
+            </view>
+             <view class='comment-wine-content'>
+                <view class='comment-wine-title box box-between box-align-center'>
+                    <view class='box box-align-center'>
+                        <image src='{{imgUrl}}miniweb/icon/ic_texture@3x.png' mode="widthFix"></image>口感
+                    </view>
+                    <view class='point-color'>
+                        {{bbsInfo.mouthFeelNumber}}分
+                    </view>
+                </view>
+                <view class='comment-wine-text'>
+                    {{bbsInfo.mouthFeel}}
+                </view>
+            </view>
+             <view class='comment-wine-content'>
+                <view class='comment-wine-title box box-between box-align-center'>
+                    <view class='box box-align-center'>
+                        <image src='{{imgUrl}}miniweb/icon/ic_flavor@3x.png' mode="widthFix"></image>尾韵
+                    </view>
+                    <view class='point-color'>
+                        {{bbsInfo.rhymeNumber}}分
+                    </view>
+                </view>
+                <view class='comment-wine-text'>
+                    {{bbsInfo.rhyme}}
+                </view>
+            </view>
+             <view class='comment-wine-content'>
+                <view class='comment-wine-title box box-between box-align-center'>
+                    <view class='box box-align-center'>
+                        <image src='{{imgUrl}}miniweb/icon/ic_balance@3x.png' mode="widthFix"></image>平衡度
+                    </view>
+                    <view class='point-color'>
+                        {{bbsInfo.degreeNumber}}分
+                    </view>
+                </view>
+                <view class='comment-wine-text'>
+                    {{bbsInfo.degree}}
+                </view>
+            </view>
+        </view>
+        <view class='content-box'>
+            <view class='content-text'>
+                <rich-text selectable="true" nodes="{{bbsInfo.content}}" style='word-break:break-all;'></rich-text>
+            </view>
+            <view class='detail-img ' wx:for="{{bbsInfo.imgUrl}}">
+                <image src='{{item.url}}' mode='widthFix'></image>
+            </view>
+            <view class="icon give-btn" bindtap='openGiveReward' wx:if="{{customerInfo.customerSeq != uid}}">
+                <image src='{{imgUrl}}miniweb/icon/ic_reward@3x.png' style="width:100%" mode="widthFix"></image>
+            </view>
+            <view class='text-center font-small'>已有{{rewardList.length}}人打赏</view>
+            <view class='icon-bar box box-center' wx:if="{{rewardList.length>0}}">
+                <view class='box box-center' wx:for="{{rewardList}}" wx:if="{{index<8}}">
+                    <image wx:if="{{item.imgUrl}}" src='{{item.imgUrl}}' mode='aspectFill'></image>
+                    <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                </view>
+            </view>
+            <view class='box box-center checkGive font-small' wx:if="{{rewardList.length>0}}">
+                <navigator url="/pages/reward-list/reward-list?uid={{bbsInfo.uid}}&pid={{bbsInfo.pid}}&type={{interflowType}}&head={{bbsInfo.customerImgUrl}}&name={{bbsInfo.name}}" hover-class="none">查看打赏榜</navigator>
+            </view>
+        </view>
+        <view class='comment-box' wx:if="{{bbsInfo.replyList.length>0}}">
+            <view class='comment-list' wx:for="{{bbsInfo.replyList}}">
+                <view class='comment-head box'>
+                    <view class='box'>
+                        <view class='author-img'>
+                            <image wx:if="{{item.uimgUrl}}" src='{{item.uimgUrl}}' mode='aspectFill'></image>
+                            <image wx:else src="{{imgUrl}}default/default_head_Portrait@2x.png" style="width:100%" mode="widthFix"></image>
+                        </view>
+                        <view>
+                            <view class='box'>
+                                <view class='author-name'>{{item.name}}</view>
+                                <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{item.uid==uid}}"></view>
+                                <view class='box box-align-center'>
+                                    <image src='{{imgUrl}}miniweb/ic_level{{item.level}}.png' class='icon-tag'></image>
+                                    <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{item.v>0}}"></image>
+                                </view>
+                            </view>
+                            <view class='creat-time'>{{item.reply_time}}</view>
+                        </view>
+                    </view>
+                    <view class='reply-btn text-center' bindtap="setReplyID" data-Uid="{{item.uid}}" data-Rid="{{item.rid}}" data-Name="{{item.name}}" wx:if="{{item.uid!=customerInfo.customerSeq}}">回复</view>
+                </view>
+                <view class='comment-content'>
+                    <view class='comment-text'>{{item.content}}</view>
+                    <view class='reply-imgs' wx:for='{{item.replyImage}}'>
+                        <image src='{{item}}' mode='widthFix'></image>
+                    </view>
+                    <view class='reply-box' wx:for="{{item.comment}}" bindtap="setReplyID" data-Uid="{{item.uid}}" data-Rid="{{item.rid}}" data-Name="{{item.uname}}">
+                        <view class='fn-left box box-center'>
+                            <text class='reply-uname'>{{item.uname}}</text>
+                            <view class='icon icon-up' style='background-image:url("{{imgUrl}}miniweb/icon/Slice 11@2x.png");' wx:if="{{item.uid==uid}}"></view>
+                        </view>
+                        <text class='maohao'></text>
+                        <text>回复 {{item.runame}}：</text>
+                        <text class='reply-content'>{{item.content}}</text>
+                    </view>
+                    <view class='reply-more box box-center' wx:if="{{item.comment.length==4}}">
+                        <navigator url="/pages/share-reply/share-reply?rid={{item.rid}}&up={{uid}}&pid={{pid}}&type={{interflowType}}" hover-class="none">查看更多</navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命加载中…</view>
+    </block>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore}}">没有更多内容</view>
+</view>
+<give-reward giveRewardOpen='{{giveRewardOpen}}' pid='{{bbsInfo.pid}}' name='{{bbsInfo.name}}' headImg='{{bbsInfo.customerImgUrl}}' payAfter='{{payAfter}}' payAfterPrice='{{payAfterPrice}}' uCount='{{bbsInfo.uCount}}' amountAll='{{bbsInfo.amountAll}}' type='{{interflowType}}'></give-reward>
+<view class='reply-bar white-bg'>
+    <view class='box box-align-center input-box'>
+        <view class='icon icon-reply' style='background-image:url("{{imgUrl}}miniweb/icon/comment-add.png");' wx:if="{{replyRid}}"></view>
+        <view class='icon icon-reply' style='background-image:url("{{imgUrl}}miniweb/icon/ic_sendPic@3x.png");' bindtap='openImgBox' wx:else></view>
+        <input placeholder='{{replyName?"回复"+replyName+"：":"我有话要说"}}' focus="{{focus}}" value='{{sendContent}}' bindinput='sendContent' bindblur='clearID' confirm-type="send" bindconfirm="sendMessage"></input>
+    </view>
+    <view class='imgs-box' wx:if="{{openImgBox}}">
+        <view class='img-box' wx:for="{{postImgList}}">
+            <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+            <image src="{{item}}" mode="aspectFill"></image>
+        </view>
+        <view class='img-box img-button' wx:if="{{postImgList.length<3}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,76 @@
+<!--pages/comment-publish/comment-publish.wxml-->
+<view class='container'>
+    <form class="publish-form" bindsubmit="formSubmit" report-submit="true">
+        <view class='detail-box'>
+            <navigator url="/pages/search-wine/search-wine" hover-class="none" wx:if="{{wineDetail&&wineDetail.name&&wineDetail.brand}}">
+                <view class='wine-detail-box box box-align-center'>
+                    <view class='img-box'>
+                        <image src="{{wineDetail.image}}" class='seize-image-1' mode="aspectFit"></image>
+                    </view>
+                    <view class='detail-box'>
+                        <view class='name'>{{wineDetail.brand + ' ' + wineDetail.name}}</view>
+                        <view>酒精度：{{wineDetail.strength}}</view>
+                    </view>
+                </view>
+            </navigator>
+            <view class='add-wine' wx:else>
+                <navigator url="/pages/search-wine/search-wine" hover-class="none">
+                    <view class='add-wine-btn box box-center'>+添加酒款</view>
+                </navigator>
+            </view>
+            <view class='box slider-box'>
+                <view class='slider-title'>闻 香</view>
+                <slider bindchange="sliderChange" min="0" max="25" value="{{value1}}" activeColor="#ffc65d" data-index='1' show-value/>
+            </view>
+            <view class='none-title'>
+                <textarea name="aroma" placeholder="描述" maxlength="150" placeholder-class="input-placeholder" bindinput='fontCount' value='{{aroma}}'/>
+            </view>
+
+            <view class='box slider-box'>
+                <view class='slider-title'>口 感</view>
+                <slider bindchange="sliderChange" min="0" max="25" value="{{value2}}" activeColor="#ffc65d" data-index='2' show-value/>
+            </view>
+            <view class='none-title'>
+                <textarea name="mouthFeel" placeholder="描述" maxlength="150" placeholder-class="input-placeholder" bindinput='fontCount' value='{{mouthFeel}}'/>
+            </view>
+
+            <view class='box slider-box'>
+                <view class='slider-title'>尾 韵</view>
+                <slider bindchange="sliderChange" min="0" max="25" value="{{value3}}" activeColor="#ffc65d" data-index='3' show-value/>
+            </view>
+            <view class='none-title'>
+                <textarea name="rhyme" placeholder="描述" maxlength="150" placeholder-class="input-placeholder" bindinput='fontCount' value='{{rhyme}}'/>
+            </view>
+
+            <view class='box slider-box'>
+                <view class='slider-title'>平衡度</view>
+                <slider bindchange="sliderChange" min="0" max="25" value="{{value4}}" activeColor="#ffc65d" data-index='4' show-value/>
+            </view>
+            <view class='none-title'>
+                <textarea name="degree" placeholder="描述" maxlength="150" placeholder-class="input-placeholder" bindinput='fontCount' value='{{degree}}'/>
+            </view>
+
+            <view class='none-title interflow comment'>
+                <textarea name="content" placeholder="评价一下这款酒吧" maxlength="500" placeholder-class="input-placeholder" bindinput='fontCount' value='{{content}}'/>
+                <view class='textarea-tip'>最多可以输入{{500-fontCount}}个字符</view>
+            </view>
+        </view>
+        <view class='imgs-box'>
+            <view class='img-box' wx:for="{{imgList}}">
+                <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+                <image src="{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class='img-box img-button' wx:if="{{imgList.length<7}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+            </view>
+        </view>
+        <view class='box'>
+            <button class="weui-flex__item btn-red" formType="submit" disabled="{{btnDisabled}}" data-type='send'>发布</button>
+            <button class="weui-flex__item btn-save" formType="submit" data-type='save'>保存草稿</button>
+        </view>
+    </form>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命上传中…</view>
+    </block>
+</view>
+
+

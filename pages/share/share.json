@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "分享吧",
+    "usingComponents": {
+        "count-down": "../../component/countDown/countDown",
+        "give-reward": "../../component/giveReward/giveReward"
+    }
+}

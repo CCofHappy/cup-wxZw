@@ -1,0 +1,62 @@
+<view class="container">
+    <form class="send-auction-form" bindsubmit="formSubmit" report-submit="true">
+        <view class="img-upload white-bg">
+            <view wx:for="{{imgList}}">
+                <view class="img-box text-center" id="{{index}}" style="position:relative;">
+                    <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+                    <image src="{{item}}" mode="aspectFill" bindtap="lookPic" id="{{index}}"></image>
+                </view>
+            </view>
+            <view class='img-box img-button' wx:if="{{imgList.length<9}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+            </view>
+        </view>
+        <view class="text-upload white-bg">
+            <!-- <view class="box">
+                <view class="items-head">起 拍 价</view>
+                <input bindfocus="checkLogin" name="startingPrice" class="box-flex items-content" type="number" maxlength="7" placeholder="输入起拍价" value="{{startingPrice}}" bindinput="startInput" />
+            </view>
+            <view class="box">
+                <view class="items-head">加价幅度</view>
+                <input bindfocus="checkLogin" name="priceStep" class="box-flex items-content" type="number" maxlength="7" value="{{priceStep}}" disabled="disabled" />
+            </view> -->
+            <view class="box">
+                <view class="items-head">拍品名称</view>
+                <input bindfocus="checkLogin" name="auctionGoodsName" class="box-flex items-content" type="text" maxlength="20" placeholder="限20个字" value="{{auctionGoodsName}}" />
+            </view>
+            <view class="box">
+                <view class="items-head">保 留 价</view>
+                <input bindfocus="checkLogin" name="lowestPrice" class="box-flex items-content" type="number" maxlength="7" placeholder="输入保留价" value="{{lowestPrice}}" placeholder-class="input-placeholder" />
+            </view>
+            <view class="send-auction-textarea">
+                <view class="items-head">拍品描述</view>
+                <textarea bindfocus="checkLogin" name="auctionGoodsDesc" placeholder="限80个字" maxlength="80" value="{{auctionGoodsDesc}}" placeholder-class="input-placeholder" />
+            </view>
+            <view style='border-top:2rpx solid #ddd;overflow:hidden;'>
+                <view class="fn-float" style="margin:20rpx 0;">
+                    <navigator url="/pages/process-online/process-online" hover-class="none" style="color:#999;font-size:24rpx;">查看送拍流程 >> </navigator>
+                </view>
+            </view>
+        </view>
+        <view class="submit-upload">
+            <button class="send-auction-btn btn-red" formType="submit" disabled="{{btnDisabled}}">发布</button>
+            <checkbox-group bindchange="checkboxChange">
+                <view class="box font-small">
+                    <label class="box">
+                        <checkbox value="agree" checked="checked" color="#c72202" />
+                        <view>我已阅读并同意</view>
+                    </label>
+                    <view style="color:#3A90ED;">
+                        <navigator url="/pages/beating-protocol/beating-protocol" hover-class="none">
+                            《委托拍卖合同》
+                        </navigator>
+                    </view>
+                    <view style="color:#3A90ED;">
+                        <navigator url="/pages/given-protocol/given-protocol" hover-class="none">
+                            《送拍声明书》
+                        </navigator>
+                    </view>
+                </view>
+            </checkbox-group>
+        </view>
+    </form>
+</view>

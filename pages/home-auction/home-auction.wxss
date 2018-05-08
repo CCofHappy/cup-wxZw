@@ -1,0 +1,28 @@
+/* home-auction.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+page{
+  background: #efefef;
+}
+
+.list-item{
+  margin-top: 10rpx;
+  padding:20rpx 30rpx;
+}
+
+.item-img{
+  width: 40%;
+}
+
+.itme-text{
+  width: 60%;
+  margin-left: 20rpx;
+}
+
+.itme-text .font-bold{
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+
+.itme-text .font-gray-more{
+  line-height: 40rpx;
+}

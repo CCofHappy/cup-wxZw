@@ -1,0 +1,142 @@
+<view class="container">
+    <view class="header-box">
+        <view class="header-img box box-align-center white-bg">
+            <navigator class="white-bg" url="{{personUrl}}" hover-class="none" class="header-nav">
+                <image wx:if="{{userList.url}}" src="{{userList.url}}" style="width:100%;height:100%;" mode="aspectFill"></image>
+                <image wx:else src="{{imgUrl}}ic_header.png" style="width:100%" mode="widthFix"></image>
+            </navigator>
+            <view class='box box-between box-align-center' style="width:80%;">
+                <view class="header-text">
+                    <view class="user-name">
+                        <block wx:if="{{!customerInfo.customerSeq}}">未登录 </block>
+                        <block wx:elif="{{userList.customerName}}">
+                            {{userList.customerName}}
+                            <image src='{{imgUrl}}miniweb/ic_level{{userList.levels || 1}}.png' class='icon-tag' bindtap="checkRule"></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip.png' class='icon-tag vip' bindtap="applyVip" wx:if="{{userList.v==0}}"></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{userList.v>0}}" bindtap="applyVip"></image>
+                        </block>
+                        <block wx:else>未设置
+                            <image src='{{imgUrl}}miniweb/ic_level{{userList.levels || 1}}.png' class='icon-tag' bindtap="checkRule"></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip.png' class='icon-tag vip' bindtap="applyVip" wx:if="{{userList.v==0}}"></image>
+                            <image src='{{imgUrl}}miniweb/ic_vip_active.png' class='icon-tag vip' wx:if="{{userList.v>0}}"></image>
+                        </block>
+                    </view>
+                    <block wx:if="{{customerInfo.customerSeq}}">
+                        <navigator class="white-bg" url="{{personUrl}}" hover-class="none">
+                            <view class="user-prof textview-overflow" wx:if="{{userList.autograph}}">{{userList.autograph}}</view>
+                            <view class="user-prof textview-overflow" wx:else>这个家伙很懒，什么都没留下</view>
+                        </navigator>
+                    </block>
+                </view>
+                <navigator url="{{personUrl}}" hover-class="none">
+                    <image src="{{imgUrl}}miniweb/icon/address.png" style="width:20rpx;height:40rpx"></image>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class='white-bg box text-center header-footer'>
+        <view class="box-flex">
+            <navigator url="{{followerUrl}}" hover-class="none">
+                <view class='count'>{{userList.followerCount?userList.followerCount:0}}</view>
+                <text class="count-txt">粉丝</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{followUrl}}" hover-class="none">
+                <view class='count'>{{userList.followCount?userList.followCount:0}}</view>
+                <text class="count-txt">关注</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{collectionUrl}}" hover-class="none">
+                <view class='count'>{{userList.favorites?userList.favorites:0}}</view>
+                <text class="count-txt">收藏</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{footUrl}}" hover-class="none">
+                <view class='count'>{{userList.userTrack?userList.userTrack:0}}</view>
+                <text class="count-txt">足迹</text>
+            </navigator>
+        </view>
+    </view>
+    <view class='white-bg box text-center header-order-box header-footer'>
+        <view class="box-flex">
+            <navigator url="{{auctionUrl}}" hover-class="none">
+                <!-- <view class="badge" wx:if="{{userList.recordCount}}">{{userList.recordCount}}</view> -->
+                <view class='box box-center'>
+                    <view class="icon-header" style='background-image:url("{{imgUrl}}miniweb/icon/jp icon.png");'></view>
+                </view>
+                <text> 我的竞拍</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{sendUrl}}" hover-class="none">
+                <view class='box box-center'>
+                    <view class="icon-header" style='background-image:url("{{imgUrl}}miniweb/icon/sp icon.png");'></view>
+                </view>
+                <text> 我的送拍</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{postUrl}}" hover-class="none">
+                <view class='box box-center'>
+                    <view class="icon-header" style='background-image:url("{{imgUrl}}miniweb/icon/Slice.png");'></view>
+                </view>
+                <text> 我的帖子</text>
+            </navigator>
+        </view>
+        <view class="box-flex">
+            <navigator url="{{walletUrl}}" hover-class="none">
+                <view class='box box-center'>
+                    <view class="icon-header" style='background-image:url("{{imgUrl}}miniweb/icon/Slice 2.png");'></view>
+                </view>
+                <text> 我的钱包</text>
+            </navigator>
+        </view>
+    </view>
+    <view class='white-bg other-items'>
+        <view class='items-list'>
+            <navigator url="{{sendAuctionUrl}}" hover-class="none">
+                <text> 我要送拍</text>
+            </navigator>
+        </view>
+        <view class="items-list {{checkOne}}" bindtap="openOrder">我的订单</view>
+        <view class="text-content {{checkOne}}">
+            <view class='weui-flex'>
+                <view class='weui-flex__item  text-center'>
+                    <navigator hover-class="none" url="{{orderUrl}}">
+                        <image src="{{imgUrl}}miniweb/ic_auction.png" style="width:44rpx;height:44rpx;"></image>
+                        <view class="txt">拍卖订单</view>
+                    </navigator>
+                </view>
+                <view class='weui-flex__item text-center'>
+                    <navigator hover-class="none" url="{{shareOrderUrl}}">
+                        <image src="{{imgUrl}}miniweb/ic_share.png" style="width:44rpx;height:44rpx;"></image>
+                        <view class="txt">分享吧订单</view>
+                    </navigator>
+                </view>
+                <view class='weui-flex__item text-center'>
+                    <navigator hover-class="none" url="{{bottleOrderUrl}}">
+                        <image src="{{imgUrl}}miniweb/icon/ic_spec_bottle@3x.png" style="width:44rpx;height:44rpx;"></image>
+                        <view class="txt">专用瓶订单</view>
+                    </navigator>
+                </view>
+                <view class='weui-flex__item'></view>
+            </view>
+        </view>
+        <view class='items-list'>
+            <navigator url="{{draftsUrl}}" hover-class="none">
+                <text> 草稿箱</text>
+            </navigator>
+        </view>
+        <view class='items-list'>
+            <navigator hover-class="none" url="{{settingUrl}}" class='box box-align-center'>
+                <text>关于我们</text>
+            </navigator>
+        </view>
+        <!-- <view class='items-list'>
+            <contact-button type="default-dark" size="30" session-from="weapp"></contact-button>
+        </view>  -->
+    </view>
+</view>

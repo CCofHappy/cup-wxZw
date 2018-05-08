@@ -1,0 +1,9 @@
+<!--component/countDown/countDown.wxml-->
+<view>
+    <view class='ending-time'>
+        <view class='icon icon-endtime' style='background-image:url("{{imgUrl}}miniweb/icon/time.png");'></view>
+        <text wx:if="{{presellTime>serverTime&&isEnd!=1&&countDownTime}}">距开售时间：{{countDownTime}}</text>
+        <text wx:elif="{{endTime>serverTime&&isEnd!=1&&comEndTime}}">距结束时间：{{comEndTime}}</text>
+        <text wx:else>分享瓶结束时间：{{thisEndTime}}</text>
+    </view>
+</view>

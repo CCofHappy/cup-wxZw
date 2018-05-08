@@ -1,0 +1,90 @@
+/* mine-send.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+@import '../../pages/home-auction/home-auction.wxss';
+@import '../../pages/send-detail/send-detail.wxss';
+.tab{
+    width: 100%;
+    position: fixed;
+}
+.send-btn{
+    color: #fff;
+    display: block;
+    line-height: 60rpx;
+    width: 200rpx;
+    height: 60rpx;
+    border-radius: 10rpx;
+    background: rgba(135,106,43,.58);
+    text-align: center;
+}
+
+.send-btn.red{
+    background: #C72202;
+    margin-left: 10rpx;
+}
+.send-detail{
+  width: 100%;
+}
+button{
+    border-radius: 0;
+}
+button::after{
+    border: none;
+}
+.choose-bar{
+  border-top: 2rpx solid #efefef;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: relative;
+}
+
+.choose-bar .btn{
+  color: #9b9b9b;
+  width: 50%;
+  text-align: center;
+}
+
+.choose-bar .btn.action{
+  color: #000;
+}
+
+.choose-bar .bottom-line{
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  height: 6rpx;
+  width: 25%;
+  left: 12.5%;
+  transition: all 0.5s ease 0s;
+}
+
+.choose-bar .bottom-line.right{
+  left: 62.5%;
+}
+
+.outline-container{
+  margin: 20rpx 0;
+}
+
+.outline-title {
+  justify-content: space-between;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding:0 30rpx;
+  border-bottom: 2rpx solid #efefef;
+}
+
+.outline-button{
+  align-items: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding:0 30rpx; 
+  flex-direction:row-reverse;
+} 
+
+.outline-container .list-item{
+  border-bottom: 2rpx solid #efefef;
+}
+
+.fill-express-box{
+    padding: 20rpx 0;
+}

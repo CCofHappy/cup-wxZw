@@ -1,0 +1,28 @@
+<!--pages/interflow-publish/interflow-publish.wxml-->
+<view class='container'>
+    <form class="publish-form" bindsubmit="formSubmit" report-submit="true">
+        <view class='detail-box'>
+            <view class='none-title interflow'>
+                <input type='text' name="title" placeholder="请输入你的帖子标题" maxlength="30" value='{{title}}'></input>
+                <textarea name="content" placeholder="请输入你的帖子内容" maxlength="800" placeholder-class="input-placeholder" bindinput='fontCount' value='{{content}}'/>
+                <view class='textarea-tip'>最多可以输入{{800-fontCount}}个字符</view>
+            </view>
+        </view>
+        <view class='imgs-box'>
+            <view class='img-box' wx:for="{{imgList}}">
+                <view class="delbtn" bindtap="deleteBtn" id="{{index}}" style='background-image:url("{{imgUrl}}miniweb/icon/publish-del.png");'></view>
+                <image src="{{item}}" mode="aspectFill"></image>
+            </view>
+            <view class='img-box img-button' wx:if="{{imgList.length<7}}" bindtap='uploadImg' style='background-image:url("{{imgUrl}}miniweb/icon/publish-upload.png");'>
+            </view>
+        </view>
+        <view class='box'>
+            <button class="weui-flex__item btn-red" formType="submit" disabled="{{btnDisabled}}" data-type='send'>发布</button>
+            <button class="weui-flex__item btn-save" formType="submit" data-type='save'>保存草稿</button>
+        </view>
+    </form>
+    <block wx:if="{{showLoading}}">
+        <view class="loading">玩命上传中…</view>
+    </block>
+</view>
+

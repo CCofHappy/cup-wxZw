@@ -1,0 +1,3 @@
+/* mine-collection.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+@import '../../pages/home-auction/home-auction.wxss';

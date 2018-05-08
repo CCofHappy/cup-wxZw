@@ -1,0 +1,2 @@
+/* order-submit-list.wxss */
+@import '../../pages/home-auction/home-auction.wxss';

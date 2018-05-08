@@ -1,0 +1,15 @@
+<!--personalInfo-email.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit">
+    <view class="email-tips">
+      为了方便您找回密码，请绑定邮箱!
+    </view>
+    <view class="input-box">
+      <view class="input-list box email">
+        <view class="input-title">邮箱</view>
+        <input type="text" name="customerEmail" placeholder="请输入您的电子邮箱" placeholder-style="font-family:'微软雅黑'"  value="{{emailValue}}"/>
+      </view>
+    </view>
+    <button form-type="submit">保存</button>
+  </form>
+</view>

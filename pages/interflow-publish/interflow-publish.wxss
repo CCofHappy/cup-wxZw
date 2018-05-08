@@ -1,0 +1,2 @@
+/* pages/interflow-publish/interflow-publish.wxss */
+@import '../share-publish/share-publish.wxss';

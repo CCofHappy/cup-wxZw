@@ -1,0 +1,86 @@
+page{
+  background: #efefef;
+}
+
+.img-button {
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.img-upload{
+  padding-top: 30rpx;
+  margin: 10rpx 0;
+  overflow: hidden;
+}
+
+.img-upload .img-box{
+  width:25%;
+  height:180rpx;
+  padding:10rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  margin-right: 0;
+  float: left;
+}
+
+.img-upload .img-box image{
+  height: 100%;
+  width: 100%;
+}
+
+.text-upload{
+  padding:0 30rpx;
+}
+
+.text-upload .box{
+  border-bottom:2rpx solid #ddd;
+}
+
+.items-head{
+  width: 160rpx;
+  line-height: 90rpx;
+}
+
+.text-upload .box .items-content{
+  height: 90rpx;
+}
+
+.send-auction-textarea textarea{
+  width: 100%;
+  height: 160rpx;
+}
+
+.submit-upload{
+  padding: 0 30rpx 40rpx 30rpx;  
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.submit-upload view.font-small{
+  float: right;
+  height: 48rpx;
+}
+
+.submit-upload view.font-small view{
+  line-height: 48rpx;
+}
+
+.send-auction-btn{
+  margin: 20rpx 0;
+}
+
+.input-placeholder{
+  line-height: 90rpx;
+  font-family: "微软雅黑";
+  color: #b9b9b9;
+}
+
+.delbtn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30rpx;
+  height: 30rpx;
+  background-size: 100%;
+}

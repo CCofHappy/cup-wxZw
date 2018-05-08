@@ -1,0 +1,125 @@
+<navigator url="/pages/address-choose/address-choose">
+    <view class="order-address">
+        <view class='box box-center' wx:if="{{!address}}">
+            <view class='box-flex'>
+                <view class="box box-start">
+                    <image mode='aspectFit' src="{{imgUrl}}miniweb/icon/location@3x.png"  class='order-address-icon'></image><text class="font-gray">请选择收货地址</text>
+                </view>
+            </view>
+            <view class='box-flex'>
+                <image mode='aspectFit' src="{{imgUrl}}miniweb/icon/Slice 25 xiao.png" class='order-address-choose'></image>
+            </view>
+        </view>
+        <view class='weui-flex' wx:else>
+            <view class='box box-center'>
+                <image mode='aspectFit' src="{{imgUrl}}miniweb/icon/location@3x.png"  class='order-address-icon'></image>
+            </view>
+            <view class='weui-flex__item'>
+                <text class="address-txt">收货人：{{address.consignee}}</text>
+                <text class='fn-float address-txt'>{{address.phone}}</text>
+                <view class='order-f'>{{address.province}}{{address.addr}}</view>
+            </view>
+            <view class='box box-center'>
+                <image mode='aspectFit'  src="{{imgUrl}}miniweb/icon/Slice 25 xiao.png" class='order-address-choose'></image>
+            </view>
+        </view>
+        <image src="{{imgUrl}}miniweb/icon/address-bg@3x.png" style="width:100%;height:10rpx;position:absolute;bottom:0;"></image>
+    </view>
+</navigator>
+<view class='order-content'>
+    <view class='weui-flex'>
+        <image mode="widthFix" src="{{imgUrl}}miniweb/sharebar/details/1.jpg" style="width: 180rpx;margin-right:20rpx;"></image>
+        <view  class='weui-flex__item'>
+            <view class='order-title'>分享瓶专用套装</view>
+            <view class="font-gray order-f" style="padding-right:30rpx;">
+            含专用瓶+包装盒+减震海绵（赠送分享瓶专用手写标签贴纸）规格:50ml  价格:{{orderInfo.price}}元/套
+            </view>
+            <view class="order-attr">
+                数量：{{orderInfo.num}}套
+            </view>
+        </view>
+    </view>
+
+    <view class='box box-center order-voice' style="border-top:1px solid #f2f2f2;margin-top:35rpx;" bindtap='chooseVoiceType'>
+        <view class='box-flex box box-start'>发票类型</view>
+        <view class='box-flex box box-end font-gray'>{{voiceType.text}}
+            <image mode='aspectFit' src="{{imgUrl}}miniweb/icon/Slice 25 xiao.png" class='order-address-choose'></image>
+        </view>
+    </view>
+    <view hidden='{{voiceType.id != 2}}'>
+        <view class='order-voice box box-center box-start'>
+            <text><text class='font-red'>*</text>发票抬头:</text> <input placeholder="必填项" value='{{invoiceHeadContent}}'  bindinput="inputHeadContent"/>
+        </view>
+        <view class='order-voice box box-center box-start'>
+            <text><text class='font-red'>*</text>纳税人识别号:</text> <input placeholder="必填项" style='width:73%;' value='{{identificationNumber}}' bindinput="inputInvoiceNumber"/>
+        </view>
+    </view>
+
+    <view class='order-remark box box-start'>
+       <text>买家留言:</text> <input placeholder="选填项,对本次交易的说明" value='{{remarks}}' bindinput="inputRemarks"/>
+    </view>
+</view>
+
+<view class='pay-box'>
+    <view class='pay-title'>请选择支付方式</view>
+    <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='1'>
+        <view class='box box-align-center' data-num='1'>
+            <view class='icon icon-zhongwei' style='background-image:url("{{imgUrl}}miniweb/icon/pay-zw.png");'></view>
+            <view>中威钱包</view>
+        </view>
+        <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+        <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+    </view>
+    <view class='pay-list box box-between box-align-center' bindtap='chosePay' data-num='2'>
+        <view class='box box-align-center' data-num='2'>
+            <view class='icon icon-weixin' style='background-image:url("{{imgUrl}}miniweb/icon/pay-weixin.png");'></view>
+            <view>微信支付</view>
+        </view>
+        <view hidden='{{payType==1}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-chose.png");'></view>
+        <view hidden='{{payType==2}}' class='icon icon-chose' style='background-image:url("{{imgUrl}}miniweb/icon/pay-none.png");'></view>
+    </view>
+</view>
+
+<form bindsubmit="shareBottleSubmit" report-submit="true">
+    <view class='bottom-bar text-center box'>
+        <view class='white-bg box box-center'>合计：
+            <text class='price'>
+                <text class='font-small'>￥</text>{{orderInfo.totalPrice?orderInfo.totalPrice:'0.00'}}</text>
+        </view>
+        <button class='submit' form-type="submit">提 交</button>
+    </view>
+</form>
+
+<view class="pay-password-container box box-center text-center" wx:if="{{openPayPassword}}">
+    <view class="pay-password-box white-bg">
+        <view class="pay-title">
+            <text style="font-size:28rpx;">请输入支付密码</text>
+            <image src="{{imgUrl}}icon/ic_close@3x.png" class="close-password-box" bindtap='closePayPassword'></image>
+        </view>
+        <view class="pay-value">
+            <text class="font-small font-bold">￥</text>
+            <text class='pay-value'>{{orderInfo.totalPrice}}</text>
+        </view>
+        <view class="password-box" bindtap="bindPayClick" style='padding-bottom:40rpx;'>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 0}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 1}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 2}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 3}}"></view>
+            </view>
+            <view class="fn-float box box-center">
+                <view class="bull" wx:if="{{payLength > 4}}"></view>
+            </view>
+            <view class="fn-float box box-center" style="border-right:1px solid #999;">
+                <view class="bull" wx:if="{{payLength > 5}}"></view>
+            </view>
+            <input class="" type="number" maxlength="6" value="{{payPassword}}" focus="{{payFocus}}" bindinput="bindPayInput" style="height:0;min-height:0;" auto-focus/>
+        </view>
+    </view>
+</view>

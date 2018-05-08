@@ -1,0 +1,146 @@
+<!--auction-record.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!recordDetail}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+    <view class="container">
+        <view class="list-item box white-bg">
+            <view wx:if="{{type == 1}}">
+                <view class="icon-box" wx:if="{{recordDetail.state < 4 && recordDetail.myPrice != null && recordDetail.recordState == 1}}">
+                    <image src="{{imgUrl}}default/ic_first.png"></image>
+                </view>
+                <view class="icon-box" wx:if="{{recordDetail.state < 4 && recordDetail.myPrice != null && recordDetail.recordState != 1}}">
+                    <image src="{{imgUrl}}default/ic_out.png"></image>
+                </view>
+            </view>
+            <view class="item-img box box-center" style="position:relative;">
+                <view wx:if="{{recordDetail.state>3}}" style="position:absolute;width:100%;height:100%;">
+                    <image class="icon icon-auction-deal" style="width:60%;margin-left:-30%;"></image>
+                </view>
+                <image src="{{recordDetail.auctionGoodsIcon}}" mode="widthFix" class="list-img-size"></image>
+            </view>
+            <view class="itme-text box box-align-center">
+                <view class="send-detail">
+                    <view class="font-bold textview-overflow">{{recordDetail.auctionGoodsName}}</view>
+                    <view class="font-gray-more" wx:if="{{recordDetail.state < 10}}">净含量:{{recordDetail.jingHangLiang}}ml 酒精度:{{recordDetail.jiuJingDu}}%</view>
+                    <view class="font-gray-more" wx:if="{{recordDetail.state < 10}}">拍品编码: {{recordDetail.auctionGoodsCode}}</view>
+                    <view class="font-gray-more">起拍价格:
+                        <text class="font-small">￥</text>{{recordDetail.qiPaiJia}}</view>
+                    <view class="font-gray-more">加价幅度:
+                        <text class="font-small">￥</text>{{recordDetail.jiaJiaStep}}</view>
+                    <view class="font-gray-more font-red" wx:if="{{recordDetail.state == 3}}">当前价格:
+                        <text class="font-small">￥</text>{{recordDetail.currPrice}}</view>
+                    <view class="font-gray-more" wx:if="{{recordDetail.state == 4}}">成交价格:
+                        <text class="font-small">￥</text>{{recordDetail.currPrice}}</view>
+                    <view wx:if="recordDetail.myPrice != null">
+                        <view class="font-gray-more" wx:if="{{recordDetail.myPrice}}">我的出价:
+                            <text class="font-small">￥</text>{{recordDetail.myPrice}}</view>
+                    </view>
+                    <view wx:if="{{recordDetail.state < 10}}">
+                        <view class="font-gray-more" wx:if="{{recordDetail.state == 2}}">开拍时间: {{recordDetail.startTime}}</view>
+                        <view class="font-gray-more" wx:if="{{recordDetail.state == 3 || recordDetail.state == 5}}">结束时间:{{recordDetail.endTime}}</view>
+                        <view class="font-gray-more" wx:if="{{recordDetail.state == 4}}">成交时间: {{recordDetail.endTime}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="record-box white-bg" wx:if="{{recordRecord.length!=0}}">
+            <!--拍品成交提示-->
+            <view wx:if="{{recordDetail.state == 4}}">
+                <view class="record-list box">
+                    <view class="bull"></view>
+                    <view class="record-text">
+                        <view wx:if="{{!recordDetail.myPrice}}">
+                            <view wx:if="{{ type ==2}}">
+                                拍卖已结束。
+                                <text class="font-bold">恭喜您，您的拍品最终以
+                                    <text class="font-small">￥</text>{{recordDetail.currPrice}}的价格成交！</text>得拍人是{{recordDetail.signNo}}
+                            </view>
+                            <view wx:if="{{type ==1}}">
+                                拍卖已结束。
+                                <text class="font-bold">很遗憾，您在本次竞拍中并没有出价，感谢您对本平台的关注！</text>
+                            </view>
+                        </view>
+                        <view wx:else>
+                            <!--当前价等于我的最后出价并且出价有效时 得拍-->
+                            <view wx:if="{{recordDetail.myPrice == recordDetail.currPrice && recordDetail.offerState == 1}}">
+                                拍卖已结束。
+                                <text class="font-bold">恭喜您，您的最后出价
+                                    <text class="font-small">￥</text>{{recordDetail.myPrice}}为本拍品最后的成交价！请及时支付，谢谢参与！</text>
+                            </view>
+                            <view wx:else>
+                                拍卖已结束。
+                                <text class="font-bold">很遗憾，您的本次竞拍未成功！请持续关注平台拍卖动态，预祝下次竞拍成功，加油哦！</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--拍品流拍提示-->
+            <view wx:if="{{recordDetail.state == 5 && type == 2 && recordRecord.length!=0}}">
+                <view class="record-list box">
+                    <view class="bull"></view>
+                    <view class="record-text">
+                        <view wx:if="{{!recordDetail.myPrice}}">
+                            拍卖已结束。由于您的拍品
+                            <text class="font-bold font-under-line">设有保留价</text>，最后出价并未超过保留价。拍品流拍，期待下一次与您继续合作！
+                        </view>
+                        <view wx:if="{{recordDetail.myPrice}}">
+                            拍卖已结束。由于本拍品
+                            <text class="font-bold font-under-line">设有保留价</text>，最后出价并未超过保留价。拍品流拍，谢谢参与！
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--叫价记录-->
+            <block wx:for="{{recordRecord}}">
+                <view class="record-list box">
+                    <view class="bull"></view>
+                    <view class="record-text">
+                        <view wx:if="{{item.offerState == 0}}">
+                            <view>{{item.createTime}}</view>
+                            <text wx:if="{{item.customerSeq == item.currentCustomerSeq}}" class="view-inline font-line-through">我【{{item.signNo}}】</text>
+                            <text wx:else class="view-inline font-line-through">【{{item.signNo}}】</text>
+                            <text class="view-inline font-line-through"> 出价￥{{item.price}}；</text>
+                            <text wx:if="{{item.highestPrice == 0}}" class="view-inline font-line-through">
+                                <text class="font-line-through">没有设置最高价</text>；本次出价无效（原因：本次出价金额有人已先出）</text>
+                            <text wx:else class="view-inline font-line-through">设置心理最高价
+                                <text wx:if="{{item.customerSeq == item.currentCustomerSeq}}" class="view-inline font-line-through">
+                                    <text class="font-small">￥</text>{{item.highestPrice}}</text>
+                                <text wx:else class="view-inline font-line-through">****</text>；本次出价无效（原因：设置的心理最高价有人已先出）
+                            </text>
+                        </view>
+                        <view wx:else>
+                            <view wx:if="{{item.customerSeq == item.currentCustomerSeq}}" style="color:#876A2B;">
+                                <view>{{item.createTime}}</view>
+                                我【{{item.signNo}}】 出价￥{{item.price}}；
+                                <text wx:if="{{item.highestPrice == 0}}" class="view-inline">
+                                    <text class="font-line-through">没有设置心理最高价</text>；出价成功！</text>
+                                <text wx:else class="view-inline">设置心理最高价
+                                    <text class="font-small">￥</text>{{item.highestPrice}}；出价成功！</text>
+                            </view>
+                            <view wx:else>
+                                <view>{{item.createTime}}</view>
+                                【{{item.signNo}}】 出价￥{{item.price}}；
+                                <text wx:if="{{item.highestPrice == 0}}" class="view-inline">
+                                    <text class="font-line-through">没有设置心理最高价</text>；出价成功！</text>
+                                <text wx:else class="view-inline">设置心理最高价****；出价成功！</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="font-gray-lighter text-center" wx:if="{{recordRecord.length!=0}}">-- 没有更多内容了 --</view>
+        </view>
+        <view wx:if="{{recordRecord.length==0 && type == 1}}">
+            <view class="null-tip" style="margin:0;line-height:600rpx">您没有参与竞拍</view>
+        </view>
+        <view wx:if="{{recordRecord.length==0 && type == 2}}">
+            <view class="null-tip" style="margin:0;line-height:600rpx">您的拍品还没有叫价记录</view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

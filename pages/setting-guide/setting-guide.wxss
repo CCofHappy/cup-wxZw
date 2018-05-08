@@ -1,0 +1,27 @@
+/* setting-guide.wxss */
+page{
+  background: #efefef;
+}
+
+.items-box{
+  margin-top: 10rpx;
+}
+
+.items-list{
+  border-bottom: 2rpx solid #efefef;
+}
+
+checkbox{
+  opacity: 0;
+}
+
+.text-content{
+  padding:30rpx;
+  overflow: hidden;
+  display: none;    
+}
+
+.text-content.open{
+  display: block;
+  border-bottom: 2rpx solid #efefef;
+}

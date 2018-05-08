@@ -1,0 +1,18 @@
+/* personalInfo-pwd.wxss */
+@import '../login/login.wxss';
+
+.login-box{
+  margin-top: 50rpx;
+}
+
+button{
+  color: #fff;
+}
+
+button:hover{
+  color: #fff;
+}
+
+.login-box{
+  padding:0 60rpx;
+}

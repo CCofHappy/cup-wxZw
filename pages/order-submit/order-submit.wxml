@@ -1,0 +1,90 @@
+<!--order-submit.wxml-->
+<view class="container" style="padding-bottom:100rpx;">
+  <navigator url="/pages/address-choose/address-choose" hover-class="none">
+  <view class="position-box box white-bg items-list" wx:if="{{addressInfo}}">
+    <view class="icon-box">
+      <image class="icon icon-position"></image>
+    </view>
+    <view class="text-box">
+      <view class="box">
+        <view class="box-flex">收货人:{{addressInfo.consignee}}</view> 
+        <view class="box-flex">手机:{{addressInfo.phone}}</view> 
+      </view>
+      <view class="text-overflow">{{addressInfo.province}}{{addressInfo.addr}}</view>
+    </view>
+  </view>
+  <view class="box white-bg items-list"  wx:else>
+    <view class="icon-box">
+      <image class="icon icon-position" style="margin:20rpx 20rpx 0 0;"></image>
+    </view> 
+    <view>请添加收货地址</view>
+  </view>
+  </navigator>
+  <view class="pro-box box white-bg" wx:if="{{payGoods.length == 1}}">
+    <view class="img-box">
+      <image src="{{payGoods[0].auctionGoodsIcon}}"></image>
+    </view>
+    <view style="margin-right:160rpx;line-height:40rpx;">
+      <view>拍品编码:{{payGoods[0].auctionGoodsCode}}</view>
+      <view>净含量:{{payGoods[0].jingHangLiang}}ml</view>
+      <view>酒精度:{{payGoods[0].jiuJingDu}}%</view>
+      <view>成交价:￥<text class="font-red">{{payGoods[0].finalPrice}}</text></view>
+    </view>
+    <view class="bull fn-float">共1件</view>
+  </view>
+  <view wx:else>
+    <navigator class="pro-box box items-list white-bg" url="/pages/order-submit-list/order-submit-list" hover-class="none">
+      <view wx:for="{{payGoods}}">
+        <view class="img-box" wx:if="{{index<3}}"><image src="{{item.auctionGoodsIcon}}"></image></view>
+      </view>
+      <view class="bull" wx:if="{{payGoods.length==2}}" style="margin-left:200rpx;">共{{payGoods.length}}件</view>
+      <view class="bull" wx:if="{{payGoods.length>3}}">... 共{{payGoods.length}}件</view>
+    </navigator>
+  </view>
+  <view class="price-box white-bg">
+    <view class="text-right">商品合计：<text class="font-red"><text class="font-small">￥</text>{{orderInfo.totalFee}}</text></view>
+    <view class="text-right">可抵扣保证金：<text class="font-red"><text class="font-small">￥</text>{{orderInfo.totalBail}}</text></view>
+    <view class="text-right">需付佣金：<text class="font-red"><text class="font-small">￥</text>{{orderInfo.brokerage}}</text></view>
+    <view class="text-right">剩余威币：<text class="font-red">{{wbAccount}}</text></view>
+  </view>
+  <view class="invoice-box box white-bg" bindtap="chooseInvoice">
+    <view>是否需要发票</view> 
+    <view hidden="{{!chooseInvoice}}" class="check-icon-box choose">
+      <image class="icon icon-choose"></image>
+    </view>
+    <view hidden="{{chooseInvoice}}" class="check-icon-box"></view>
+  </view>
+  <view hidden="{{!chooseInvoice}}" class="invoice-content white-bg">
+    <navigator url="/pages/invoice-info/invoice-info" hover-class="none">
+    <view class="items-list box">
+      <view>发票信息</view>
+      <view wx:if="{{invoiceHand==2}}">个人 — 电子发票</view>
+      <view wx:elif="{{invoiceHand==1}}">单位 — 电子发票</view>
+      <view wx:else>请选择</view>
+    </view>
+    </navigator>
+    <view class="invoice-tips font-small font-red">温馨提示:发票只针对您所支付的佣金,不包含您所购买的商品总价。</view>
+  </view>
+  <view class="invoice-box box white-bg" bindtap="chooseWeibi" wx:if="{{weibiBox}}">
+    <view>是否使用威币抵扣</view> 
+    <view hidden="{{!chooseWeibi}}" class="check-icon-box choose">
+      <image class="icon icon-choose"></image>
+    </view>
+    <view hidden="{{chooseWeibi}}" class="check-icon-box"></view>
+  </view>
+  <view hidden="{{!chooseWeibi}}" class="invoice-content white-bg">
+    <view class="items-list" style="background-image:none;padding:0 30rpx;">
+      <input class="fn-float text-center" type="number" style="height:50rpx;width:100rpx;margin:20rpx 0;background:#efefef;" bindinput="weibiInput" value="{{payWeibi}}"/>
+      <view class="fn-float">抵扣数量：</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="orderSubmit" report-submit="true">
+<view class="bottom-bar box white-bg text-center">
+  <view class="box-flex">实付款: <text class="font-red"><text class="font-small">￥</text>{{orderInfo.disbursements}}</text></view>
+  <button form-type="submit" class="box-flex pay-btn">
+    <view wx:if="{{orderInfo.disbursements>0}}">提交订单</view>
+    <view wx:if="{{orderInfo.disbursements<0}}">支付,退还保证金</view>
+  </button>
+</view>
+</form>

@@ -1,0 +1,42 @@
+<!--cate-list.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!cateList.length}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="container">
+        <view class="cate-list">
+            <block wx:for="{{cateList}}">
+                <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                    <view class="list-item box white-bg">
+                        <view class="item-img box box-center">
+                            <view>
+                                <image class="seize-image-1" src="{{item.auctionGoodsIcon}}" mode="widthFix" style="width:268rpx;height:268rpx;"></image>
+                            </view>
+                        </view>
+                        <view class="itme-text box box-align-center">
+                            <view>
+                                <view class="font-bold textview-overflow">{{item.auctionGoodsName}}</view>
+                                <view class="font-gray-more">拍品编码:{{item.auctionGoodsCode}}</view>
+                                <view class="font-gray-more">净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                                <view class="font-gray-more">加价幅度:
+                                    <text class="font-small">￥</text>{{item.jiaJiaStep}}</view>
+                                <view class="font-gray-more">起拍价:
+                                    <text class="font-small">￥</text>{{item.qiPaiJia}}</view>
+                                <view class="font-red" wx:if="{{item.state == 3}}">当前价:
+                                    <text class="font-small">￥</text>{{item.currPrice}}</view>
+                                <view class="font-red" wx:if="{{item.state == 4}}">成交价:
+                                    <text class="font-small">￥</text>{{item.currPrice}}</view>
+                                <view class="font-red" wx:if="{{item.state == 5}}">成交价:流拍</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>

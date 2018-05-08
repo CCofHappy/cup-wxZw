@@ -1,0 +1,56 @@
+.container .section {
+    border-bottom: 2rpx solid #efefef;
+    margin: 20rpx 0 0 24rpx;
+}
+.container{
+    border-top: 2rpx solid #efefef;
+}
+.container input {
+    display: inline-block;
+    width: 75%;
+    padding: 20rpx 0;
+    margin-left: 20rpx;
+}
+
+.imgs-box {
+    margin-left: -20rpx;
+    padding: 20rpx 0;
+    overflow: hidden;
+}
+
+.img-button {
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img-box {
+    position: relative;
+    width: 33.33%;
+    padding: 0 10rpx;
+    height: 220rpx;
+    box-sizing: border-box;
+    float: left;
+}
+.img-box image{
+    display: initial;
+}
+
+.delbtn {
+    position: absolute;
+    top: 0;
+    right: 10rpx;
+    width: 30rpx;
+    height: 30rpx;
+    background-size: 100%;
+}
+button{
+    margin: 180rpx 24rpx;
+}
+.tips{
+    margin: 30rpx 0 0 24rpx;
+    color: #b9b9b9;
+}
+.tips view{
+    padding: 6rpx 0;
+}

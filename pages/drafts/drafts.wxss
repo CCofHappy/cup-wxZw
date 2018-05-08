@@ -1,0 +1,22 @@
+/* pages/drafts/drafts.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+.drafts-box{
+    padding: 30rpx;
+    border-bottom: 20rpx solid #f2f2f2;
+}
+
+.drafts-title{
+    color: #000;
+}
+
+.drafts-box navigator{
+    width: 100%;
+}
+
+.del-btn{
+    width: 32rpx;
+    height: 32rpx;
+    background-size: 100%;
+    background-position: center;
+    flex-shrink: 0;
+}

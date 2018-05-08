@@ -1,0 +1,26 @@
+/* address-choose.wxss */
+@import '../address-list/address-list.wxss';
+
+.address-name{
+  border: none;
+}
+
+.title-box{
+  justify-content: space-between;
+  border-bottom: 2rpx solid #efefef;
+}
+
+.defaults-icon{
+  background: #C72202;
+  margin-right: 20rpx;
+  color: #fff;
+  padding: 0 10rpx;
+}
+
+.address-box{
+  border: 2rpx solid #efefef;
+}
+
+.address-box.choose{
+  border: 2rpx solid #C72202;
+}

@@ -1,0 +1,40 @@
+/* pages/mine-follower/mine-follower.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+.follow-box{
+  padding: 40rpx 30rpx;
+  border-bottom: 2rpx solid #efefef;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.follow-img{
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30rpx;
+  background-size: 100%;
+  background-position: center;
+  flex-shrink:0;
+}
+
+.follow-img image{
+  width: 100%;
+  height: 100%;
+}
+
+.follow-name{
+  font-size: 36rpx;
+}
+
+.follow-autograph,.follow-count{
+  color: #9B9B9B;
+}
+
+.icon-care{
+  width: 100rpx;
+  height: 46rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 36rpx;
+}

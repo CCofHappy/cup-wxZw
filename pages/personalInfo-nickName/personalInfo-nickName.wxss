@@ -1,0 +1,2 @@
+/* personalInfo-nickName.wxss */
+@import "../personalInfo-name/personalInfo-name.wxss";

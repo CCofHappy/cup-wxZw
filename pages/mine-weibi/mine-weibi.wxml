@@ -1,0 +1,56 @@
+<!--mine-weibi.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<view class="container">
+  <view class="topper text-center white-bg" style="margin-top:10rpx;padding:20rpx 0;">
+    <view class="weibi-count font-bold">{{weibiCount}}</view>
+    <view>我的总威币数</view>
+    <view class="font-small" style="color:#f5ac08;margin-top:10rpx;">*注：目前仅可在订单支付时使用</view>
+  </view>
+  <view class="weibi-content white-bg" style="margin-top:10rpx;">
+    <view class="weibi-title box box-center">
+      <view class="box">
+        <view class="title-content" bindtap="weibiList">
+          威币明细
+          <view class="titel-bottom" hidden="{{weibiType == 1}}"></view>
+        </view> 
+        <view class="title-content" bindtap="weibiText">
+          威币说明
+          <view class="titel-bottom" hidden="{{weibiType == 0}}"></view>
+        </view>
+      </view>
+    </view>
+    <view class="weibi-list" hidden="{{weibiType == 1}}">
+      <view class="list-box box text-center">
+        <view class="box-flex">类型</view>
+        <view class="box-flex">时间</view>
+        <view class="box-flex">威币数</view>
+        <view class="box-flex">剩余威币</view>
+      </view>
+      <block wx:if="{{!weibiList.length}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+      </block>
+      <view class="list-box box text-center" wx:for="{{weibiList}}">
+        <view class="box-flex box box-center" wx:if="{{item.type==1 || item.type==null}}">系统发放</view>
+        <view class="box-flex box box-center" wx:else>订单支付</view>
+        <view class="box-flex box box-center">{{item.createTime}}</view>
+        <view class="box-flex box box-center">{{item.balance}}</view>
+        <view class="box-flex box box-center" wx:if="{{item.surplusBalance==null}}">0</view>
+        <view class="box-flex box box-center" wx:else>{{item.surplusBalance}}</view>
+      </view>
+    </view> 
+    <view class="weibi-text" style="padding:20rpx 30rpx;border-top: 2rpx solid #efefef;" hidden="{{weibiType == 0}}">
+        <view class="font-bold" style="margin:10rpx 0;">01：怎么获得威币？</view>
+        <view>·活动公告与品饮会分享以最快时效/最佳质量等综合因素通过审核后才可获得威币；</view>
+        <view style="margin-bottom:20rpx;">·收藏与鉴赏必须发表有一定收藏价值的藏品才可获得威币。</view>
+        <view class="font-bold" style="margin:10rpx 0;">02：威币用来做什么？</view>
+        <view>·威币仅用于中威网拍卖区订单支付，不适用于个人用途而进行的购买使用。</view>
+    </view>
+  </view>
+  <view hidden="{{weibiType == 1}}">
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&weibiList.length}}">没有更多内容</view>
+  </view>
+</view>
+<block wx:if="{{showLoading}}">
+  <view class="loading">玩命加载中…</view>
+</block>

@@ -1,0 +1,97 @@
+.pro-list .pro-name {
+    font-weight: bold;
+    font-size: 36rpx;
+}
+
+.pro-list .pro-sec {
+    font-size: 24rpx;
+    color: #656565;
+}
+
+.pro-list .pro-list-left {
+    position: relative;
+    width: 43%;
+    padding: 0 10rpx;
+}
+.price-tag{
+    width: 80rpx;
+    height: 76rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.pro-list .pro-list-right {
+    width: 57%;
+}
+
+.pro-current {
+    background: #f6f1e8;
+    margin-top: 20rpx;
+    padding: 30rpx 0;
+}
+
+.pro-current .pro-current-price {
+    font-size: 32rpx;
+}
+
+.pro-current-price view {
+    padding: 0 20rpx;
+}
+
+.pro-current-price .price-txt {
+    font-weight: bold;
+}
+
+.pro-current-price .small {
+    font-size: 24rpx;
+}
+
+.pro-current-price .font-red {
+    color: #942c15;
+    font-weight: bold;
+}
+
+.pro-current .myprice {
+    color: #656565;
+    font-size: 28rpx;
+    margin-top: 20rpx;
+    padding: 25rpx 20rpx 0;
+    border-top: 2rpx solid #d6ccb8;
+}
+
+.pro-timer {
+    padding: 20rpx 0;
+}
+
+.pro-timer image {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
+}
+
+.pro-btn-box .want-txt{
+    align-items: flex-end;
+    display: flex;
+    font-size: 24rpx;
+    justify-content:center;
+}
+.pro-btn-box .pro-btn {
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    background: #805C42;
+    height: 35px;
+    line-height: 35px;
+}
+.pro-btn.booked {
+    background: #A5A5A5;
+    margin-right: 10rpx;
+}
+.pro-btn.one-hand {
+    background: #805c42;
+    margin-right: 10rpx;
+}
+.pro-btn.call-price {
+    background: #942c15;
+}

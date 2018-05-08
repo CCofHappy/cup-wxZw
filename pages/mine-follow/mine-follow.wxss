@@ -1,0 +1,2 @@
+/* pages/mine-follow/mine-follow.wxss */
+@import '../../pages/mine-follower/mine-follower.wxss';

@@ -1,0 +1,69 @@
+.call-price-shadow{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 100000;
+}
+
+.call-price-container{
+  background: #e8e8e8;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+
+.call-price-box{
+  padding: 30rpx;
+  width: 480rpx;
+}
+
+.call-price-name{
+  font-size: 36rpx;
+  line-height: 44rpx;
+  margin-bottom: 10rpx;
+}
+
+.price-content{
+  margin-top: 30rpx;
+}
+
+.price-title{
+  margin: 20rpx 0;
+}
+
+.price-btn{
+  border-top: 2rpx solid #ddd;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+.price-box{
+  justify-content: space-around;
+  padding: 0 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.price-box .font-bold:first-child, .price-box .font-bold:last-child{
+  background: #b9b9b9;
+  width: 60rpx;
+  color: #fff;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.price-box input{
+  background: #fff;
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #C72202;
+  font-weight: bold;
+}
+
+.price-btn view:last-child{
+  background: #C72202;
+  color: #fff;
+}

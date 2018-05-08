@@ -1,0 +1,8 @@
+.container{
+    border-top: 2rpx solid #efefef;
+    padding: 20rpx 40rpx;
+}
+image{
+    width: 100%;
+    margin: 12rpx 0;
+}

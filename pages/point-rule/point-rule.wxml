@@ -1,0 +1,30 @@
+<view class="container">
+    <view class="box box-between">
+        <text>1、发起分享帖且到分享截止时间自动结束</text>
+        <text class='point-label'>10点</text>
+    </view>
+    <view class="box box-between">
+        <text>2、回复别人的帖子，5字内</text>
+        <text class='point-label'>2点</text>
+    </view>
+    <view class="box box-between">
+        <text>3、回复别人的帖子，5字以上</text>
+        <text class='point-label'>5点</text>
+    </view>
+    <view class="box box-between">
+        <text>4、售出一个分享瓶</text>
+        <text class='point-label'>5点</text>
+    </view>
+    <view class="box box-between">
+        <text>5、购买一个分享瓶</text>
+        <text class='point-label'>5点</text>
+    </view>
+    <view class="box box-between">
+        <text>6、完善个人资料（上传头像、性别、个性签名）</text>
+        <text class='point-label'>50点</text>
+    </view>
+    <view class="box box-between">
+        <text>7、发起分享帖且手动结束 </text>
+        <text class='point-label'>0点</text>
+    </view>
+</view>

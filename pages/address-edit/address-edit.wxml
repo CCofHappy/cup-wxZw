@@ -1,0 +1,42 @@
+<!--address-edit.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit">
+    <view class="add-box white-bg">
+      <view class="input-box box">
+        <view class="input-title">收货人</view>
+        <input placeholder="收货人姓名" type="text" name="consignee" placeholder-style="font-family:'微软雅黑'" value="{{addressInfo.consignee}}"/>
+      </view>
+      <view class="input-box box">
+        <view class="input-title">联系方式</view>
+        <input placeholder="收货人手机号码" type="number" name="phone" placeholder-style="font-family:'微软雅黑'" value="{{addressInfo.phone}}"/>
+      </view>
+      <view class="input-box box" bindtap="openAddressBox">
+        <view class="input-title">所在地区</view>
+        <view wx:if = "{{provinceVal}}">{{provinceVal}}</view>
+        <view style="color:#808080" wx:else>收货人所在地区</view>
+        <input name="province" value="{{provinceVal}}" style="width:0" />
+      </view>
+      <view class="input-box box">
+        <view class="input-title">详细地区</view>
+        <input placeholder="收货人的详细地址" type="text" name="addr" placeholder-style="font-family:'微软雅黑'" value="{{addressInfo.addr}}"/>
+      </view>
+    </view>
+    <button class="save-btn btn-red" formType="submit" bindtap="test" >修改</button>
+  </form>
+</view>
+<view class="address-box-shadow" style="display:{{addressShadow}}" bindtap="closeAddressBox"></view>
+<view class="address-box" animation="{{animationData}}">  
+  <picker-view class="text-center white-bg" indicator-style="height: 50px;" style="width: 100%; height: 500rpx;" bindchange="bindChange" >
+    <picker-view-column>
+      <view wx:for="{{province.areaname}}" style="line-height: 100rpx;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{city.areaname}}" style="line-height: 100rpx;" >{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{county.areaname}}" style="line-height: 100rpx;" >{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+  <view class="address-close-btn text-center font-bold" bindtap="closeAddressBox">完成</view>
+</view>
+

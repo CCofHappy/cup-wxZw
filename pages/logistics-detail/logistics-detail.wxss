@@ -1,0 +1,34 @@
+/* logistics-detail.wxss */
+@import '../../pages/send-detail/send-detail.wxss';
+
+page {
+    background: #fff;
+}
+
+.logistics-state {
+    margin: 0 0 30rpx 0;
+    padding: 24rpx;
+    border-top: 2rpx solid #efefef;
+    border-bottom: 10rpx solid #efefef;
+}
+
+.container .logistics-state:nth-child(2) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.logistics-detail.record-box {
+    border: none;
+}
+
+button[type='primary'] {
+    width: 540rpx;
+    margin: 40rpx auto;
+    background-color: #a72125;
+}
+
+.outline-tips {
+    font-size: 32rpx;
+    margin-left: 20rpx;
+}

@@ -1,0 +1,7 @@
+<!--setting-feed.wxml-->
+<view class="container">
+  <form bindsubmit="feedSubmit">
+    <textarea class="white-bg" placeholder="请输入您的宝贵意见^_^" name="feedbackContent"/>
+    <button form-type="submit" class="btn-red">提交</button>
+  </form>
+</view>

@@ -1,0 +1,42 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!batchDetail}}">
+    <template is="nullTip" data="{{nullTip: nullTip}}" />
+</block>
+<block wx:else>
+    <view class="container">
+        <view class="list-item white-bg" style='padding:40rpx 60rpx'>
+            <view class="font-gray-more">送拍人手机号 : {{batchDetail.customerLogin}}</view>
+            <view class="font-gray-more">入库时间 : {{batchDetail.sendTime}}</view>
+            <view class="font-gray-more">送拍数量 : {{batchDetail.sendCount}} 件</view>
+            <view class="font-gray-more">成交数量 : {{batchDetail.dpl}} 件</view>
+            <view class="font-gray-more">流拍数量 : {{batchDetail.lpl}} 件</view>
+            <view class="text-right">
+                <navigator url="/pages/process-outline/process-outline" style="color:#999;">
+                    查看送拍流程 >>
+                </navigator>
+            </view>
+        </view>
+        <view class="record-box white-bg">
+            <block wx:for="{{batchDetail.stateList}}">
+                <view class="record-list box" wx:if="{{item.auditState != 1}}">
+                    <view class="bull"></view>
+                    <view class="record-text">
+                        <view>{{item.auditTime}}</view>
+                        <view wx:if="{{item.auditState == 2}}">预展中，您的拍品所在拍场
+                            <navigator style="display:inline-block;color: #876A2B;text-decoration: underline;" url="/pages/auction-detail/auction-detail?id={{item.auctionSessionSeq}}">【{{item.auctionSessionName}}】</navigator>
+                        </view>
+                        <view wx:if="{{item.auditState == 3}}">拍卖进行中，请耐心等待拍卖结果。</view>
+                        <view wx:if="{{item.auditState == 4 ||item.auditState == 5}}">拍卖已结束（您本次送拍的拍品成交{{batchDetail.dpl}}件，流拍{{batchDetail.lpl}}件）</view>
+                        <view wx:if="{{item.auditState == 13}}">您本次送拍的拍品已全部加入拍场，等待预展。</view>
+                        <view wx:if="{{item.auditState == 122}}">您已确认拍品上拍信息无误，等待加入拍场。</view>
+                        <view wx:if="{{item.auditState == 121}}">拍品信息已经入库，等待您的确认。</view>
+                    </view>
+                </view>
+            </block>
+            <!-- <view class="font-gray-lighter text-center">-- 没有更多内容了 --</view> -->
+        </view>
+    </view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

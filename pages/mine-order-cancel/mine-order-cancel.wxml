@@ -1,0 +1,52 @@
+<!--mine-order-cancel.wxml-->
+<import src="../../component/nullTip/nullTip.wxml" />
+<block wx:if="{{!orderList.length}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="container">
+        <block wx:for="{{orderList}}">
+            <view class="order-box white-bg">
+                <view class="order-num box box-between">
+                    <view class="font-bold text-overflow">{{item.auctionSessionName}}</view>
+                    <view style='flex-shrink: 0;'>{{item.lists[0].createTime}}</view>
+                </view>
+                <block wx:for="{{item.lists}}">
+                    <navigator url="/pages/pro-detail/pro-detail?id={{item.auctionGoodsSeq}}&sessionId={{item.auctionSessionSeq}}" hover-class="none">
+                        <view class="order-list">
+                            <view class="auction-detail box">
+                                <view class="auction-img box box-center">
+                                    <image src="{{item.auctionGoodsIcon}}" mode="widthFix" class="list-img-size seize-image-1"></image>
+                                </view>
+                                <view class="auction-text">
+                                    <view class="auction-name font-bold">{{item.auctionGoodsName}}</view>
+                                    <view class="font-gray-more">
+                                        <view class='font-small'>净含量:{{item.jingHangLiang}}ml 酒精度:{{item.jiuJingDu}}%</view>
+                                        <view class='font-small'>拍品编号:{{item.auctionGoodsCode}} 起拍价:<text class="font-small">￥</text>{{item.qiPaiJia}}</view>
+                                        <view class="font-red">成交价:
+                                            <text class="font-small">￥</text>{{item.finalPrice}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+                </block>
+                <view class='btn-bar'>
+                    <view wx:if="{{ item.lists[0].ifExplainOutTime==1}}" class='box box-align-center'>
+                        <icon type="warn" size="14" color="#282828"/>申诉期已过，已无法申诉
+                    </view>
+                    <view wx:else>
+                        <view class='appeal-btn fn-float appeal-send' wx:if="{{item.lists[0].ifExplain>0}}">已申诉</view>
+                        <view class='appeal-btn fn-float' bindtap='appealSend' data-session-seq="{{item.auctionSessionSeq}}" wx:else>申诉</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="loading-tip text-center font-gray-lighter" wx:if="{{orderList.length!=0}}">没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

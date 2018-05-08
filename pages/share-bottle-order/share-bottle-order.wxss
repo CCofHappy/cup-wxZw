@@ -1,0 +1,4 @@
+@import '../../component/nullTip/nullTip.wxss';
+page{
+    background-color: #f2f2f2;
+}

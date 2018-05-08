@@ -1,0 +1,40 @@
+<import src="../../component/nullTip/nullTip.wxml" />
+<import src="../../component/callPrice/callPrice.wxml" />
+<import src="../../component/oneHand/oneHand.wxml" />
+<block wx:if="{{!auctionList.length}}">
+    <view hidden="{{showLoading}}">
+        <template is="nullTip" data="{{nullTip: nullTip}}" />
+    </view>
+</block>
+<block wx:else>
+    <view class="tools-bar box white-bg">
+        <view class="search-bar box">
+            <input type="text" value="{{searchTrim}}" placeholder="请输入拍品编码或者名称查询" bindinput="searchInput" />
+            <view class="box box-center" bindtap="searchSubmit">
+                <image class="icon icon-tools icon-search"></image>
+            </view>
+        </view>
+        <view class="sort-btn box box-center" bindtap="openSort">排序
+            <image class="icon icon-tools icon-sort"></image>
+        </view>
+    </view>
+    <view class="container">
+        <view class="pro-list" wx:for="{{auctionList}}">
+            <auction-goods auctionGoods="{{item}}" auctionType="mine"></auction-goods>
+        </view>
+    </view>
+    <view wx:if="{{callPriceOpen}}">
+        <template is="callPrice" data="{{callPriceInfo: callPriceInfo}}" />
+    </view>
+    <view wx:if="{{oneHandOpen}}">
+        <template is="oneHand" data="{{imgUrl: imgUrl,oneHandStep:oneHandStep}}"/>
+    </view>
+    <view class="loading-tip text-center" wx:if="{{hasMore}}">拼命加载中…</view>
+    <view class="loading-tip text-center font-gray-lighter" wx:else>没有更多内容</view>
+</block>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>
+<view class='go-history box box-center white-bg' hover-class='none' bindtap='goHistory'>
+    <view class='icon icon-history' style='background-image:url("{{imgUrl}}miniweb/icon/ic_his_auction@3x.png");'></view>
+</view>

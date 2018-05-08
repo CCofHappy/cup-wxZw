@@ -1,0 +1,83 @@
+<view class="container">
+  <view class="logo">
+    <image src="{{imgUrl}}logo-3.png" style="width:280rpx;height:158rpx;" mode="widthFix"></image>
+  </view>
+  <form bindsubmit="regsterSubmit">
+  <view class="login-box">
+     <view class="login-list id">
+      <input type="text" name="customerName" placeholder="请输入昵称" placeholder-class="input-placeholder" maxlength="6"/>
+    </view>
+    <view class="login-list tel box">
+      <view style='margin-right:10px' bindtap='areaCode'>{{telCode}}</view>
+      <input type="number"  name="telephone" placeholder="请输入手机号码" bindinput="telInput" />
+    </view>
+    <view class="login-list code box">
+      <input type="number" name="smsCode" placeholder="请输入验证码"  maxlength="6" />
+      <view class="code-btn" bindtap="sendCode" wx:if="{{countDownTime==0}}" >获取验证码</view>
+      <view class="code-btn" style="color:#ddd" wx:else>重新获取({{countDownTime}}s)</view>
+    </view>
+    <view class="login-list pwd">
+      <input type="text" name="password" password="true" placeholder="请输入密码" />
+    </view>
+    <view class="login-list pwd">
+      <input type="text" name="passwordAgain" password="true" placeholder="再输入一次密码"/>
+    </view>
+    <view style="overflow:hidden;">
+      <checkbox-group bindchange="agreeChange">
+      <label>
+        <checkbox class="fn-left" checked="" value="agree"/>
+        <view class="box fn-left" style="line-height:48rpx;">
+          同意
+          <navigator url="/pages/register-protocol/register-protocol" style="color:#0404AF;">《用户注册协议》</navigator>
+        </view>
+      </label>
+      </checkbox-group>
+      <!-- <view class="fn-float"><navigator url="/pages/login/login" style="color:#0404AF;">登录</navigator></view> -->
+    </view>
+    <button formType="submit" disabled="{{registerBtn}}" bindtap="test"><text class="font-bold">注册</text> </button>
+  </view>
+  </form>
+
+  
+</view>
+<scroll-view scroll-y="true" class='areaChosePage' hidden="{{areaChosePage}}" scroll-into-view="{{jump}}">
+  <view class='code-box' id="jump{{index+1}}" wx:for="{{areaCode}}" wx:for-item="item" hidden="{{!areaCode[index].length}}">
+    <view class='code-title'>{{indexes[index].key}}</view>
+    <view class='box code-detail' id='{{items.id}}' bindtap='choseCode' wx:for="{{areaCode[index]}}" wx:for-item="items">
+      <view class='code-name'>{{items.value}}</view>
+      <view class='code-value'>{{items.id}}</view>
+    </view>
+  </view>
+
+  <view class='headSearch'>
+    <view bindtap="jumpCode" id="1">A</view>
+    <view bindtap="jumpCode" id="2">B</view>
+    <view bindtap="jumpCode" id="3">C</view>
+    <view bindtap="jumpCode" id="4">D</view>
+    <view bindtap="jumpCode" id="5">E</view>
+    <view bindtap="jumpCode" id="6">F</view>
+    <view bindtap="jumpCode" id="7">G</view>
+    <view bindtap="jumpCode" id="8">H</view>
+    <view bindtap="jumpCode" id="9">I</view>
+    <view bindtap="jumpCode" id="10">J</view>
+    <view bindtap="jumpCode" id="11">K</view>
+    <view bindtap="jumpCode" id="12">L</view>
+    <view bindtap="jumpCode" id="13">M</view>
+    <view bindtap="jumpCode" id="14">N</view>
+    <view bindtap="jumpCode" id="15">O</view>
+    <view bindtap="jumpCode" id="16">P</view>
+    <view bindtap="jumpCode" id="17">Q</view>
+    <view bindtap="jumpCode" id="18">R</view>
+    <view bindtap="jumpCode" id="19">S</view>
+    <view bindtap="jumpCode" id="20">T</view>
+    <view bindtap="jumpCode" id="21">U</view>
+    <view bindtap="jumpCode" id="22">V</view>
+    <view bindtap="jumpCode" id="23">W</view>
+    <view bindtap="jumpCode" id="24">X</view>
+    <view bindtap="jumpCode" id="25">Y</view>
+    <view bindtap="jumpCode" id="26">Z</view>
+  </view>
+  
+  
+</scroll-view>
+

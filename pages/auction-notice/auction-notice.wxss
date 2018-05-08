@@ -1,0 +1,4 @@
+/* auction-notice.wxss */
+page{
+  background: #efefef;
+}

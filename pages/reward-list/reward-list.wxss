@@ -1,0 +1,39 @@
+/* pages/reward-list/reward-list.wxss */
+@import '../../component/nullTip/nullTip.wxss';
+.reward-list-box .list-box{
+    height: 130rpx;
+    padding: 0 30rpx;
+    border-bottom: 2rpx solid #eee;
+}
+
+.reward-list-box .icon-box{
+    width: 60rpx;
+    margin-right: 40rpx;
+}
+
+.reward-list-box .icon-box image{
+    width: 48rpx;
+}
+
+.reward-list-box .list-box .box-between{
+    width: 100%;
+}
+
+.reward-list-box .list-box .box-between image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    background: #ddd;
+    display: block;
+    margin-right: 20rpx;
+}
+
+.give-btn{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 32rpx;
+}

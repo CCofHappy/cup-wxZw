@@ -1,0 +1,24 @@
+/* pages/mine-post/mine-post.wxss */
+@import '../../pages/share/share';
+.list-box{
+  position: relative;
+}
+
+.icon-examine{
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  width: 170rpx;
+}
+
+.icon-end{
+  position: absolute;
+  top: 40rpx;
+  right: 70rpx;
+  width: 220rpx;
+}
+
+.icon-examine image,.icon-end image{
+  width: 100%;
+  height: auto;
+}

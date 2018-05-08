@@ -1,0 +1,235 @@
+<import src="../../component/callPrice/callPrice.wxml" />
+<import src="../../component/oneHand/oneHand.wxml" />
+<!--我的竞拍按钮-->
+<view class="container">
+    <view class='swiper-img-container'>
+        <swiper indicator-dots="{{swiper.indicatorDots}}" interval="3000" duration="1000" style="height:{{swiperHeight}}px;" indicator-dots="true" bindtap="lookProPic" bindchange="proPicChange">
+            <block wx:for="{{proImg}}">
+                <swiper-item class="white-bg">
+                    <image src="{{item.auctionGoodsPath}}" class="slide-image" mode="widthFix" bindload="checkImg" style="width:100%;" />
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <view class="auction-state box" wx:if="{{proDetail.state == 2}}">
+            <view class="auction-state-desc" wx:if="{{proTime}}"> 距开始 {{proTime.day}} 天 {{proTime.hour}} 时 {{proTime.minute}} 分 {{proTime.second}}
+            </view>
+            <view class="auction-state-desc" wx:else>拍卖中 </view>
+        </view>
+        <view class="auction-state box" wx:elif="{{proDetail.state == 3}}">
+            <view class="auction-state-desc" wx:if="{{proTime}}"> 距结束 {{proTime.day}} 天 {{proTime.hour}} 时 {{proTime.minute}} 分 {{proTime.second}}
+            </view>
+            <view class="auction-state-desc" wx:else>已结束 </view>
+        </view>
+    </view>
+
+    <view class="pro-info-box">
+        <view class="pro-info-text white-bg">
+            <view class="pro-name textview-overflow">
+                {{proDetail.auctionGoodsName}}
+            </view>
+            <view class="textview-overflow" style="color:#858080;">
+                {{proDetail.auctionGoodsEName}}
+            </view>
+            <view class="font-red" wx:if="{{ proDetail.state == 3 && proDetail.delay == 1 }}">温馨提示：本拍品由于有用户在最后5分钟出价，故往后延迟5分钟结束。</view>
+            <view class="box pro-price-box">
+                <view  class="font-red-dark">
+                    <block wx:if="{{proDetail.state == 2}}">起拍价：</block>
+                    <block wx:if="{{proDetail.state == 3}}">当前价：</block>
+                    <block wx:if="{{proDetail.state > 3}}">成交价：</block>
+                    <block wx:if="{{proDetail.state < 5}}" style="font-size:52rpx;margin-left:10rpx;">
+                        <text class="font-small">￥</text>
+                        <text class="font-bold font-large">{{proDetail.currPrice}}</text>
+                    </block>
+                </view>
+                <view class="font-gray-lighter" style="font-size:52rpx;" wx:if="{{proDetail.state == 5}}">流拍
+                </view>
+            </view>
+            <view class='pro-labels'>
+            <view class="box other-box">
+                <view class="box-flex">
+                    <text class="pro-item-label">编</text>{{proDetail.auctionGoodsCode}}
+                </view>
+                <view class="box-flex">
+                    <text class="pro-item-label">保</text><text class="font-small">￥</text>{{proDetail.bond}}
+                </view>
+                <view class="box-flex">
+                    <text class="pro-item-label">起</text><text class="font-small">￥</text>{{proDetail.qiPaiJia}}
+                </view>
+            </view>
+            <view class="box other-box">
+                <view class="box-flex">
+                    <text class="pro-item-label">加</text><text class="font-small">￥</text>{{proDetail.jiaJiaStep}}
+                </view>
+                <view class="box-flex">
+                    <text class="pro-item-label">留</text>{{proDetail.lowState}}
+                </view>
+                <view class="box-flex">
+                    <text class="pro-item-label">估</text><text class="font-small">￥</text>{{proDetail.referencePriceMin}}-{{proDetail.referencePriceMax}}
+                </view>
+            </view>
+            </view>
+        </view>
+        <view class="pro-info-detail">
+            <view class="pro-info-tips">
+                <view class="font-bold">温馨提示：</view>
+                <view>▪ 中威网收取成交价的5%作为平台服务费。</view>
+                <view style="border-bottom:2rpx dashed #ccc;margin:20rpx 0;"></view>
+                <view>▪ 本拍品均系送拍人提供，送拍人已声明对本拍品享有完全处分权，不存在任何争议或纠纷。但由于老酒的特殊性，受保存条件、批次等诸多因素的影响，品质可能存在瑕疵或争议，请竞拍人在出价前谨慎考虑，参与出价即默认本拍品不存在争议，一经拍出概不退换，请知悉。</view>
+                <view style="border-bottom:2rpx dashed #ccc;margin:20rpx 0;"></view>
+                <view>▪ 竞拍成交后，如因运输不当造成本拍品破损，中威网将视破损情况承担相应的损失。但鉴于酒的特殊性，在运输过程中可能会出现轻微漏酒，该情形属正常现象，漏酒在5%以内，中威网不承担责任；超出5%时，客户有权退货。</view>
+            </view>
+
+            <view class='pro-item-list'>
+                <view class="items-list {{checkOne}}" bindtap="openRule" id="1">保证金规则</view>
+                <view class="text-content {{checkOne}} white-bg ">
+                    <view class="pro-content-box pro-rule text-center">
+                        <view class="box">
+                            <view class="box-flex">起拍价区间</view>
+                            <view class="box-flex">保证金(RMB)</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 0-500 </view>
+                            <view class="box-flex">20</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 501-1000 </view>
+                            <view class="box-flex">50</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 1001-3000 </view>
+                            <view class="box-flex">100</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 3001-10000 </view>
+                            <view class="box-flex">200</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 10001-30000 </view>
+                            <view class="box-flex">500</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 30001-100000 </view>
+                            <view class="box-flex">1000</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 100001-200000 </view>
+                            <view class="box-flex">2000</view>
+                        </view>
+                        <view class="box">
+                            <view class="box-flex"> 200001-300000 </view>
+                            <view class="box-flex">3000</view>
+                        </view>
+                        <view class="box" style="border:none;">
+                            <view class="box-flex"> 300000以上 </view>
+                            <view class="box-flex">5000</view>
+                        </view>
+                    </view>
+                </view>
+                <view class='items-list' wx:if="{{bond}}">
+                    <navigator hover-class="none" url="/pages/pro-detail-record/pro-detail-record?id={{proDetail.auctionGoodsSeq}}">出价记录</navigator>
+                </view>
+            </view>
+            <view class="white-bg pro-content-box">
+                <view class="title">拍品信息</view>
+                <view class="info-table">
+                    <view class="table-list box">
+                        <view class="box-flex box box-align-center"><text>品牌：</text>{{proDetail.brandInfo}}</view>
+                        <view class="box-flex box box-align-center gray"><text>净含量：</text>{{proDetail.jingHangLiang}}ml</view>
+                    </view>
+                    <view class="table-list box">
+                        <view class="box-flex box box-align-center gray"><text>数量：</text>{{proDetail.auctionNumber}}</view>
+                        <view class="box-flex box box-align-center"><text>酒精度：</text>{{proDetail.jiuJingDu}}%</view>
+                    </view>
+                    <view class="table-list box">
+                        <view class="box-flex box box-align-center"><text>年份：</text>{{proDetail.auctionYearTime}}</view>
+                        <view class="box-flex box box-align-center gray"><text>水位：</text>{{proDetail.waterLevel}}</view>
+                    </view>
+                    <view class="table-list box remarks">
+                        <view class="box-flex box box-align-center" style="border:none;">
+                            <text>备注：</text><block wx:if="{{proDetail.remark}}">
+                                <view class="textview-overflow">{{proDetail.remark}}</view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+                <view class="title">拍品详情</view>
+                <view wx:for="{{proDetail.goodsDesc}}" style="margin:-12rpx 0;">
+                    <image src="{{item}}" mode="widthFix" style="width:100%"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="footer-bar box text-center">
+    <view class="box">
+        <button class="box-flex box box-center service-btn" open-type="contact" session-from="weapp">
+            <view>
+                <view class='box box-center icon'>
+                    <image class="icon-service" src="{{imgUrl}}miniweb/icon/ic_kfservice@3x.png" mode="widthFix"></image>
+                </view>
+                <view>客服</view>
+            </view>
+        </button>
+        <view class="box-flex box box-center" bindtap="favorite">
+            <view>
+                <view class='box box-center'>
+                    <view class="icon icon-collect box box-center" wx:if="{{favorite}}"></view>
+                    <view class="icon icon-uncollect" style='margin:auto;' wx:else></view>
+                </view>
+                <view>收藏</view>
+            </view>
+        </view>
+    </view>
+    <view class="box" wx:if="{{proDetail.state < 3 }}">
+        <view class="box-flex one-hand-btn" wx:if="{{!bond}}" bindtap="paybond">报名，去交保证金</view>
+        <view class="box-flex one-hand-btn" wx:else>已报名，等待拍场开始</view>
+    </view>
+    <view class="box" wx:if="{{proDetail.state == 3 }}">
+        <view class="box-flex one-hand-btn" bindtap="oneHandPrice">加一手</view>
+        <view class="box-flex right-btn" wx:if="{{bond}}" bindtap="freePrice">自由出价</view>
+        <view class="box-flex right-btn" wx:else bindtap="paybond">去付保证金</view>
+    </view>
+
+    <block wx:if="{{proDetail.state > 3 }}">
+        <view class="box" style="background:#ccc;color:#000;" wx:if="{{proDetail.isNegotiate==0}}" bindtap="getOneClick">
+            <view class="box-flex font-large font-gray font-weight">我想私冾</view>
+        </view>
+        <view class="box" style="background:#ccc;color:#000;" wx:else>
+            <view class="box-flex font-large font-gray font-weight">已私冾</view>
+        </view>
+    </block>
+</view>
+<view wx:if="{{callPriceOpen}}">
+    <template is="callPrice" data="{{callPriceInfo: callPriceInfo}}" />
+</view>
+<view wx:if="{{oneHandOpen}}">
+    <template is="oneHand" data="{{imgUrl: imgUrl,oneHandStep:proDetail.jiaJiaStep}}"/>
+</view>
+<view class="booked-shadow box box-center" wx:if="{{bookedType}}">
+    <view class="booked-container white-bg">
+        <icon class="close-btn" type="clear" size="25" bindtap="bookedCancel"/>
+        <view class="booked-title text-center" wx:if="{{bookedType==2}}">出售</view>
+        <view class="booked-title text-center" wx:else>求购</view>
+        <view class="booked-content box">
+            <text class="price-title" decode="true" wx:if="{{bookedType==2}}">出售价&nbsp;:</text> 
+            <text class="price-title" decode="true" wx:else>求购价&nbsp;:</text> 
+            <input value='{{privatelyPrice}}' bindinput='changePrice' type='number'></input>
+        </view>
+        <view class="booked-content box">
+          <text class="count-title" decode="true" space="emsp">数 量&nbsp;:</text>      
+          <view class="count-box box text-center">
+            <view class="font-bold" bindtap="countReduce">-</view>
+                {{bookedCount}}
+            <view class="font-bold" bindtap="countAdd">+</view>
+          </view>
+        </view>
+        <view class="booked-tips font-small">如有其它客户同意私洽，我们将电话联络您。中威网按拍卖规则收取相应佣金。</view>
+        <view class="booked-btn box text-center">
+            <view class="box-flex" bindtap="bookedEnter">提交</view>
+        </view>
+    </view>
+</view>
+<block wx:if="{{showLoading}}">
+    <view class="loading">玩命加载中…</view>
+</block>

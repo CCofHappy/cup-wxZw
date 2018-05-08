@@ -1,0 +1,137 @@
+/* pages/share-publish/share-publish.wxss */
+.imgs-box{
+  padding: 30rpx 0;
+  overflow: hidden;
+}
+
+.img-box{
+  position: relative;
+  width:33.33%;
+  padding: 0 10rpx;
+  height: 230rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  float: left;
+}
+
+.img-box image{
+  width: 100%;
+  height: 100%;
+}
+
+.img-button{
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.none-title{
+  border-top:2rpx solid #efefef; 
+  border-bottom:2rpx solid #efefef; 
+  padding-bottom: 30rpx;
+}
+
+.none-title input{
+  padding: 0 30rpx;
+  border-bottom:2rpx solid #efefef; 
+  line-height: 88rpx;
+  height: 88rpx;
+}
+
+.none-title textarea{
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  width: 100%;
+  height: 200rpx;
+  box-sizing: border-box;
+}
+
+.none-title.interflow textarea{
+    height: 560rpx;
+}
+
+.input-placeholder{
+  color: #b9b9b9;
+}
+
+.textarea-tip{
+  font-size: 24rpx;
+  padding: 0 30rpx;
+  text-align: right;
+  color: #b9b9b9;
+}
+
+.detail-list{
+  padding: 0 30rpx;
+  border-bottom:2rpx solid #efefef; 
+  line-height: 88rpx;
+  height: 88rpx;  
+}
+
+.detail-list input{
+  height: 88rpx; 
+  line-height: 88rpx;
+  text-align: right;
+}
+
+button.btn-red{
+  margin: 30rpx;
+}
+
+button.btn-save{
+  margin: 30rpx;
+}
+
+.delbtn{
+  position: absolute;
+  top: 0;
+  right: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background-size: 100%;
+}
+
+.agree-box{
+  padding: 0 30rpx;
+  overflow: hidden;
+  padding-bottom: 40rpx;
+}
+
+.agree-box view.font-small{
+  float: right;
+  height: 48rpx;
+}
+
+.agree-box view.font-small view{
+  line-height: 48rpx;
+}
+
+.sole-time-box{
+  width:100%;
+  position: fixed;
+  bottom: -780rpx;
+  z-index: 10001;
+}
+
+.sole-time-btn{
+  font-size: 32rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  background: #C72202;
+  color: #fff;  
+}
+
+.sole-time-shadow{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}
+
+.sole-time-tips{
+    padding: 10rpx 0;
+}
+
