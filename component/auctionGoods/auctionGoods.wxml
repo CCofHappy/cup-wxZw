@@ -31,6 +31,7 @@
             <navigator url="{{auctionType=='mine'?mineUrl:proUrl}}" hover-class="none">
                 <view class="pro-name text-overflow">{{auctionGoods.auctionGoodsName}}</view>
                 <view class="pro-sec">净含量:{{auctionGoods.jingHangLiang}}ml 酒精度:{{auctionGoods.jiuJingDu}}%</view>
+                <view class="pro-sec" wx:if="{{auctionGoods.state>3}}">{{auctionList.endTimeChange}}</view>
                 <view class='pro-current'>
                     <view class="pro-current-price">
                         <view class='box box-align-center'>

@@ -247,7 +247,7 @@ Page({
 
         //判断是否交保证金
         var bond = data;
-        bond.isBond = 1;
+        bond.isBond = 1;//判断详情页查保证金，还是叫价时候查保证金
         bond.apiname = 'auction/bondPayedOrNot';
         request.getData(bond, function (res) {
             if (res.data.state>0) {

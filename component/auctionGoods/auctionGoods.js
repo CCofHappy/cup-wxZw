@@ -17,6 +17,7 @@ Component({
                     var prePage = pages[pages.length - 1];
                     var serverTime = prePage.data.serverTime;//获取服务器时间 
                     var that = this, countTime = 0;
+                    newVal.endTimeChange = util.toDate(newVal.endTime,2);
                     that.setData({
                         auctionList: newVal,
                         proUrl: "/pages/pro-detail/pro-detail?id=" + newVal.auctionGoodsSeq + "&sessionId=" + newVal.auctionSessionSeq,
