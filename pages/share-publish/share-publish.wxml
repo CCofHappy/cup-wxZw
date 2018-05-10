@@ -11,7 +11,7 @@
         </view>
         <view class='detail-box'>
             <view class='none-title'>
-                <input type='text' name="title" placeholder="请输入你的帖子标题" maxlength="50" value='{{formValue.title}}'></input>
+                <input type='text' name="title" placeholder="请输入你的帖子标题" maxlength="20" value='{{formValue.title}}'></input>
                 <textarea name="content" placeholder="请输入你的帖子内容" maxlength="500" placeholder-class="input-placeholder" bindinput='fontCount' value='{{formValue.content}}'/>
                 <view class='textarea-tip'>最多可以输入{{500-fontCount}}个字符</view>
             </view>

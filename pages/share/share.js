@@ -109,13 +109,17 @@ Page({
                 customerSeq: that.data.customerInfo.customerSeq,
                 page: page||that.data.start,
                 rows: rows||that.data.count,
-                orderBy: 5,
-                sort: 2,
+                orderBy: 5,  //5 审核时间排序
+                sort: 2,  //1 正序 2 倒序
             }
             that.setData({
                 showLoading: true,
             });
             request.getData(params, function (res) {
+                var test = res.data;
+                if (typeof test == 'string') {
+                    console.log(JSON.parse(test))
+                }
                 if (res.data.state == 1) {
                     var serverTime = util.getServerTime();//获取服务器时间
                     if (res.data.data.dataList.length > 0) {
@@ -176,8 +180,8 @@ Page({
                 newOrOld: 2,
                 state: 1,
                 customerSeq: that.data.customerInfo.customerSeq,
-                orderBy: 2,
-                sort: 2,
+                orderBy: 2, //2 结束时间排序
+                sort: 2, //1 正序 2 倒序
                 page: page||that.data.startHis,
                 rows: rows||that.data.countHis
             }
