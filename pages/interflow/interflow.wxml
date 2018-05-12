@@ -12,9 +12,6 @@
         </view>
         <view class="weui-tab__panel">
             <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-                <navigator url="/pages/share-bottle/share-bottle" hover-class="none">
-                    <image src="{{imgUrl}}/miniweb/share-entrance.jpg" style="width:100%;height:160rpx;" mode="widthFix"></image>
-                </navigator>
                 <navigator url="/pages/share-rule/share-rule" hover-class="none">
                     <view class="list-box box box-align-center">
                         <image src='{{imgUrl}}/miniweb/ic_advice.png' style="width:88rpx;height:50rpx;margin-top:-10rpx;" mode="widthFix"></image>
@@ -91,9 +88,6 @@
                 <view class="loading-tip text-center font-gray-lighter" wx:if="{{!hasMore&&interflowList.length!=0}}">没有更多内容</view>
             </view>
             <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-                <navigator url="/pages/share-bottle/share-bottle" hover-class="none">
-                    <image src="{{imgUrl}}/miniweb/share-entrance.jpg" style="width:100%;height:160rpx;" mode="widthFix"></image>
-                </navigator>
                 <navigator url="/pages/share-rule/share-rule" hover-class="none">
                     <view class="list-box box box-align-center">
                         <image src='{{imgUrl}}/miniweb/ic_advice.png' style="width:88rpx;height:50rpx;margin-top:-10rpx;" mode="widthFix"></image>
