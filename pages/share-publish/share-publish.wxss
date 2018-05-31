@@ -68,6 +68,7 @@
 }
 
 .detail-list input{
+    width: 300rpx;
   height: 88rpx; 
   line-height: 88rpx;
   text-align: right;

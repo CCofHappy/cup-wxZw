@@ -1,6 +1,7 @@
 <view class="container">
     <view class='title'>《转账信息及注意事项》</view>
     <view>一、对公账户</view>
+    <view>开户名：惠州市中威酒业有限公司</view>
     <view>开户行：工商银行惠州东方威尼斯支行</view>
     <view>账号：2008 0222 0920 0036 227</view>
     <view class='item'>二、中威收到您的转账后，将为您的中威钱包充值同等金额，使用中威钱包支付订单，完成交易。</view>

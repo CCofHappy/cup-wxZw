@@ -7,6 +7,7 @@ Page({
         imgUrl: app.globalData.imagePath,
         focus: false,
         bbsInfo: '',
+        postOrder: '',
         pid: '',
         uid: '',
         sendContent: '',
@@ -29,6 +30,8 @@ Page({
         postImgList: [],
         openImgBox: false,
         navigateLock: false,
+        limitOrder:20,//限制显示几条买家数据
+        limitOpen:false,//是否展开
     },
 
     onLoad: function (options) {
@@ -142,7 +145,7 @@ Page({
                     that.setData({
                         serverTime: serverTime,
                     })
-                    if (res.data.data) {
+                    if (res.data.data) { // 设置时间格式
                         res.data.data.auditTime = util.changeTime(util.toDate(res.data.data.auditTime, 7));
                         res.data.data.content = res.data.data.content.replace(/\n/g, '<br>');
                         res.data.data.content = res.data.data.content.replace(/\s/g, '&nbsp;');
@@ -153,8 +156,18 @@ Page({
                         }
                     }
                     if (that.data.start == 1) {//只有初始化时时 需要重置
+                        var postOrder = res.data.data.postOrder;
+                        for (var i = 0; i < postOrder.length;i++){
+                            postOrder[i].sort = i;
+                            if (postOrder[i].uid == that.data.customerInfo.customerSeq){
+                                var list = postOrder[i];
+                                postOrder.splice(i, 1);
+                                postOrder.unshift(list);
+                            } 
+                        }
                         that.setData({
                             bbsInfo: res.data.data,
+                            postOrder: postOrder,
                             nullTip: {
                                 tipText: '没有相关数据哦'
                             },
@@ -614,4 +627,12 @@ Page({
             }
         })
     },
+
+    //查看更多
+    openMore:function(){
+        this.setData({
+            limitOrder: this.data.limitOrder==20?100000:20,
+            limitOpen: !this.data.limitOpen
+        })
+    }
 })

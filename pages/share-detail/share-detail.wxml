@@ -41,8 +41,8 @@
             </block>
         </view>
         <view class='content-box'>
-            <block  wx:if="{{bbsInfo.state==1}}">
-            <count-down  endTime='{{bbsInfo.endTime}}' presellTime='{{bbsInfo.presellTime}}' serverTime='{{serverTime}}' isEnd="{{bbsInfo.isEnd}}"></count-down>
+            <block wx:if="{{bbsInfo.state==1}}">
+                <count-down endTime='{{bbsInfo.endTime}}' presellTime='{{bbsInfo.presellTime}}' serverTime='{{serverTime}}' isEnd="{{bbsInfo.isEnd}}"></count-down>
             </block>
             <view class='content-detail text-center'>
                 <view class='box'>
@@ -63,13 +63,13 @@
                 </view>
                 <view class='box'>
                     <view class='box-flex'>单价</view>
-                     <view class='box-flex'>{{bbsInfo.price>=10000?bbsInfo.price/10000+'万':bbsInfo.price}}元</view>
+                    <view class='box-flex'>{{bbsInfo.price>=10000?bbsInfo.price/10000+'万':bbsInfo.price}}元</view>
                     <view class='box-flex'>品牌</view>
                     <view class='box-flex two textview-overflow1'>{{bbsInfo.brand}}</view>
                 </view>
             </view>
             <view class='sold-tips' wx:if="{{bbsInfo.minNumber&&bbsInfo.minNumber>0}}">
-                <icon type="warn" size="14" color="#282828"/> 
+                <icon type="warn" size="14" color="#282828" />
                 <text>温馨提示：此帖设置了成团数量，达到成团数，则此帖生效；若未达到成团数，则此帖无效，系统自动取消所有订单，并将订单金额退还至参与者中威钱包。</text>
             </view>
             <view wx:if="{{bbsInfo.state==2}}" class='fail-tip'>
@@ -83,16 +83,24 @@
                     <view class='box-flex'>参与数</view>
                     <view class='box-flex'> 状态</view>
                 </view>
-                <view class='box form-list' wx:for="{{bbsInfo.postOrder}}">
-                    <view class='box-flex'> {{index+1}}</view>
-                    <view class='box-flex text-overflow'>{{item.name}}</view>
-                    <view class='box-flex'>{{item.number}}份</view>
+                <view class='box form-list' wx:for="{{postOrder}}" wx:if="{{index<limitOrder}}">
+                    <block wx:if="{{customerInfo.customerSeq==item.uid}}">
+                        <view class='box-flex' style='color:#A72125;'> {{item.sort+1}}</view>
+                        <view class='box-flex text-overflow' style='color:#A72125;'>{{item.name}}</view>
+                        <view class='box-flex' style='color:#A72125;'>{{item.number}}份</view>
+                    </block>
+                    <block wx:else>
+                        <view class='box-flex'> {{item.sort+1}}</view>
+                        <view class='box-flex text-overflow'>{{item.name}}</view>
+                        <view class='box-flex'>{{item.number}}份</view>
+                    </block>
                     <block wx:if="{{item.state==0}}">
                         <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid}}" bindtap='sendDetail' data-OrderNo='{{item.order_no}}' data-Number='{{item.number}}' data-index='{{index}}' style='color:#A72125;text-decoration: underline;'>待付款</view>
                         <view class='box-flex' style='color:#009688;' wx:else>待付款</view>
                     </block>
                     <block wx:if="{{item.state==1}}">
                         <view class='box-flex' wx:if="{{customerInfo.customerSeq==uid}}" bindtap='deliveryBtn' data-OrderNo='{{item.order_no}}' data-Data='{{item}}' style='color:#A72125;text-decoration: underline;'>待发货</view>
+                        <view class='box-flex' wx:elif="{{customerInfo.customerSeq==item.uid}}" style='color:#A72125;'> 待发货</view>
                         <view class='box-flex' wx:else> 待发货</view>
                     </block>
                     <block wx:if="{{item.state==2 || item.state == 201}}">
@@ -115,6 +123,12 @@
                     <block wx:if="{{item.state==4}}">
                         <view class='box-flex'> 已失效</view>
                     </block>
+                </view>
+                <view class='box box-center font-red-dark more' wx:if="{{postOrder.length>limitOrder}}" bindtap="openMore">
+                    查看更多
+                </view>
+                <view class='box box-center font-red-dark more' wx:if="{{limitOpen}}" bindtap="openMore">
+                    收起更多
                 </view>
             </view>
             <view class='share-detail-btn'>
@@ -144,7 +158,7 @@
             <view class='detail-img ' wx:for="{{bbsInfo.imgUrl}}">
                 <image src='{{item.image_url}}' mode='widthFix'></image>
             </view>
-            <block wx:if="{{bbsInfo.state==1}}" >
+            <block wx:if="{{bbsInfo.state==1}}">
                 <view class="icon give-btn" bindtap='openGiveReward' wx:if="{{customerInfo.customerSeq != uid}}">
                     <image src='{{imgUrl}}miniweb/icon/ic_reward@3x.png' style="width:100%" mode="widthFix"></image>
                 </view>

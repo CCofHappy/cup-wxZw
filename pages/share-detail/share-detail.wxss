@@ -361,3 +361,7 @@ text.maohao {
   height: 30rpx;
   background-size: 100%;
 }
+
+.more.font-red-dark{
+    margin-top: 15rpx;
+}

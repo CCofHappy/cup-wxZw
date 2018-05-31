@@ -41,6 +41,10 @@ page {
     margin: 10rpx 0;
 }
 
+.content-title image{
+    flex-shrink: 0;
+}
+
 .comment-point {
     flex-shrink: 0;
     border-left: 2rpx solid #979797;
