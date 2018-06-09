@@ -1,9 +1,9 @@
 App({
     globalData: {
         userInfo: null,
-        apiPath: "https://dev.wap.cwhisky.com/cwhisky-jp-app-api/app",
-        wssPath: "wss://dev.wap.cwhisky.com/cwhisky-jp-app-api/webSocket",
-        weixin: "https://dev.wap.cwhisky.com/weixin/",
+        apiPath: "http://mytest.wap.cwhisky.com/cwhisky-jp-app-api/app",
+        wssPath: "wss://mytest.wap.cwhisky.com/cwhisky-jp-app-api/webSocket",
+        weixin: "http://mytest.wap.cwhisky.com/weixin/",
         addreessPath: "https://wap.cwhisky.com/area2.0.json",
         imagePath: "https://microweb.oss-cn-shenzhen.aliyuncs.com/",
         serverTime: "",

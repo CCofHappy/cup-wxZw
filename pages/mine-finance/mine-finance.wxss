@@ -10,7 +10,7 @@
   border-top: 2rpx solid #e5e5e5;
 }
 .item-box{
-  padding: 0 20rpxl;
+  padding: 20rpx;
   border-bottom: 2rpx solid #efefef;
 }
 

@@ -89,7 +89,7 @@
     <view class='bottom-bar text-center box'>
         <view class='white-bg box box-center'>实付款：
             <text class='price'>
-                <text class='font-small'>￥</text>{{shareDetail.price*count?shareDetail.price*count:0}}</text>
+                <text class='font-small'>￥</text>{{maxPrice?maxPrice:0}}</text>
         </view>
         <block wx:if="{{switchBtn}}">
             <button class='submit' form-type="submit">提交订单</button>
@@ -107,7 +107,7 @@
         </view>
         <view class="pay-value">
             <text class="font-small font-bold">￥</text>
-            <text class='pay-value'>{{shareDetail.price*count}}</text>
+            <text class='pay-value'>{{maxPrice}}</text>
         </view>
         <view class="password-box" bindtap="bindPayClick" style='padding-bottom:40rpx;'>
             <view class="fn-float box box-center">

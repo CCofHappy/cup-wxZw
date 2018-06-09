@@ -38,10 +38,10 @@ module.exports = {
                 }  
             },
             fail: function (e) {
-                console.log("====天啦噜，request报异常了======")
+                console.log("====天啦噜，request报异常了======"+e)
                 prePage.setData({
                     nullTip: {
-                        tipText: '数据加载失败,请检查您的网络'
+                        tipText: '数据加载失败，请检查您的网络'
                     },
                     showLoading: false,
                     loadError:true,

@@ -18,6 +18,7 @@ Page({
         payLock: "",
         //控制提交按钮是否高亮（提交之后需将按钮设置禁用 防止重复提交造成重复订单问题）
         switchBtn: true,
+        maxPrice: '',
     },
     onLoad: function (options) {
         this.setData({
@@ -32,6 +33,7 @@ Page({
         this.setData({
             shareDetail: wx.getStorageSync('shareDetail'),
             customerInfo: wx.getStorageSync('customerInfo'),
+            maxPrice: (wx.getStorageSync('shareDetail').price * this.data.count).toFixed(2),
         })
         this.initData();
     },
@@ -76,6 +78,7 @@ Page({
         count = count > max ? max : count;
         this.setData({
             count: count,
+            maxPrice: (this.data.shareDetail.price * count).toFixed(2),
         })
     },
 

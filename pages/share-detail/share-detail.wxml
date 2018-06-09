@@ -103,16 +103,14 @@
                         <view class='box-flex' wx:elif="{{customerInfo.customerSeq==item.uid}}" style='color:#A72125;'> 待发货</view>
                         <view class='box-flex' wx:else> 待发货</view>
                     </block>
-                    <block wx:if="{{item.state==2 || item.state == 201}}">
+                    <block wx:if="{{item.state==2}}">
                         <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid}}" style='color:#A72125;text-decoration: underline;'>
                             <view bindtap='gotoLogistics' data-OrderNo='{{item.order_no}}' data-Data='{{item}}'>待收货</view>
                         </view>
                         <view class='box-flex' wx:elif="{{customerInfo.customerSeq==uid}}" style='color:#009688;text-decoration: underline;'>
                             <view bindtap='gotoLogistics' data-Data='{{item}}'>待收货</view>
                         </view>
-                        <view class='box-flex' wx:else>
-                            待收货
-                        </view>
+                        <view class='box-flex' wx:else>待收货</view>
                     </block>
                     <block wx:if="{{item.state==3}}">
                         <view class='box-flex' wx:if="{{customerInfo.customerSeq==item.uid || customerInfo.customerSeq==uid}}" style='color:#A72125;text-decoration: underline;'>
@@ -124,9 +122,7 @@
                         <view class='box-flex'> 已失效</view>
                     </block>
                 </view>
-                <view class='box box-center font-red-dark more' wx:if="{{postOrder.length>limitOrder}}" bindtap="openMore">
-                    查看更多
-                </view>
+                <view class='box box-center font-red-dark more' wx:if="{{postOrder.length>limitOrder}}" bindtap="openMore">查看更多</view>
                 <view class='box box-center font-red-dark more' wx:if="{{limitOpen}}" bindtap="openMore">
                     收起更多
                 </view>

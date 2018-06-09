@@ -371,10 +371,21 @@ Page({
         })
     },
     gotoLogistics: function (e) {
-        wx.setStorageSync('shareLogistics', e.currentTarget.dataset.data);
+        var item = e.currentTarget.dataset.data;
+        wx.setStorageSync('shareLogistics', item);
         var url = '/pages/logistics-detail/logistics-detail?type=share&uid=' + this.data.uid;
-        if (e.currentTarget.dataset.orderno) {
-            url = url + '&orderNo=' + e.currentTarget.dataset.orderno;
+        var oprSend = item.opr_send;
+        if (item.order_no) {
+            url = url + '&orderNo=' + item.order_no;
+        }
+        if (oprSend == 1){//oprSend 为1时 表示是线下发货，即无物流信息 不用跳转到物流界面
+            wx.showModal({
+                showCancel: false,
+                confirmText: '我知道了',
+                content: '卖家已线下发货，请知悉！',
+                success: function (res) {}
+            })
+            return;
         }
         wx.navigateTo({
             url: url
