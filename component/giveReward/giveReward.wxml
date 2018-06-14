@@ -26,7 +26,7 @@
             </view>
         </view>
         <view class='give-reward-input text-center'>
-            <input type='number' placeholder="其他金额" bindinput='inputmoney' maxlength="10" value='{{inputValue}}'></input>
+            <input type='digit' placeholder="其他金额" bindinput='inputmoney' maxlength="6" value='{{inputValue}}'></input>
         </view>
         <view class='give-reward-submit text-center' bindtap='giveReward'>
             打赏

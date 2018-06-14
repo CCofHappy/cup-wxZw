@@ -75,8 +75,8 @@ Component({
         imgUrl: app.globalData.imagePath,
         inputValue: "",
         buttonValue: "1",
-        pid:"",
-        type:"1",
+        pid: "",
+        type: "1",
     },
 
     /**
@@ -84,16 +84,25 @@ Component({
      */
 
     methods: {
-        changemoney:function(e){
+        changemoney: function (e) {
             this.setData({
                 buttonValue: e.currentTarget.dataset.money,
                 inputValue: "",
             })
         },
 
-        inputmoney:function(e){
+        inputmoney: function (e) {
+            var val = e.detail.value;
+            var arr = val.split('.');
+            if (arr.length > 1 && arr[0]=='') {
+                val = 0;
+            } else if (arr.length > 1 && arr[1].length > 2) {
+                val = parseFloat(val).toFixed(2)
+            } else if (arr.length > 2) {
+                val = parseFloat(val)
+            }
             this.setData({
-                inputValue: e.detail.value,
+                inputValue: val > 200 ? 200 : val,
                 buttonValue: "",
             })
         },
@@ -102,24 +111,25 @@ Component({
             var that = this;
             var pages = getCurrentPages();
             var page = pages[pages.length - 1];
-            if (!that.data.inputValue && !that.data.buttonValue){
+
+            if (!that.data.inputValue && !that.data.buttonValue) {
                 app.showToastMsg(-1, '金额不能为空');
             } else {
-                if (that.data.inputValue && that.data.inputValue==0){
+                if (that.data.inputValue && that.data.inputValue == 0) {
                     app.showToastMsg(-1, '金额不能为0');
                     return;
                 }
                 var price = that.data.inputValue || that.data.buttonValue;
                 wx.navigateTo({
-                    url: '/pages/give-reward-pay/give-reward-pay?pid=' + that.data.pid + '&price=' + price + '&type=' + that.data.type, 
-                    success: function(res) {},
-                    fail: function(res) {},
-                    complete: function(res) {},
+                    url: '/pages/give-reward-pay/give-reward-pay?pid=' + that.data.pid + '&price=' + price + '&type=' + that.data.type,
+                    success: function (res) { },
+                    fail: function (res) { },
+                    complete: function (res) { },
                 })
             }
         },
 
-        closeReward: function(){
+        closeReward: function () {
             var pages = getCurrentPages();
             var page = pages[pages.length - 1];
             this.setData({
@@ -131,7 +141,7 @@ Component({
             })
         },
 
-        closePayAfter:function() {
+        closePayAfter: function () {
             var pages = getCurrentPages();
             var page = pages[pages.length - 1];
             page.setData({
